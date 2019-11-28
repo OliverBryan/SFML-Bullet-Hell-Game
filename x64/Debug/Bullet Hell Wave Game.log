@@ -1,0 +1,30 @@
+﻿Build started 11/28/2019 12:41:54 PM.
+     1>Project "c:\Users\obryan\documents\visual studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\Bullet Hell Wave Game.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /sdl /Od /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt BasicSpawner.cpp Enemy.cpp Environment.cpp Main.cpp Player.cpp
+         Environment.cpp
+     1>Environment.cpp(66): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+         Generating Code...
+         Compiling...
+         Player.cpp
+         Main.cpp
+         Enemy.cpp
+         BasicSpawner.cpp
+     1>BasicSpawner.cpp(6): warning C4356: 'Spawner::FIRE_TIME' : static data member cannot be initialized via derived class
+         Generating Code...
+     1>c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\enemy.cpp(13): warning C4715: 'Enemy::update' : not all control paths return a value
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"c:\users\obryan\documents\visual studio 2013\Projects\Bullet Hell Wave Game\x64\Debug\Bullet Hell Wave Game.exe" /INCREMENTAL /NOLOGO "sfml-graphics-d.lib" "sfml-window-d.lib" "sfml-system-d.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"c:\users\obryan\documents\visual studio 2013\Projects\Bullet Hell Wave Game\x64\Debug\Bullet Hell Wave Game.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"c:\users\obryan\documents\visual studio 2013\Projects\Bullet Hell Wave Game\x64\Debug\Bullet Hell Wave Game.lib" /MACHINE:X64 x64\Debug\BasicEnemy.obj
+         x64\Debug\BasicSpawner.obj
+         x64\Debug\Enemy.obj
+         x64\Debug\Environment.obj
+         x64\Debug\Main.obj
+         x64\Debug\Player.obj
+         x64\Debug\Spawner.obj
+         x64\Debug\UserInterface.obj
+         Bullet Hell Wave Game.vcxproj -> c:\users\obryan\documents\visual studio 2013\Projects\Bullet Hell Wave Game\x64\Debug\Bullet Hell Wave Game.exe
+     1>Done Building Project "c:\Users\obryan\documents\visual studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\Bullet Hell Wave Game.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:04.82
