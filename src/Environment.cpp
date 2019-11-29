@@ -3,7 +3,7 @@
 
 void Environment::update() {
 	m_newSpawnerCounter++;
-	if (m_newSpawnerCounter >= 600) {
+	if (m_newSpawnerCounter >= (m_waves[m_wave - 1].newSpawnerInterval * 60)) {
 		std::cout << "Environment: spawning spawner" << std::endl;
 		addSpawner();
 		m_newSpawnerCounter = 0;
@@ -28,6 +28,10 @@ void Environment::update() {
 	}
 
 	m_player.update();
+
+	if (preWave && m_spawners.size() > 0) {
+		clearSpawners();
+	}
 }
 
 void Environment::render(sf::RenderWindow& window) {
@@ -63,7 +67,23 @@ void Environment::clearSpawners() {
 }
 
 void Environment::addSpawner() {
-	m_spawners.push_back(new BasicSpawner(irand(20, 404), this));
+	int spawnerType = irand(0, 100);
+	int sum = 0;
+	std::string name = "";
+	std::vector<std::pair<std::string, int>> spawnerTypes = m_waves[m_wave - 1].spawnerTypes;
+
+	for (std::pair<std::string, int> type : spawnerTypes) {
+		sum += type.second;
+		if (spawnerType < sum) {
+			name = type.first;
+			break;
+		}
+	}
+
+	if (name == "basic")
+		m_spawners.push_back(new BasicSpawner(static_cast<float>(irand(20, 404)), this));
+	else if (name == "laser")
+		m_spawners.push_back(new LaserSpawner(static_cast<float>(irand(20, 404)), this));
 }
 
 void Environment::removeSpawner(int index) {

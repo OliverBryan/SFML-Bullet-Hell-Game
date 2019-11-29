@@ -155,23 +155,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BasicEnemy.cpp" />
-    <ClCompile Include="BasicSpawner.cpp" />
-    <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="Environment.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Spawner.cpp" />
-    <ClCompile Include="UserInterface.cpp" />
+    <ClCompile Include="src\enemies\BasicEnemy.cpp" />
+    <ClCompile Include="src\enemies\LaserEnemy.cpp" />
+    <ClCompile Include="src\spawners\BasicSpawner.cpp" />
+    <ClCompile Include="src\enemies\Enemy.cpp" />
+    <ClCompile Include="src\Environment.cpp" />
+    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\spawners\LaserSpawner.cpp" />
+    <ClCompile Include="src\spawners\Spawner.cpp" />
+    <ClCompile Include="src\UserInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BasicEnemy.hpp" />
-    <ClInclude Include="BasicSpawner.hpp" />
-    <ClInclude Include="Enemy.hpp" />
-    <ClInclude Include="Environment.hpp" />
-    <ClInclude Include="Player.hpp" />
-    <ClInclude Include="Spawner.hpp" />
-    <ClInclude Include="UserInterface.hpp" />
+    <ClInclude Include="src\enemies\BasicEnemy.hpp" />
+    <ClInclude Include="src\enemies\LaserEnemy.hpp" />
+    <ClInclude Include="src\spawners\BasicSpawner.hpp" />
+    <ClInclude Include="src\enemies\Enemy.hpp" />
+    <ClInclude Include="src\Environment.hpp" />
+    <ClInclude Include="src\Player.hpp" />
+    <ClInclude Include="src\spawners\LaserSpawner.hpp" />
+    <ClInclude Include="src\spawners\Spawner.hpp" />
+    <ClInclude Include="src\UserInterface.hpp" />
+    <ClInclude Include="src\Wave.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

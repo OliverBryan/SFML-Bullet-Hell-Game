@@ -5,7 +5,7 @@
 
 class BasicSpawner : public Spawner {
 public:
-	BasicSpawner(float x, Environment* env) : Spawner(x, env) {}
+	BasicSpawner(float x, Environment* env) : Spawner(x, env) { FIRE_TIME = 60; }
 
 	void render(sf::RenderWindow& window) override;
 protected:

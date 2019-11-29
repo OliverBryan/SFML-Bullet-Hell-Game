@@ -2,7 +2,7 @@
 #define ENEMY_HPP
 
 #include <SFML/Graphics.hpp>
-#include "Spawner.hpp"
+#include "..\spawners\Spawner.hpp"
 
 class Enemy {
 public:

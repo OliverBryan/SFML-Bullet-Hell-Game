@@ -1,7 +1,10 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
 #include "Player.hpp"
 #include "UserInterface.hpp"
 #include "Environment.hpp"
+#include <fstream>
+#include <map>
 
 int main() {
 	sf::ContextSettings cs;
@@ -12,8 +15,8 @@ int main() {
 	sf::Time accumulator = sf::Time::Zero;
 	sf::Time ups = sf::seconds(1.f / 60.0f);
 
-	UserInterface ui;
 	Environment env;
+	UserInterface ui(&env);
 
 	while (window.isOpen()) {
 		sf::Clock c;
@@ -44,4 +47,5 @@ int main() {
 		window.display();
 		accumulator += clock.restart();
 	}
+	return 0;
 }

@@ -27,52 +27,67 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
+    <ClCompile Include="src\Environment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
+    <ClCompile Include="src\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UserInterface.cpp">
+    <ClCompile Include="src\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Source Files\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Environment.cpp">
+    <ClCompile Include="src\UserInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BasicSpawner.cpp">
+    <ClCompile Include="src\spawners\BasicSpawner.cpp">
       <Filter>Source Files\Spawners</Filter>
     </ClCompile>
-    <ClCompile Include="Spawner.cpp">
+    <ClCompile Include="src\enemies\BasicEnemy.cpp">
+      <Filter>Source Files\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="src\enemies\Enemy.cpp">
+      <Filter>Source Files\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spawners\Spawner.cpp">
       <Filter>Source Files\Spawners</Filter>
     </ClCompile>
-    <ClCompile Include="BasicEnemy.cpp">
-      <Filter>Source Files\Enemies</Filter>
+    <ClCompile Include="src\spawners\LaserSpawner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\enemies\LaserEnemy.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Player.hpp">
+    <ClInclude Include="src\Environment.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UserInterface.hpp">
+    <ClInclude Include="src\Player.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Environment.hpp">
+    <ClInclude Include="src\UserInterface.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Spawner.hpp">
+    <ClInclude Include="src\spawners\BasicSpawner.hpp">
       <Filter>Header Files\Spawners</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.hpp">
+    <ClInclude Include="src\enemies\BasicEnemy.hpp">
       <Filter>Header Files\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="BasicSpawner.hpp">
+    <ClInclude Include="src\enemies\Enemy.hpp">
+      <Filter>Header Files\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spawners\Spawner.hpp">
       <Filter>Header Files\Spawners</Filter>
     </ClInclude>
-    <ClInclude Include="BasicEnemy.hpp">
-      <Filter>Header Files\Enemies</Filter>
+    <ClInclude Include="src\Wave.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spawners\LaserSpawner.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\enemies\LaserEnemy.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

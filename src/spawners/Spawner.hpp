@@ -24,7 +24,7 @@ public:
 
 	virtual void render(sf::RenderWindow& window) = 0;
 
-	static int FIRE_TIME;
+	int FIRE_TIME;
 
 protected:
 	int m_newX;

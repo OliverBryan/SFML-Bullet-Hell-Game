@@ -1,5 +1,5 @@
 #include "Enemy.hpp"
-#include "Environment.hpp"
+#include "..\Environment.hpp"
 
 int Enemy::update() {
 	m_position.x += m_velocity.x;
@@ -10,4 +10,5 @@ int Enemy::update() {
 	}
 
 	m_lifetime--;
+	return 0;
 }

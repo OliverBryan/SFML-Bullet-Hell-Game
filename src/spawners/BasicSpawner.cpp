@@ -1,9 +1,7 @@
 #include "BasicSpawner.hpp"
-#include "Environment.hpp"
-#include "BasicEnemy.hpp"
+#include "..\Environment.hpp"
+#include "..\enemies\BasicEnemy.hpp"
 #include <iostream>
-
-int BasicSpawner::FIRE_TIME = 60;
 
 void BasicSpawner::render(sf::RenderWindow& window) {
 	sf::RectangleShape shape(sf::Vector2f(16, 20));
