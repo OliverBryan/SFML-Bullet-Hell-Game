@@ -1,10 +1,13 @@
 #include "Environment.hpp"
+#include "spawners\Spawner.hpp"
+#include "enemies\Enemy.hpp"
+#include "spawners\BasicSpawner.hpp"
+#include "spawners\LaserSpawner.hpp"
 #include <iostream>
 
 void Environment::update() {
 	m_newSpawnerCounter++;
-	if (m_newSpawnerCounter >= (m_waves[m_wave - 1].newSpawnerInterval * 60)) {
-		std::cout << "Environment: spawning spawner" << std::endl;
+	if (m_spawners.size() < m_waves[m_wave - 1].spawners && m_newSpawnerCounter >= (m_waves[m_wave - 1].newSpawnerInterval * 60)) {
 		addSpawner();
 		m_newSpawnerCounter = 0;
 	}
@@ -19,8 +22,6 @@ void Environment::update() {
 		if (m_player.getBounds().intersects(m_enemies.at(i)->getBounds()) && !m_player.invincible) {
 			//TODO: polish death
 			running = false;
-			std::cout << "Environment: Player died" << std::endl;
-			std::cout << "Environment: ending game" << std::endl;
 			return;
 		}
 
@@ -96,4 +97,8 @@ void Environment::removeEnemy(int index) {
 	Enemy* enemy = m_enemies.at(index);
 	m_enemies.erase(m_enemies.begin() + index);
 	delete enemy;
+}
+
+Player* Environment::getPlayer() {
+	return &m_player;
 }

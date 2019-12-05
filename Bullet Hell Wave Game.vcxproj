@@ -157,12 +157,10 @@
   <ItemGroup>
     <ClCompile Include="src\enemies\BasicEnemy.cpp" />
     <ClCompile Include="src\enemies\LaserEnemy.cpp" />
-    <ClCompile Include="src\spawners\BasicSpawner.cpp" />
     <ClCompile Include="src\enemies\Enemy.cpp" />
     <ClCompile Include="src\Environment.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Player.cpp" />
-    <ClCompile Include="src\spawners\LaserSpawner.cpp" />
     <ClCompile Include="src\spawners\Spawner.cpp" />
     <ClCompile Include="src\UserInterface.cpp" />
   </ItemGroup>
@@ -173,6 +171,7 @@
     <ClInclude Include="src\enemies\Enemy.hpp" />
     <ClInclude Include="src\Environment.hpp" />
     <ClInclude Include="src\Player.hpp" />
+    <ClInclude Include="src\spawners\HomingSpawner.hpp" />
     <ClInclude Include="src\spawners\LaserSpawner.hpp" />
     <ClInclude Include="src\spawners\Spawner.hpp" />
     <ClInclude Include="src\UserInterface.hpp" />

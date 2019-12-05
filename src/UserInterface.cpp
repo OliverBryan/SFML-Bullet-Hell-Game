@@ -21,12 +21,11 @@ void UserInterface::update() {
 		m_env->m_timer -= (1.0f / 60.0f);
 		m_timerLabel.setString("Time: " + std::to_string(static_cast<int>(std::round(m_env->m_timer))));
 	}
-	else if (!m_env->preWave) {
+	else if (!m_env->preWave && m_env->getPlayer()->getBounds().top <= 20) {
 		m_env->preWave = true;
 		m_env->m_timer = 5.0f;
 	}
-	else {
-		std::cout << "Environment: wave cleared" << std::endl;
+	else if (m_env->preWave) {
 		m_env->preWave = false;
 		if (m_env->m_wave < m_env->m_waves.size())
 			m_env->m_wave++;

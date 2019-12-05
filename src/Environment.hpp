@@ -3,12 +3,11 @@
 
 #include <vector>
 #include <SFML/Graphics.hpp>
-#include "spawners\Spawner.hpp"
-#include "enemies\Enemy.hpp"
-#include "spawners\BasicSpawner.hpp"
-#include "spawners\LaserSpawner.hpp"
 #include "Player.hpp"
 #include "Wave.hpp"
+
+class Spawner;
+class Enemy;
 
 class Environment {
 public:
@@ -23,6 +22,8 @@ public:
 
 	bool running = true;
 	friend class UserInterface;
+
+	Player* getPlayer();
 private:
 	void addSpawner();
 	void removeSpawner(int index);

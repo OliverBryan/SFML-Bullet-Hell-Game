@@ -15,8 +15,8 @@ static std::vector<Wave> loadWaves() {
 
 	Wave wave1;
 	wave1.spawnerTypes.push_back(std::pair<std::string, int>("basic", 100));
-	wave1.spawners = 100;
-	wave1.newSpawnerInterval = 1;
+	wave1.spawners = 5;
+	wave1.newSpawnerInterval = 4;
 	waves.push_back(wave1);
 
 	Wave wave2;
@@ -31,6 +31,13 @@ static std::vector<Wave> loadWaves() {
 	wave3.spawners = 5;
 	wave3.newSpawnerInterval = 5;
 	waves.push_back(wave3);
+
+	Wave wave4;
+	wave4.spawnerTypes.push_back(std::pair<std::string, int>("laser", 60));
+	wave4.spawnerTypes.push_back(std::pair<std::string, int>("basic", 40));
+	wave4.spawners = 8;
+	wave4.newSpawnerInterval = 3;
+	waves.push_back(wave4);
 
 	return waves;
 }

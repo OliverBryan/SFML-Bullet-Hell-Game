@@ -39,9 +39,6 @@
     <ClCompile Include="src\UserInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\spawners\BasicSpawner.cpp">
-      <Filter>Source Files\Spawners</Filter>
-    </ClCompile>
     <ClCompile Include="src\enemies\BasicEnemy.cpp">
       <Filter>Source Files\Enemies</Filter>
     </ClCompile>
@@ -50,9 +47,6 @@
     </ClCompile>
     <ClCompile Include="src\spawners\Spawner.cpp">
       <Filter>Source Files\Spawners</Filter>
-    </ClCompile>
-    <ClCompile Include="src\spawners\LaserSpawner.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\enemies\LaserEnemy.cpp">
       <Filter>Source Files</Filter>
@@ -87,6 +81,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\enemies\LaserEnemy.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spawners\HomingSpawner.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
