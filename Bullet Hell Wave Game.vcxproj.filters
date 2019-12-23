@@ -27,9 +27,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Environment.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -39,16 +36,13 @@
     <ClCompile Include="src\UserInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\enemies\BasicEnemy.cpp">
-      <Filter>Source Files\Enemies</Filter>
-    </ClCompile>
     <ClCompile Include="src\enemies\Enemy.cpp">
       <Filter>Source Files\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="src\spawners\Spawner.cpp">
       <Filter>Source Files\Spawners</Filter>
     </ClCompile>
-    <ClCompile Include="src\enemies\LaserEnemy.cpp">
+    <ClCompile Include="src\Environment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -84,6 +78,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\spawners\HomingSpawner.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\enemies\HomingEnemy.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spawners\RicochetSpawner.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\enemies\RicochetEnemy.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spawners\ShotgunSpawner.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\spawners\WaveSpawner.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

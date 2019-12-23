@@ -29,13 +29,14 @@ public:
 	int POST_MOVE_TIME;
 
 protected:
+	bool m_moving = false;
 	int m_newX;
 	int m_counter = 0;
 	sf::Vector2f m_position;
 	Environment* m_env;
 	virtual void spawnEnemy() = 0;
 
-	int m_postMoveCounter = 60;
+	int m_postMoveCounter = 0;
 	sf::Color m_fill;
 	sf::Color defaultFill;
 	sf::Color postMoveFill;

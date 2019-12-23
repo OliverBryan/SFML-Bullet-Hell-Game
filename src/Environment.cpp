@@ -3,7 +3,16 @@
 #include "enemies\Enemy.hpp"
 #include "spawners\BasicSpawner.hpp"
 #include "spawners\LaserSpawner.hpp"
+#include "spawners\HomingSpawner.hpp"
+#include "spawners\RicochetSpawner.hpp"
+#include "spawners\ShotgunSpawner.hpp"
+#include "spawners\WaveSpawner.hpp"
 #include <iostream>
+
+Environment::Environment() : m_player(210, 260) {
+	m_timer = static_cast<float>(m_waves[0].newSpawnerInterval * m_waves[0].spawners);
+	addSpawner();
+}
 
 void Environment::update() {
 	m_newSpawnerCounter++;
@@ -33,6 +42,9 @@ void Environment::update() {
 	if (preWave && m_spawners.size() > 0) {
 		clearSpawners();
 	}
+	if (preWave && m_enemies.size() > 0) {
+		clearEnemies();
+	}
 }
 
 void Environment::render(sf::RenderWindow& window) {
@@ -45,6 +57,20 @@ void Environment::render(sf::RenderWindow& window) {
 	}
 
 	m_player.render(window);
+
+	sf::RectangleShape shape(sf::Vector2f(20, 400));
+	shape.setFillColor(sf::Color::Black);
+	window.draw(shape);
+
+	shape.setPosition(420, 0);
+	window.draw(shape);
+
+	shape.setSize(sf::Vector2f(400, 20));
+	shape.setPosition(0, 0);
+	window.draw(shape);
+
+	shape.setPosition(20, 420);
+	window.draw(shape);
 }
 
 void Environment::addEnemy(Enemy* enemy) {
@@ -85,6 +111,14 @@ void Environment::addSpawner() {
 		m_spawners.push_back(new BasicSpawner(static_cast<float>(irand(20, 404)), this));
 	else if (name == "laser")
 		m_spawners.push_back(new LaserSpawner(static_cast<float>(irand(20, 404)), this));
+	else if (name == "homing")
+		m_spawners.push_back(new HomingSpawner(static_cast<float>(irand(20, 404)), this));
+	else if (name == "ricochet")
+		m_spawners.push_back(new RicochetSpawner(static_cast<float>(irand(20, 404)), this));
+	else if (name == "shotgun")
+		m_spawners.push_back(new ShotgunSpawner(static_cast<float>(irand(20, 404)), this));
+	else if (name == "wave")
+		m_spawners.push_back(new WaveSpawner(static_cast<float>(irand(20, 404)), this));
 }
 
 void Environment::removeSpawner(int index) {

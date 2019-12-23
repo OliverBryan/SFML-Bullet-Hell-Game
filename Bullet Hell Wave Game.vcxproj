@@ -155,8 +155,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\enemies\BasicEnemy.cpp" />
-    <ClCompile Include="src\enemies\LaserEnemy.cpp" />
     <ClCompile Include="src\enemies\Enemy.cpp" />
     <ClCompile Include="src\Environment.cpp" />
     <ClCompile Include="src\Main.cpp" />
@@ -165,7 +163,11 @@
     <ClCompile Include="src\UserInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\enemies\RicochetEnemy.hpp" />
+    <ClInclude Include="src\spawners\ShotgunSpawner.hpp" />
+    <ClInclude Include="src\spawners\RicochetSpawner.hpp" />
     <ClInclude Include="src\enemies\BasicEnemy.hpp" />
+    <ClInclude Include="src\enemies\HomingEnemy.hpp" />
     <ClInclude Include="src\enemies\LaserEnemy.hpp" />
     <ClInclude Include="src\spawners\BasicSpawner.hpp" />
     <ClInclude Include="src\enemies\Enemy.hpp" />
@@ -174,6 +176,7 @@
     <ClInclude Include="src\spawners\HomingSpawner.hpp" />
     <ClInclude Include="src\spawners\LaserSpawner.hpp" />
     <ClInclude Include="src\spawners\Spawner.hpp" />
+    <ClInclude Include="src\spawners\WaveSpawner.hpp" />
     <ClInclude Include="src\UserInterface.hpp" />
     <ClInclude Include="src\Wave.hpp" />
   </ItemGroup>

@@ -19,6 +19,7 @@ void Spawner::update() {
 	m_counter++;
 	if (m_counter >= FIRE_TIME && m_position.x != m_newX && m_position.x != m_newX + 1) {
 		m_newX >= m_position.x ? m_position.x += 2 : m_position.x -= 2;
+		m_moving = true;
 	}
 	else if ((m_position.x == m_newX || m_position.x == m_newX + 1) && m_postMoveCounter > 0) {
 		m_postMoveCounter--;
@@ -30,5 +31,10 @@ void Spawner::update() {
 		m_newX = irand(20, 404);
 		m_fill = defaultFill;
 		m_postMoveCounter = POST_MOVE_TIME;
+		m_moving = false;
+	}
+	
+	if (m_counter > FIRE_TIME - 60) {
+		m_fill = warningMoveFill;
 	}
 }

@@ -11,7 +11,7 @@ class Enemy;
 
 class Environment {
 public:
-	Environment() : m_player(210, 260) { m_timer = static_cast<float>(m_waves[0].newSpawnerInterval * m_waves[0].spawners); }
+	Environment();
 	
 	void update();
 	void render(sf::RenderWindow& window);

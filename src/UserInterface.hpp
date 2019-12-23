@@ -11,6 +11,10 @@ public:
 	void update();
 	void render(sf::RenderWindow& window);
 private:
+	int m_teleportRechargeCounter = 0;
+	int m_teleportRecharge = 60;
+	std::vector<sf::RectangleShape> m_ts;
+
 	Environment* m_env;
 	sf::Font m_font;
 	sf::Text m_timerLabel;

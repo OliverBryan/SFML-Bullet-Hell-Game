@@ -14,6 +14,17 @@ UserInterface::UserInterface(Environment* env) : m_env(env) {
 	m_waveLabel.setPosition(480, 200);
 	m_waveLabel.setFillColor(sf::Color::White);
 	m_waveLabel.setString("Wave: " + std::to_string(m_env->m_wave));
+
+	sf::RectangleShape shape(sf::Vector2f(20, 20));
+	shape.setFillColor(sf::Color::White);
+	shape.setPosition(480, 300);
+	m_ts.push_back(shape);
+
+	shape.setPosition(520, 300);
+	m_ts.push_back(shape);
+
+	shape.setPosition(560, 300);
+	m_ts.push_back(shape);
 }
 
 void UserInterface::update() {
@@ -33,6 +44,37 @@ void UserInterface::update() {
 		m_env->m_timer = static_cast<float>(m_env->m_waves[m_env->m_wave - 1].newSpawnerInterval * m_env->m_waves[m_env->m_wave - 1].spawners);
 		m_env->addSpawner();
 	}
+
+	if (m_env->getPlayer()->m_teleports < 3)
+		m_teleportRechargeCounter++;
+	if (m_teleportRechargeCounter > m_teleportRecharge) {
+		m_env->getPlayer()->m_teleports++;
+		m_teleportRechargeCounter = 0;
+	}
+
+	int ts = m_env->getPlayer()->m_teleports;
+	switch (ts) {
+	case 0:
+		m_ts[2].setFillColor(sf::Color::Black);
+		m_ts[1].setFillColor(sf::Color::Black);
+		m_ts[0].setFillColor(sf::Color::Black);
+		break;
+	case 1:
+		m_ts[2].setFillColor(sf::Color::Black);
+		m_ts[1].setFillColor(sf::Color::Black);
+		m_ts[0].setFillColor(sf::Color::White);
+		break;
+	case 2:
+		m_ts[2].setFillColor(sf::Color::Black);
+		m_ts[1].setFillColor(sf::Color::White);
+		m_ts[0].setFillColor(sf::Color::White);
+		break;
+	case 3:
+		m_ts[2].setFillColor(sf::Color::White);
+		m_ts[1].setFillColor(sf::Color::White);
+		m_ts[0].setFillColor(sf::Color::White);
+		break;
+	}
 }
 
 void UserInterface::render(sf::RenderWindow& window) {
@@ -40,6 +82,10 @@ void UserInterface::render(sf::RenderWindow& window) {
 	shape.setPosition(sf::Vector2f(20, 20));
 	shape.setFillColor(sf::Color::White);
 	window.draw(shape);
+
+	for (sf::RectangleShape rs : m_ts) {
+		window.draw(rs);
+	}
 
 	window.draw(m_timerLabel);
 	window.draw(m_waveLabel);

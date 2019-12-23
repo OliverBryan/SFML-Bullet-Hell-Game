@@ -11,10 +11,12 @@ public:
 
 	sf::FloatRect getBounds();
 
-	bool invincible = true;
+	bool invincible = false;
+	friend class UserInterface;
 private:
 	sf::Vector2f m_position;
-	int m_teleports;
+	int m_teleports = 3;
+	bool teleportKeyPressed = false;
 	int m_speed = 2;
 };
 
