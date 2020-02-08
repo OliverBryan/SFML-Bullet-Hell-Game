@@ -22,7 +22,7 @@ public:
 	Spawner(float x, Environment* env, int firetime, int postmovetime, sf::Color fill, sf::Color postmovefill, sf::Color warningfirefill, bool modded, Mod* parent, std::string name);
 	virtual ~Spawner() {}
 
-	virtual void spawnerUpdate() {}
+	virtual void spawnerUpdate();
 	virtual void update();
 
 	virtual void render(sf::RenderWindow& window);

@@ -23,3 +23,12 @@ void ModLoader::loadMod(const std::string& name, const std::string& path) {
 std::vector<Mod*> ModLoader::getMods() {
     return m_mods;
 }
+
+Mod* ModLoader::getModBySpawnerName(const std::string& name) {
+    for (Mod* mod : m_mods) {
+        for (std::string spawner : mod->getSpawners()) {
+            if (spawner == name) return mod;
+        }
+    }
+    return nullptr;
+}

@@ -40,6 +40,19 @@ void Spawner::render(sf::RenderWindow& window) {
 	window.draw(shape);
 }
 
+void Spawner::spawnerUpdate() {
+	if (modded) {
+		sol::protected_function spawnerUpdateFunction = parent->m_script[m_name]["spawnerUpdate"];
+		if (spawnerUpdateFunction.valid()) {
+			auto t = spawnerUpdateFunction(this, m_env);
+			if (!t.valid()) {
+				sol::error err = t;
+				std::cout << "Error in spawnerUpdate for " << m_name << ": " << err.what() << std::endl;
+			}
+		}
+	}
+}
+
 void Spawner::update() {
 	spawnerUpdate();
 

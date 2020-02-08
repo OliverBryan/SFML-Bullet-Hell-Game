@@ -52,6 +52,7 @@ Mod::Mod(std::string name, std::string path) : m_name(name), m_path(path) {
     spawner_type["position"] = sol::property(&Spawner::getPosition, &Spawner::setPosition);
 
     env_type["player"] = sol::property(&Environment::getPlayer);
+    env_type["addEnemy"] = &Environment::addModdedEnemy;
 
     player_type["position"] = sol::property(&Player::getPosition, &Player::setPosition);
     enemy_type["position"] = sol::property(&Enemy::getPosition, &Enemy::setPosition);

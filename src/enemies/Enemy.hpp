@@ -28,7 +28,7 @@ public:
 	sf::Vector2f getPosition();
 	void setPosition(sf::Vector2f p);
 
-	sf::Vector2f getVelocity();
+	sf::Vector2f& getVelocity();
 	void setVelocity(sf::Vector2f v);
 
 protected:

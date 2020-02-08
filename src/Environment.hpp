@@ -29,6 +29,8 @@ public:
 	void clearEnemies();
 	void clearSpawners();
 
+	void addModdedEnemy(Enemy enemy, std::string name);
+
 	bool running = true;
 	bool paused = false;
 	friend class UserInterface;

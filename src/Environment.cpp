@@ -84,6 +84,11 @@ void Environment::addEnemy(Enemy* enemy) {
 	m_enemies.push_back(enemy);
 }
 
+void Environment::addModdedEnemy(Enemy enemy, std::string name) {
+	enemy.modinit(m_modLoader->getModBySpawnerName(name), name, this);
+	m_enemies.push_back(new Enemy(enemy));
+}
+
 void Environment::clearEnemies() {
 	if (!m_enemies.empty()) {
 		for (int i = 0; i < m_enemies.size(); i++) {

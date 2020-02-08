@@ -25,12 +25,12 @@ int Enemy::update() {
 
 void Enemy::customUpdate() {
 	if (modded) {
-		sol::function customUpdateFunction = parent->m_script[name]["customUpdate"];
+		sol::protected_function customUpdateFunction = parent->m_script[name]["enemyUpdate"];
 		if (customUpdateFunction.valid()) {
 			auto t = customUpdateFunction(this, m_env);
 			if (!t.valid()) {
 				sol::error err = t;
-				std::cout << "Error in customUpdate for " << name << ": " << err.what() << std::endl;
+				std::cout << "Error in enemyUpdate for " << name << ": " << err.what() << std::endl;
 			}
 		}
 	}
@@ -55,7 +55,7 @@ void Enemy::setPosition(sf::Vector2f p) {
 	m_position = p;
 }
 
-sf::Vector2f Enemy::getVelocity() {
+sf::Vector2f& Enemy::getVelocity() {
 	return m_velocity;
 }
 
