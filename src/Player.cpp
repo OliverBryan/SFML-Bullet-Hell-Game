@@ -15,7 +15,7 @@ void Player::update() {
 		m_position.x += m_speed;
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::M) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && !teleportKeyPressed && m_teleports > 0) {
+	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::M) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) && !teleportKeyPressed && m_teleports > 0) {
 		teleportKeyPressed = true;
 		m_teleports--;
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && sf::Keyboard::isKeyPressed(sf::Keyboard::Left))) {
@@ -71,4 +71,12 @@ void Player::render(sf::RenderWindow& window) {
 
 sf::FloatRect Player::getBounds() {
 	return sf::FloatRect(m_position, sf::Vector2f(20, 20));
+}
+
+sf::Vector2f Player::getPosition() {
+	return m_position;
+}
+
+void Player::setPosition(sf::Vector2f p) {
+	m_position = p;
 }

@@ -1,26 +1,58 @@
-c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\vc120.pdb
-c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\vc120.idb
-c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\enemy.nativecodeanalysis.xml
-c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\environment.nativecodeanalysis.xml
-c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\main.nativecodeanalysis.xml
-c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\player.nativecodeanalysis.xml
-c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\spawner.nativecodeanalysis.xml
-c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\userinterface.nativecodeanalysis.xml
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\vc142.pdb
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\vc142.idb
 c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\userinterface.obj
 c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\spawner.obj
 c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\player.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\modloader.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\mod.obj
 c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\main.obj
 c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\environment.obj
 c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\enemy.obj
-c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\x64\debug\bullet hell wave game.ilk
-c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\x64\debug\bullet hell wave game.exe
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\console.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\lopcodes.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\lobject.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\loadlib.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\lmem.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\lmathlib.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\llex.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\liolib.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\linit.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\lgc.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\lfunc.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\ldump.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\ldo.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\ldebug.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\ldblib.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\lctype.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\lcorolib.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\lcode.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\lbitlib.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\lauxlib.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\lapi.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\lzio.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\lvm.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\lutf8lib.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\lundump.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\luac.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\lua.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\ltm.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\ltablib.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\ltable.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\lstrlib.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\lstring.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\lstate.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\lparser.obj
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\loslib.obj
 c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\x64\debug\bullet hell wave game.pdb
-c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\nativecodeanalysis.read.1.tlog
-c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\vc.nativecodeanalysis.all.xml
-c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\x64\debug\bullet hell wave game.exe.lastcodeanalysissucceeded
 c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\bullet h.0d248301.tlog\cl.command.1.tlog
 c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\bullet h.0d248301.tlog\cl.read.1.tlog
 c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\bullet h.0d248301.tlog\cl.write.1.tlog
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\bullet h.0d248301.tlog\link.30232-cvtres.read.1.tlog
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\bullet h.0d248301.tlog\link.30232-cvtres.write.1.tlog
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\bullet h.0d248301.tlog\link.30232-rc.read.1.tlog
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\bullet h.0d248301.tlog\link.30232-rc.write.1.tlog
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\bullet h.0d248301.tlog\link.30232.read.1.tlog
+c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\bullet h.0d248301.tlog\link.30232.write.1.tlog
 c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\bullet h.0d248301.tlog\link.command.1.tlog
 c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\bullet h.0d248301.tlog\link.read.1.tlog
 c:\users\obryan\documents\visual studio 2013\projects\bullet hell wave game\bullet hell wave game\x64\debug\bullet h.0d248301.tlog\link.write.1.tlog

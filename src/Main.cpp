@@ -3,8 +3,10 @@
 #include "Player.hpp"
 #include "UserInterface.hpp"
 #include "Environment.hpp"
+#include "Console.hpp"
 #include <fstream>
 #include <map>
+#include <future>
 
 int main() {
 	sf::ContextSettings cs;
@@ -13,10 +15,12 @@ int main() {
 
 	sf::Clock clock;
 	sf::Time accumulator = sf::Time::Zero;
-	sf::Time ups = sf::seconds(1.f / 60.0f);
+	sf::Time ups = sf::seconds(1.f / FPS);
 
 	Environment env;
 	UserInterface ui(&env);
+	Console console(&env);
+	auto t = std::async(std::launch::async, &Console::run, &console);
 
 	while (window.isOpen()) {
 		sf::Clock c;
@@ -31,10 +35,12 @@ int main() {
 		while (accumulator > ups) {
 			accumulator -= ups;
 			//update
-			if (env.running) {
+			if (env.running && !env.paused) {
 				env.update();
 				ui.update();
 			}
+			else if (env.paused)
+				ui.pauseUpdate();
 			else env.clearEnemies();
 		}
 
@@ -47,5 +53,6 @@ int main() {
 		window.display();
 		accumulator += clock.restart();
 	}
+	t.get();
 	return 0;
 }

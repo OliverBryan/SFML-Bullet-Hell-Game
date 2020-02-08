@@ -7,7 +7,7 @@
 
 class RicochetEnemy : public Enemy {
 public:
-	RicochetEnemy(float x, float y) : Enemy(x, y, static_cast<float>(irand(-5, 5)), 10, 275) {
+	RicochetEnemy(float x, float y) : Enemy(x, y, static_cast<float>(irand(-5, 5)), 3, 275) {
 		m_size = sf::Vector2f(10, 10);
 		m_fill = sf::Color(255, 215, 0);
 		init();

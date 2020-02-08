@@ -1,9 +1,36 @@
 #include "Spawner.hpp"
+#include "..\enemies\Enemy.hpp"
 #include <iostream>
+#include "..\mods\Mod.hpp"
 
 Spawner::Spawner(float x, Environment* env) : 
 m_position(x, 20), m_env(env) {
 	m_newX = irand(20, 404);
+}
+
+Spawner::Spawner(float x, Environment* env, int firetime, int postmovetime, sf::Color fill, sf::Color postmovefill, sf::Color warningfirefill, bool modded, Mod* parent, std::string name) :
+m_position(x, 20), m_env(env), FIRE_TIME(firetime), POST_MOVE_TIME(postmovetime),
+m_fill(fill), postMoveFill(postmovefill), warningMoveFill(warningfirefill), 
+modded(modded), parent(parent), m_name(name) {
+	m_newX = irand(20, 404);
+	defaultFill = m_fill;
+}
+
+void Spawner::spawnEnemy() {
+	if (!modded) {
+		std::cout << "Fatal Error: cannot call base spawnEnemy() on a non modded spawner" << std::endl;
+		abort();
+	}
+
+	sol::function spawnerFunction = parent->m_script[m_name]["spawnEnemies"];
+	sol::table table = spawnerFunction(this);
+	int amount = table["amount"];
+	sol::table enemies = table["enemies"];
+	for (int i = 1; i <= amount; i++) {
+		Enemy e = enemies[i];
+		e.modinit(parent, m_name, m_env);
+		m_env->addEnemy(new Enemy(e));
+	}
 }
 
 void Spawner::render(sf::RenderWindow& window) {
@@ -26,7 +53,9 @@ void Spawner::update() {
 		m_fill = postMoveFill;
 	}
 	else if (m_counter >= FIRE_TIME && m_postMoveCounter <= 0) {
-		spawnEnemy();
+		if (modded)
+			spawnEnemy();
+		else spawnEnemy();
 		m_counter = 0;
 		m_newX = irand(20, 404);
 		m_fill = defaultFill;
@@ -34,7 +63,23 @@ void Spawner::update() {
 		m_moving = false;
 	}
 	
-	if (m_counter > FIRE_TIME - 60) {
+	if (m_counter > FIRE_TIME - 60 && !m_moving) {
 		m_fill = warningMoveFill;
 	}
+}
+
+bool Spawner::getMoving() {
+	return m_moving;
+}
+
+void Spawner::setMoving(bool m) {
+	m_moving = m;
+}
+
+sf::Vector2f Spawner::getPosition() {
+	return m_position;
+}
+
+void Spawner::setPosition(sf::Vector2f p) {
+	m_position = p;
 }

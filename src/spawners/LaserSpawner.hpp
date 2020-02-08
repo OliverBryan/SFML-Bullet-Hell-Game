@@ -9,7 +9,7 @@ public:
 	LaserSpawner(float x, Environment* env) : Spawner(x, env) { 
 		FIRE_TIME = 300;
 		POST_MOVE_TIME = 60;
-		m_postMoveCounter = POST_MOVE_TIME;
+		m_postMoveCounter = 60;
 		defaultFill = sf::Color::Red;
 		m_fill = sf::Color::Red;
 		postMoveFill = sf::Color(255, 165, 0);

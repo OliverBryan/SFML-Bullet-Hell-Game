@@ -5,13 +5,20 @@
 #include "spawners\LaserSpawner.hpp"
 #include "spawners\HomingSpawner.hpp"
 #include "spawners\RicochetSpawner.hpp"
-#include "spawners\ShotgunSpawner.hpp"
+//#include "spawners\ShotgunSpawner.hpp"
 #include "spawners\WaveSpawner.hpp"
 #include <iostream>
+#include "mods/ModLoader.hpp"
 
 Environment::Environment() : m_player(210, 260) {
 	m_timer = static_cast<float>(m_waves[0].newSpawnerInterval * m_waves[0].spawners);
+	m_modLoader = new ModLoader();
+	m_modLoader->loadMod("Shotguns mod", "./scripts/Test.lua");
 	addSpawner();
+}
+
+Environment::~Environment() {
+	delete m_modLoader;
 }
 
 void Environment::update() {
@@ -25,6 +32,8 @@ void Environment::update() {
 		spawner->update();
 	}
 
+	m_player.update();
+
 	for (int i = 0; i < m_enemies.size(); i++) {
 		int ret = m_enemies.at(i)->update();
 
@@ -36,8 +45,6 @@ void Environment::update() {
 
 		if (ret == 1) removeEnemy(i);
 	}
-
-	m_player.update();
 
 	if (preWave && m_spawners.size() > 0) {
 		clearSpawners();
@@ -94,6 +101,11 @@ void Environment::clearSpawners() {
 }
 
 void Environment::addSpawner() {
+	std::string sname = m_modLoader->getMods()[0]->getSpawners()[0];
+	Spawner* spawner = m_modLoader->getMods()[0]->createSpawner(static_cast<float>(irand(20, 404)), this, sname);
+	m_spawners.push_back(spawner);
+	return;
+	
 	int spawnerType = irand(0, 100);
 	int sum = 0;
 	std::string name = "";
@@ -115,8 +127,8 @@ void Environment::addSpawner() {
 		m_spawners.push_back(new HomingSpawner(static_cast<float>(irand(20, 404)), this));
 	else if (name == "ricochet")
 		m_spawners.push_back(new RicochetSpawner(static_cast<float>(irand(20, 404)), this));
-	else if (name == "shotgun")
-		m_spawners.push_back(new ShotgunSpawner(static_cast<float>(irand(20, 404)), this));
+	//else if (name == "shotgun")
+	//	m_spawners.push_back(new ShotgunSpawner(static_cast<float>(irand(20, 404)), this));
 	else if (name == "wave")
 		m_spawners.push_back(new WaveSpawner(static_cast<float>(irand(20, 404)), this));
 }

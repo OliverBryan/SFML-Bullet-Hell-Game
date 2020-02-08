@@ -3,6 +3,9 @@
 
 #include <vector>
 #include <string>
+#include <fstream>
+#include <iostream>
+#include <cassert>
 
 struct Wave {
 	std::vector<std::pair<std::string, int>> spawnerTypes;
@@ -13,6 +16,66 @@ struct Wave {
 static std::vector<Wave> loadWaves() {
 	std::vector<Wave> waves;
 
+	std::ifstream file;
+	file.open("waves.dat");
+	if (!file) {
+		std::cout << "Error: could not open waves.dat" << std::endl;
+	}
+
+	std::string line;
+	std::vector<std::pair<std::string, int>> spawnerTypes;
+	bool inTypes = true;
+	bool fl = true;
+	Wave curWave;
+	while (std::getline(file, line)) {
+		if (!line.empty()) {
+			if (inTypes) {
+				bool first = true;
+				std::string spawnerType = "";
+				std::string spawnerChanceStr = "";
+				for (char c : line) {
+					if (c == ':')
+						first = false;
+					else if (first)
+						spawnerType += c;
+					else if (isdigit(c))
+						spawnerChanceStr += c;
+				}
+				if (spawnerType == "end") {
+					inTypes = false;
+					curWave.spawnerTypes = spawnerTypes;
+				}
+				else {
+					spawnerTypes.push_back(std::pair<std::string, int>(spawnerType, std::stoi(spawnerChanceStr)));
+				}
+			}
+			else {
+				if (fl) {
+					std::string spawners = "";
+					for (char c : line) {
+						assert(isdigit(c));
+						spawners += c;
+					}
+					curWave.spawners = std::stoi(spawners);
+					fl = false;
+				}
+				else {
+					std::string spawnerInterval = "";
+					for (char c : line) {
+						assert(isdigit(c));
+						spawnerInterval += c;
+					}
+					curWave.newSpawnerInterval = std::stoi(spawnerInterval);
+					waves.push_back(curWave);
+					spawnerTypes.clear();
+					fl = true;
+					inTypes = true;
+				}
+			}
+		}
+	}
+ 
+	/*
 	Wave wave1;
 	wave1.spawnerTypes.push_back(std::pair<std::string, int>("basic", 100));
 	wave1.spawners = 5;
@@ -71,7 +134,8 @@ static std::vector<Wave> loadWaves() {
 	wave9.spawnerTypes.push_back(std::pair<std::string, int>("homing", 20));
 	wave9.spawners = 5;
 	wave9.newSpawnerInterval = 8;
-	waves.push_back(wave7);
+	waves.push_back(wave9);
+	*/
 
 	return waves;
 }

@@ -1,5 +1,6 @@
 #include "Enemy.hpp"
 #include "..\Environment.hpp"
+#include "..\mods\Mod.hpp"
 #include <iostream>
 
 int Enemy::update() {
@@ -22,13 +23,42 @@ int Enemy::update() {
 	return 0;
 }
 
+void Enemy::customUpdate() {
+	if (modded) {
+		sol::function customUpdateFunction = parent->m_script[name]["customUpdate"];
+		if (customUpdateFunction.valid()) {
+			auto t = customUpdateFunction(this, m_env);
+			if (!t.valid()) {
+				sol::error err = t;
+				std::cout << "Error in customUpdate for " << name << ": " << err.what() << std::endl;
+			}
+		}
+	}
+}
+
 void Enemy::init() {
 	m_dfill = m_fill;
 }
 
-void Enemy::render(sf::RenderWindow& window) {
+void Enemy::render(sf::RenderWindow& window) const {
 	sf::RectangleShape shape(sf::Vector2f(m_size.x, m_size.y));
 	shape.setPosition(m_position);
 	shape.setFillColor(m_fill);
 	window.draw(shape);
+}
+
+sf::Vector2f Enemy::getPosition() {
+	return m_position;
+}
+
+void Enemy::setPosition(sf::Vector2f p) {
+	m_position = p;
+}
+
+sf::Vector2f Enemy::getVelocity() {
+	return m_velocity;
+}
+
+void Enemy::setVelocity(sf::Vector2f v) {
+	m_velocity = v;
 }

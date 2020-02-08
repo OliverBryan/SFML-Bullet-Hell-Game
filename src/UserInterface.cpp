@@ -25,9 +25,12 @@ UserInterface::UserInterface(Environment* env) : m_env(env) {
 
 	shape.setPosition(560, 300);
 	m_ts.push_back(shape);
+
+	m_env->m_timer = static_cast<float>(m_env->m_waves[m_env->m_wave - 1].newSpawnerInterval * m_env->m_waves[m_env->m_wave - 1].spawners);
 }
 
 void UserInterface::update() {
+	m_waveLabel.setString("Wave: " + std::to_string(m_env->m_wave));
 	if (m_env->m_timer > 0.0f) {
 		m_env->m_timer -= (1.0f / 60.0f);
 		m_timerLabel.setString("Time: " + std::to_string(static_cast<int>(std::round(m_env->m_timer))));
@@ -40,7 +43,6 @@ void UserInterface::update() {
 		m_env->preWave = false;
 		if (m_env->m_wave < m_env->m_waves.size())
 			m_env->m_wave++;
-		m_waveLabel.setString("Wave: " + std::to_string(m_env->m_wave));
 		m_env->m_timer = static_cast<float>(m_env->m_waves[m_env->m_wave - 1].newSpawnerInterval * m_env->m_waves[m_env->m_wave - 1].spawners);
 		m_env->addSpawner();
 	}
@@ -75,6 +77,24 @@ void UserInterface::update() {
 		m_ts[0].setFillColor(sf::Color::White);
 		break;
 	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P) && !pKeyDown) {
+		pKeyDown = true;
+		m_env->paused = true;
+	}
+	else if (!sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+		pKeyDown = false;
+
+	handleKeyBinds();
+}
+
+void UserInterface::pauseUpdate() {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P) && !pKeyDown) {
+		pKeyDown = true;
+		m_env->paused *= false;
+	}
+	else if (!sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+		pKeyDown = false;
 }
 
 void UserInterface::render(sf::RenderWindow& window) {
@@ -89,4 +109,14 @@ void UserInterface::render(sf::RenderWindow& window) {
 
 	window.draw(m_timerLabel);
 	window.draw(m_waveLabel);
+}
+
+void UserInterface::handleKeyBinds() {
+	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::RShift)) && !advKeyDown) {
+		advKeyDown = true;
+		m_env->m_timer = 0.01f;
+		m_env->getPlayer()->m_position.y = 0;
+	}
+	else if (!(sf::Keyboard::isKeyPressed(sf::Keyboard::A) && (sf::Keyboard::isKeyPressed(sf::Keyboard::RShift))))
+		advKeyDown = false;
 }
