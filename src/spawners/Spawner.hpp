@@ -35,6 +35,8 @@ public:
 	Mod* parent;
 	std::string m_name;
 
+	sol::table instanceVars;
+
 	bool getMoving();
 	void setMoving(bool m);
 

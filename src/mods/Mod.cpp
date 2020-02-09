@@ -17,7 +17,8 @@ void Mod::initializeScript(sol::state& script) {
     script["rand"] = irand;
 
     sol::usertype<sf::Color> color_type = script.new_usertype<sf::Color>("Color",
-        sol::constructors< sf::Color(int, int, int)>());
+        sol::constructors<sf::Color(int, int, int), sf::Color(int, int, int, int)>());
+    color_type["a"] = &sf::Color::a;
 
     sol::usertype<Enemy> enemy_type = script.new_usertype<Enemy>("Enemy",
         sol::constructors<Enemy(float, float, float, float, int), Enemy(float, float, float, float, int, sf::Color)>());
@@ -48,6 +49,7 @@ void Mod::initializeScript(sol::state& script) {
 
     enemy_type["velocity"] = sol::property(&Enemy::getVelocity, &Enemy::setVelocity);
     enemy_type["size"] = sol::property(&Enemy::getSize, &Enemy::setSize);
+    enemy_type["fill"] = sol::property(&Enemy::getFill, &Enemy::setFill);
 
     sol::usertype<sf::RectangleShape> rect_type = script.new_usertype<sf::RectangleShape>("Rect",
         sol::constructors<sf::RectangleShape(sf::Vector2f)>(), sol::base_classes, sol::bases<sf::Drawable>());

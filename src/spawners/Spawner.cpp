@@ -15,6 +15,16 @@ modded(modded), parent(parent), m_name(name) {
 	m_newX = irand(20, 404);
 	defaultFill = m_fill;
 	m_postMoveCounter = POST_MOVE_TIME;
+
+	try {
+		sol::function createInstanceVars = (*parent->getScriptForSpawner(name))[name]["SpawnerInstanceVars"]["new"];
+	    sol::table t = createInstanceVars();
+		__debugbreak();
+	}
+	catch (sol::error) {
+		std::cout << "Error: function SpawnerInstanceVars:new failed for spawner \"" << m_name << "\"" << std::endl;
+		abort();
+	}
 }
 
 void Spawner::spawnEnemy() {

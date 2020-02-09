@@ -88,3 +88,12 @@ sf::Vector2f& Enemy::getSize() {
 void Enemy::setSize(sf::Vector2f s) {
 	m_size = s;
 }
+
+sf::Color& Enemy::getFill() {
+	return m_fill;
+}
+
+void Enemy::setFill(sf::Color c) {
+	m_fill = c;
+	m_dfill = c;
+}

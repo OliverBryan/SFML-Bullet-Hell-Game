@@ -1,3 +1,7 @@
+WaveSpawner:100
+end
+10
+1
 BasicSpawner:100
 end
 5
@@ -40,7 +44,3 @@ HomingSpawner:20
 end
 5
 8
-GravitySpawner:100
-end
-5
-4

@@ -36,6 +36,9 @@ public:
 	sf::Vector2f& getSize();
 	void setSize(sf::Vector2f s);
 
+	sf::Color& getFill();
+	void setFill(sf::Color c);
+
 protected:
 	bool modded;
 	Mod* parent;

@@ -4,6 +4,6 @@ exportedSpawners = {
 	"LaserSpawner",
 	"WaveSpawner",
 	"HomingSpawner",
-	"ShotgunSpawner"
-	--"GravitySpawner"
+	"ShotgunSpawner",
+	"GravitySpawner"
 }
