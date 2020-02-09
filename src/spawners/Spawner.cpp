@@ -14,6 +14,7 @@ m_fill(fill), postMoveFill(postmovefill), warningMoveFill(warningfirefill),
 modded(modded), parent(parent), m_name(name) {
 	m_newX = irand(20, 404);
 	defaultFill = m_fill;
+	m_postMoveCounter = POST_MOVE_TIME;
 }
 
 void Spawner::spawnEnemy() {
@@ -22,14 +23,20 @@ void Spawner::spawnEnemy() {
 		abort();
 	}
 
-	sol::function spawnerFunction = parent->m_script[m_name]["spawnEnemies"];
-	sol::table table = spawnerFunction(this);
-	int amount = table["amount"];
-	sol::table enemies = table["enemies"];
-	for (int i = 1; i <= amount; i++) {
-		Enemy e = enemies[i];
-		e.modinit(parent, m_name, m_env);
-		m_env->addEnemy(new Enemy(e));
+	try {
+		sol::function spawnerFunction = (*(parent->getScriptForSpawner(m_name)))[m_name]["spawnEnemies"];
+		sol::table table = spawnerFunction(this);
+		int amount = table["amount"];
+		sol::table enemies = table["enemies"];
+		for (int i = 1; i <= amount; i++) {
+			Enemy e = enemies[i];
+			e.modinit(parent, m_name, m_env);
+			m_env->addEnemy(new Enemy(e));
+		}
+	}
+	catch (sol::error) {
+		std::cout << "Error: function spawnEnemies failed for spawner \"" << m_name << "\"" << std::endl;
+		abort();
 	}
 }
 
@@ -42,7 +49,7 @@ void Spawner::render(sf::RenderWindow& window) {
 
 void Spawner::spawnerUpdate() {
 	if (modded) {
-		sol::protected_function spawnerUpdateFunction = parent->m_script[m_name]["spawnerUpdate"];
+		sol::protected_function spawnerUpdateFunction = (*(parent->getScriptForSpawner(m_name)))[m_name]["spawnerUpdate"];
 		if (spawnerUpdateFunction.valid()) {
 			auto t = spawnerUpdateFunction(this, m_env);
 			if (!t.valid()) {

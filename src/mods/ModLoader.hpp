@@ -11,7 +11,7 @@ public:
 	~ModLoader();
 
 	void loadMod(const std::string& name, const std::string& path);
-	std::vector<Mod*> getMods();
+	const std::vector<Mod*>& getMods();
 
 	Mod* getModByName(const std::string name) {}
 	Mod* getModBySpawnerName(const std::string& name);

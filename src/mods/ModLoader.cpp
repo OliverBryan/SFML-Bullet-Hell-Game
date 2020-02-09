@@ -20,7 +20,7 @@ void ModLoader::loadMod(const std::string& name, const std::string& path) {
     m_mods.push_back(mod);
 }
 
-std::vector<Mod*> ModLoader::getMods() {
+const std::vector<Mod*>& ModLoader::getMods() {
     return m_mods;
 }
 

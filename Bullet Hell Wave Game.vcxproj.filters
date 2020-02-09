@@ -65,12 +65,6 @@
     <ClInclude Include="src\UserInterface.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\spawners\BasicSpawner.hpp">
-      <Filter>Header Files\Spawners</Filter>
-    </ClInclude>
-    <ClInclude Include="src\enemies\BasicEnemy.hpp">
-      <Filter>Header Files\Enemies</Filter>
-    </ClInclude>
     <ClInclude Include="src\enemies\Enemy.hpp">
       <Filter>Header Files\Enemies</Filter>
     </ClInclude>
@@ -78,27 +72,6 @@
       <Filter>Header Files\Spawners</Filter>
     </ClInclude>
     <ClInclude Include="src\Wave.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\spawners\LaserSpawner.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\enemies\LaserEnemy.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\spawners\HomingSpawner.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\enemies\HomingEnemy.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\spawners\RicochetSpawner.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\enemies\RicochetEnemy.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\spawners\WaveSpawner.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Console.hpp">
@@ -116,6 +89,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="waves.dat" />
-    <None Include="scripts\Test.lua" />
+    <None Include="scripts\ShotgunSpawner.lua" />
+    <None Include="scripts\GameData.lua" />
+    <None Include="scripts\WaveSpawner.lua" />
+    <None Include="scripts\HomingSpawner.lua" />
+    <None Include="scripts\LaserSpawner.lua" />
+    <None Include="scripts\BasicSpawner.lua" />
+    <None Include="scripts\RicochetSpawner.lua" />
+    <None Include="scripts\GravitySpawner.lua" />
   </ItemGroup>
 </Project>

@@ -13,7 +13,9 @@ public:
 
 	virtual int update();
 	virtual void customUpdate();
-	virtual void render(sf::RenderWindow& window) const;
+
+	bool customRender(sf::RenderWindow& window);
+	virtual void render(sf::RenderWindow& window);
 	virtual sf::FloatRect getBounds() const {
 		return sf::FloatRect(m_position, m_size);
 	}
@@ -25,11 +27,14 @@ public:
 		m_env = env;
 	}
 
-	sf::Vector2f getPosition();
+	sf::Vector2f& getPosition();
 	void setPosition(sf::Vector2f p);
 
 	sf::Vector2f& getVelocity();
 	void setVelocity(sf::Vector2f v);
+
+	sf::Vector2f& getSize();
+	void setSize(sf::Vector2f s);
 
 protected:
 	bool modded;

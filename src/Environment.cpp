@@ -1,19 +1,13 @@
 #include "Environment.hpp"
 #include "spawners\Spawner.hpp"
 #include "enemies\Enemy.hpp"
-#include "spawners\BasicSpawner.hpp"
-#include "spawners\LaserSpawner.hpp"
-#include "spawners\HomingSpawner.hpp"
-#include "spawners\RicochetSpawner.hpp"
-//#include "spawners\ShotgunSpawner.hpp"
-#include "spawners\WaveSpawner.hpp"
 #include <iostream>
 #include "mods/ModLoader.hpp"
 
 Environment::Environment() : m_player(210, 260) {
 	m_timer = static_cast<float>(m_waves[0].newSpawnerInterval * m_waves[0].spawners);
 	m_modLoader = new ModLoader();
-	m_modLoader->loadMod("Shotguns mod", "./scripts/Test.lua");
+	m_modLoader->loadMod("GameData", "./scripts/");
 	addSpawner();
 }
 
@@ -106,11 +100,6 @@ void Environment::clearSpawners() {
 }
 
 void Environment::addSpawner() {
-	std::string sname = m_modLoader->getMods()[0]->getSpawners()[0];
-	Spawner* spawner = m_modLoader->getMods()[0]->createSpawner(static_cast<float>(irand(20, 404)), this, sname);
-	m_spawners.push_back(spawner);
-	return;
-	
 	int spawnerType = irand(0, 100);
 	int sum = 0;
 	std::string name = "";
@@ -124,18 +113,16 @@ void Environment::addSpawner() {
 		}
 	}
 
-	if (name == "basic")
-		m_spawners.push_back(new BasicSpawner(static_cast<float>(irand(20, 404)), this));
-	else if (name == "laser")
-		m_spawners.push_back(new LaserSpawner(static_cast<float>(irand(20, 404)), this));
-	else if (name == "homing")
-		m_spawners.push_back(new HomingSpawner(static_cast<float>(irand(20, 404)), this));
-	else if (name == "ricochet")
-		m_spawners.push_back(new RicochetSpawner(static_cast<float>(irand(20, 404)), this));
-	//else if (name == "shotgun")
-	//	m_spawners.push_back(new ShotgunSpawner(static_cast<float>(irand(20, 404)), this));
-	else if (name == "wave")
-		m_spawners.push_back(new WaveSpawner(static_cast<float>(irand(20, 404)), this));
+	for (Mod* mod : m_modLoader->getMods()) {
+		for (std::string spawner : mod->getSpawners()) {
+			if (spawner == name) {
+				m_spawners.push_back(mod->createSpawner(static_cast<float>(irand(20, 404)), this, name));
+				return;
+			}
+		}
+	}
+	std::cout << "Fatal error: could not find spawner with name \"" << name << "\"" << std::endl;
+	abort();
 }
 
 void Environment::removeSpawner(int index) {

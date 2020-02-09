@@ -17,13 +17,18 @@ public:
 	std::string m_path;
 
 	Spawner* createSpawner(float x, Environment* env, const std::string& name);
+	
+	sol::state* getScriptForSpawner(const std::string& name);
+
+	static void initializeScript(sol::state& script);
 
 	std::vector<std::string> getSpawners();
 
 	friend class Spawner;
 	friend class Enemy;
 private:
-	sol::state m_script;
+	sol::state m_mainScript;
+	std::vector<sol::state*> m_spawnerScripts;
 };
 
 #endif /* MOD_HPP */

@@ -25,12 +25,13 @@ int Enemy::update() {
 
 void Enemy::customUpdate() {
 	if (modded) {
-		sol::protected_function customUpdateFunction = parent->m_script[name]["enemyUpdate"];
+		sol::protected_function customUpdateFunction = (*(parent->getScriptForSpawner(name)))[name]["enemyUpdate"];
 		if (customUpdateFunction.valid()) {
 			auto t = customUpdateFunction(this, m_env);
 			if (!t.valid()) {
 				sol::error err = t;
 				std::cout << "Error in enemyUpdate for " << name << ": " << err.what() << std::endl;
+				abort();
 			}
 		}
 	}
@@ -40,14 +41,31 @@ void Enemy::init() {
 	m_dfill = m_fill;
 }
 
-void Enemy::render(sf::RenderWindow& window) const {
-	sf::RectangleShape shape(sf::Vector2f(m_size.x, m_size.y));
-	shape.setPosition(m_position);
-	shape.setFillColor(m_fill);
-	window.draw(shape);
+bool Enemy::customRender(sf::RenderWindow& window) {
+	if (modded) {
+		sol::protected_function customRenderFunction = (*(parent->getScriptForSpawner(name)))[name]["enemyRender"];
+		if (customRenderFunction.valid()) {
+			auto t = customRenderFunction(this, window);
+			if (!t.valid()) {
+				sol::error err = t;
+				std::cout << "Error in enemyRender for " << name << ": " << err.what() << std::endl;
+				abort();
+			}
+			return true;
+		}
+	}
+	return false;
 }
 
-sf::Vector2f Enemy::getPosition() {
+void Enemy::render(sf::RenderWindow& window) {
+	if (!customRender(window)) {
+		sf::RectangleShape shape(sf::Vector2f(m_size.x, m_size.y));
+		shape.setPosition(m_position);
+		shape.setFillColor(m_fill);
+		window.draw(shape);
+	}
+}
+sf::Vector2f& Enemy::getPosition() {
 	return m_position;
 }
 
@@ -61,4 +79,12 @@ sf::Vector2f& Enemy::getVelocity() {
 
 void Enemy::setVelocity(sf::Vector2f v) {
 	m_velocity = v;
+}
+
+sf::Vector2f& Enemy::getSize() {
+	return m_size;
+}
+
+void Enemy::setSize(sf::Vector2f s) {
+	m_size = s;
 }
