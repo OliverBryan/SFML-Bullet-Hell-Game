@@ -1,7 +1,7 @@
-WaveSpawner:100
+GravitySpawner:100
 end
-10
-1
+5
+4
 BasicSpawner:100
 end
 5

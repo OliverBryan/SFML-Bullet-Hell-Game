@@ -41,6 +41,8 @@ void Mod::initializeScript(sol::state& script) {
     spawner_type["moving"] = sol::property(&Spawner::getMoving, &Spawner::setMoving);
     spawner_type["position"] = sol::property(&Spawner::getPosition, &Spawner::setPosition);
 
+    spawner_type["instanceVars"] = &Spawner::instanceVars;
+
     env_type["player"] = sol::property(&Environment::getPlayer);
     env_type["addEnemy"] = &Environment::addModdedEnemy;
 
@@ -50,6 +52,8 @@ void Mod::initializeScript(sol::state& script) {
     enemy_type["velocity"] = sol::property(&Enemy::getVelocity, &Enemy::setVelocity);
     enemy_type["size"] = sol::property(&Enemy::getSize, &Enemy::setSize);
     enemy_type["fill"] = sol::property(&Enemy::getFill, &Enemy::setFill);
+
+    enemy_type["instanceVars"] = &Enemy::instanceVars;
 
     sol::usertype<sf::RectangleShape> rect_type = script.new_usertype<sf::RectangleShape>("Rect",
         sol::constructors<sf::RectangleShape(sf::Vector2f)>(), sol::base_classes, sol::bases<sf::Drawable>());

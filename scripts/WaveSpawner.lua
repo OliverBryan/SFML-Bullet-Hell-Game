@@ -10,9 +10,8 @@ WaveSpawner.SpawnerInstanceVars = {
 
 function WaveSpawner.SpawnerInstanceVars:new(o)
 	o = o or {}
-	setmetatable(0, self)
+	setmetatable(o, self)
 	self.__index = self
-	self.ec = 0
 	return o
 end
 
@@ -29,10 +28,10 @@ function WaveSpawner.spawnerUpdate(spawner, environment)
 	if not spawner.moving then
 		return
 	end
-	if spawner.spawnerInstanceVars.ec > 10 then
+	if spawner.instanceVars.ec > 10 then
 		e = Enemy.new(spawner.position.x + 3, spawner.position.y + 20, 0.0, 2.0, 300, Color.new(0, 0, 0))
 		environment:addEnemy(e, "WaveSpawner")
-		spawner.spawnerInstanceVars.ec = 0
+		spawner.instanceVars.ec = 0
 	end
-	spawner.spawnerInstanceVars.ec = spawner.spawnerInstanceVars.ec + 1
+	spawner.instanceVars.ec = spawner.instanceVars.ec + 1
 end

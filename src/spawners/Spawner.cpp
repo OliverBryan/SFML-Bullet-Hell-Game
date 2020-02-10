@@ -17,9 +17,9 @@ modded(modded), parent(parent), m_name(name) {
 	m_postMoveCounter = POST_MOVE_TIME;
 
 	try {
-		sol::function createInstanceVars = (*parent->getScriptForSpawner(name))[name]["SpawnerInstanceVars"]["new"];
-	    sol::table t = createInstanceVars();
-		__debugbreak();
+		sol::optional<sol::table> t = (*parent->getScriptForSpawner(name))[name]["SpawnerInstanceVars"];
+		if (t.has_value())
+			instanceVars = t.value()["new"](t);
 	}
 	catch (sol::error) {
 		std::cout << "Error: function SpawnerInstanceVars:new failed for spawner \"" << m_name << "\"" << std::endl;

@@ -41,6 +41,23 @@ void Enemy::init() {
 	m_dfill = m_fill;
 }
 
+void Enemy::modinit(Mod* parent, const std::string& name, Environment* env) {
+	modded = true;
+	this->parent = parent;
+	this->name = name;
+	m_env = env;
+
+	try {
+		sol::optional<sol::table> t = (*parent->getScriptForSpawner(name))[name]["EnemyInstanceVars"].get_or_create<sol::table>(sol::new_table());
+		if (t.has_value())
+			instanceVars = t.value()["new"](t);
+	}
+	catch (sol::error) {
+		std::cout << "Error: function EnemyInstanceVars:new failed for enemy \"" << name << "\"" << std::endl;
+		abort();
+	}
+}
+
 bool Enemy::customRender(sf::RenderWindow& window) {
 	if (modded) {
 		sol::protected_function customRenderFunction = (*(parent->getScriptForSpawner(name)))[name]["enemyRender"];
