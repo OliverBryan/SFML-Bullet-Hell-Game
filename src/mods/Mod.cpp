@@ -10,6 +10,10 @@ void setCirclePosition(sf::CircleShape& shape, float x, float y) {
     shape.setPosition(x, y);
 }
 
+bool frectIntersection(sf::FloatRect a, sf::FloatRect b) {
+    return a.intersects(b);
+}
+
 void Mod::initializeScript(sol::state& script) {
     script.open_libraries(sol::lib::base);
     script.open_libraries(sol::lib::math);
@@ -38,6 +42,11 @@ void Mod::initializeScript(sol::state& script) {
     sol::usertype<Player> player_type = script.new_usertype<Player>("Player",
         sol::no_constructor);
 
+    sol::usertype<sf::FloatRect> frect_type = script.new_usertype<sf::FloatRect>("FloatRect",
+        sol::constructors<sf::FloatRect(sf::Vector2f, sf::Vector2f), sf::FloatRect(float, float, float, float)>());
+
+    script["floatRectHitTest"] = frectIntersection;
+
     spawner_type["moving"] = sol::property(&Spawner::getMoving, &Spawner::setMoving);
     spawner_type["position"] = sol::property(&Spawner::getPosition, &Spawner::setPosition);
 
@@ -47,11 +56,14 @@ void Mod::initializeScript(sol::state& script) {
     env_type["addEnemy"] = &Environment::addModdedEnemy;
 
     player_type["position"] = sol::property(&Player::getPosition, &Player::setPosition);
+    player_type["bounds"] = &Player::getBounds;
     enemy_type["position"] = sol::property(&Enemy::getPosition, &Enemy::setPosition);
+    enemy_type["bounds"] = &Enemy::getBounds;
 
     enemy_type["velocity"] = sol::property(&Enemy::getVelocity, &Enemy::setVelocity);
     enemy_type["size"] = sol::property(&Enemy::getSize, &Enemy::setSize);
     enemy_type["fill"] = sol::property(&Enemy::getFill, &Enemy::setFill);
+    enemy_type["setFatal"] = &Enemy::setFatal;
 
     enemy_type["instanceVars"] = &Enemy::instanceVars;
 
@@ -64,6 +76,8 @@ void Mod::initializeScript(sol::state& script) {
         sol::no_constructor);
 
     circle_type["setFill"] = &sf::CircleShape::setFillColor;
+    circle_type["setBorder"] = &sf::CircleShape::setOutlineColor;
+    circle_type["setBorderWidth"] = &sf::CircleShape::setOutlineThickness;
     script["setCirclePosition"] = setCirclePosition;
 
     script["draw"] = draw;

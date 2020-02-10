@@ -31,7 +31,7 @@ void Environment::update() {
 	for (int i = 0; i < m_enemies.size(); i++) {
 		int ret = m_enemies.at(i)->update();
 
-		if (m_player.getBounds().intersects(m_enemies.at(i)->getBounds()) && !m_player.invincible) {
+		if (m_player.getBounds().intersects(m_enemies.at(i)->getBounds()) && !m_player.invincible && m_enemies.at(i)->fatal) {
 			//TODO: polish death
 			running = false;
 			return;

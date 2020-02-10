@@ -34,7 +34,12 @@ public:
 	sf::Color& getFill();
 	void setFill(sf::Color c);
 
+	void setFatal(bool f) {
+		fatal = f;
+	}
+
 	sol::table instanceVars;
+	bool fatal = true;
 
 protected:
 	bool modded;
