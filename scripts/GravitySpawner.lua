@@ -1,5 +1,5 @@
 GravitySpawner = {
-	fireTime = 60, --200
+	fireTime = 200,
 	postMoveTime = 20,
 	fill = Color.new(128, 128, 128),
 	postMoveFill = Color.new(47, 79, 79)

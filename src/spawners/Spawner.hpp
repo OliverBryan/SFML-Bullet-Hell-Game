@@ -26,6 +26,7 @@ public:
 	virtual void update();
 
 	virtual void render(sf::RenderWindow& window);
+	bool customRender(sf::RenderWindow& window);
 
 	int FIRE_TIME;
 	int POST_MOVE_TIME;
@@ -40,7 +41,7 @@ public:
 	bool getMoving();
 	void setMoving(bool m);
 
-	sf::Vector2f getPosition();
+	sf::Vector2f& getPosition();
 	void setPosition(sf::Vector2f p);
 
 protected:

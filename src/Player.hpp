@@ -14,7 +14,7 @@ public:
 	sf::Vector2f& getPosition();
 	void setPosition(sf::Vector2f p);
 
-	bool invincible = false;
+	bool invincible = true;
 	friend class UserInterface;
 	friend class Console;
 	friend class Bot;

@@ -10,8 +10,30 @@ void setCirclePosition(sf::CircleShape& shape, float x, float y) {
     shape.setPosition(x, y);
 }
 
+void setRectPosition(sf::RectangleShape& shape, float x, float y) {
+    shape.setPosition(x, y);
+}
+
 bool frectIntersection(sf::FloatRect a, sf::FloatRect b) {
     return a.intersects(b);
+}
+
+void printRect(sf::RectangleShape& shape) {
+    std::cout << "Rect: Pos=" << shape.getPosition().x << "," << shape.getPosition().y << " Size=" << shape.getSize().x << "," << shape.getSize().y << " Fill=" << shape.getFillColor().r << "," << shape.getFillColor().g << "," << shape.getFillColor().b << "," << shape.getFillColor().a << std::endl;
+}
+
+void drawGradient(sf::RenderWindow& window, sf::RectangleShape& shape, sf::Color topColor, sf::Color bottomColor) {
+    sf::VertexArray va(sf::Quads, 4);
+    va[1].position = shape.getPosition() + shape.getPoint(0);
+    va[1].color = topColor;
+    va[2].position = shape.getPosition() + shape.getPoint(1);
+    va[2].color = topColor;
+    va[3].position = shape.getPosition() + shape.getPoint(2);
+    va[3].color = bottomColor;
+    va[0].position = shape.getPosition() + shape.getPoint(3);
+    va[0].color = bottomColor;
+
+    window.draw(va);
 }
 
 void Mod::initializeScript(sol::state& script) {
@@ -23,6 +45,9 @@ void Mod::initializeScript(sol::state& script) {
     sol::usertype<sf::Color> color_type = script.new_usertype<sf::Color>("Color",
         sol::constructors<sf::Color(int, int, int), sf::Color(int, int, int, int)>());
     color_type["a"] = &sf::Color::a;
+    color_type["r"] = &sf::Color::r;
+    color_type["g"] = &sf::Color::g;
+    color_type["b"] = &sf::Color::b;
 
     sol::usertype<Enemy> enemy_type = script.new_usertype<Enemy>("Enemy",
         sol::constructors<Enemy(float, float, float, float, int), Enemy(float, float, float, float, int, sf::Color)>());
@@ -68,7 +93,7 @@ void Mod::initializeScript(sol::state& script) {
     enemy_type["instanceVars"] = &Enemy::instanceVars;
 
     sol::usertype<sf::RectangleShape> rect_type = script.new_usertype<sf::RectangleShape>("Rect",
-        sol::constructors<sf::RectangleShape(sf::Vector2f)>(), sol::base_classes, sol::bases<sf::Drawable>());
+        sol::constructors<sf::RectangleShape(sf::Vector2f)>(), sol::base_classes, sol::bases<sf::Shape, sf::Drawable, sf::Transformable>());
     sol::usertype<sf::CircleShape> circle_type = script.new_usertype<sf::CircleShape>("Circle",
         sol::constructors<sf::CircleShape(float)>(), sol::base_classes, sol::bases<sf::Shape, sf::Drawable, sf::Transformable>());
 
@@ -80,6 +105,11 @@ void Mod::initializeScript(sol::state& script) {
     circle_type["setBorderWidth"] = &sf::CircleShape::setOutlineThickness;
     script["setCirclePosition"] = setCirclePosition;
 
+    rect_type["setFill"] = &sf::RectangleShape::setFillColor;
+
+    script["setRectPosition"] = setRectPosition;
+    
+    script["drawGradient"] = drawGradient;
     script["draw"] = draw;
 
     enemy_type["geometry"];
@@ -100,7 +130,7 @@ Mod::Mod(std::string name, std::string path) : m_name(name), m_path(path) {
     }
 }
 
-sol::state* Mod::getScriptForSpawner(const std::string& name) {
+sol::state* Mod::getScriptForSpawner(const std::string& name, const std::string& origin) {
     sol::state* script = nullptr;
     for (sol::state* spawnerScript : m_spawnerScripts) {
         if ((*spawnerScript)["_NAME"] == name) {
@@ -108,6 +138,7 @@ sol::state* Mod::getScriptForSpawner(const std::string& name) {
         }
     }
     if (script == nullptr) {
+        std::cout << "ORIGIN " << origin << std::endl;
         std::cout << "Fatal Error: could not find spawner with name \"" << name << "\"" << std::endl;
         abort();
     }
@@ -115,13 +146,7 @@ sol::state* Mod::getScriptForSpawner(const std::string& name) {
 }
 
 Spawner* Mod::createSpawner(float x, Environment* env, const std::string& name) {
-    /*
-    SpawnerBase spawnerData = m_script[name];
-    Spawner* spawner = new Spawner(x, env, spawnerData.fireTime, spawnerData.postMoveTime,
-        spawnerData.fill, spawnerData.postMoveFill, spawnerData.warningFireFill, true, this, name);
-    return spawner;
-    */
-    sol::state* script = getScriptForSpawner(name);
+    sol::state* script = getScriptForSpawner(name, "createSpawner");
 
     try {
         auto spawnerData = (*script)[name];

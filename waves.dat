@@ -1,10 +1,7 @@
-GravitySpawner:100
+GravitySpawner:1
+RicochetSpawner:99
 end
 10
-1
-BasicSpawner:100
-end
-5
 4
 BasicSpawner:100
 end

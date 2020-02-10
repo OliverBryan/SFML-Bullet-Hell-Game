@@ -26,3 +26,12 @@ function RicochetSpawner.enemyUpdate(enemy, environment)
 		enemy.velocity.y = enemy.velocity.y * -1
 	end
 end
+
+--[[
+function RicochetSpawner.spawnerRender(spawner, window)
+	rect = Rect:new(Vec2:new(16, 20))
+	setRectPosition(rect, spawner.position.x, spawner.position.y)
+	topColor = Color.new(255, 215, 0)
+	bottomColor = Color.new(0, 0, 0)
+	drawGradient(window, rect, topColor, bottomColor)
+end --]]

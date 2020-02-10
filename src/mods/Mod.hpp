@@ -18,7 +18,7 @@ public:
 
 	Spawner* createSpawner(float x, Environment* env, const std::string& name);
 	
-	sol::state* getScriptForSpawner(const std::string& name);
+	sol::state* getScriptForSpawner(const std::string& name, const std::string& origin);
 
 	static void initializeScript(sol::state& script);
 

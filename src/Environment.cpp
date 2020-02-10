@@ -64,6 +64,7 @@ void Environment::render(sf::RenderWindow& window) {
 	window.draw(shape);
 
 	shape.setPosition(420, 0);
+	shape.setSize(sf::Vector2f(50, 400));
 	window.draw(shape);
 
 	shape.setSize(sf::Vector2f(400, 20));
@@ -100,7 +101,7 @@ void Environment::clearSpawners() {
 }
 
 void Environment::addSpawner() {
-	int spawnerType = irand(0, 100);
+	int spawnerType = irand(0, 99);
 	int sum = 0;
 	std::string name = "";
 	std::vector<std::pair<std::string, int>> spawnerTypes = m_waves[m_wave - 1].spawnerTypes;
@@ -121,7 +122,6 @@ void Environment::addSpawner() {
 			}
 		}
 	}
-	std::cout << "Fatal error: could not find spawner with name \"" << name << "\"" << std::endl;
 	abort();
 }
 

@@ -17,7 +17,7 @@ modded(modded), parent(parent), m_name(name) {
 	m_postMoveCounter = POST_MOVE_TIME;
 
 	try {
-		sol::optional<sol::table> t = (*parent->getScriptForSpawner(name))[name]["SpawnerInstanceVars"];
+		sol::optional<sol::table> t = (*parent->getScriptForSpawner(name, "spawner constructor"))[name]["SpawnerInstanceVars"];
 		if (t.has_value())
 			instanceVars = t.value()["new"](t);
 	}
@@ -34,7 +34,7 @@ void Spawner::spawnEnemy() {
 	}
 
 	try {
-		sol::function spawnerFunction = (*(parent->getScriptForSpawner(m_name)))[m_name]["spawnEnemies"];
+		sol::function spawnerFunction = (*(parent->getScriptForSpawner(m_name, "spawner spawn enemy")))[m_name]["spawnEnemies"];
 		sol::table table = spawnerFunction(this);
 		int amount = table["amount"];
 		sol::table enemies = table["enemies"];
@@ -50,16 +50,34 @@ void Spawner::spawnEnemy() {
 	}
 }
 
+bool Spawner::customRender(sf::RenderWindow& window) {
+	if (modded) {
+		sol::protected_function customRenderFunction = (*(parent->getScriptForSpawner(m_name, "spawner custom render")))[m_name]["spawnerRender"];
+		if (customRenderFunction.valid()) {
+			auto t = customRenderFunction(this, window);
+			if (!t.valid()) {
+				sol::error err = t;
+				std::cout << "Error in spawnerRender for " << m_name << ": " << err.what() << std::endl;
+				abort();
+			}
+			return true;
+		}
+	}
+	return false;
+}
+
 void Spawner::render(sf::RenderWindow& window) {
-	sf::RectangleShape shape(sf::Vector2f(16, 20));
-	shape.setPosition(m_position);
-	shape.setFillColor(m_fill);
-	window.draw(shape);
+	if (!customRender(window)) {
+		sf::RectangleShape shape(sf::Vector2f(16, 20));
+		shape.setPosition(m_position);
+		shape.setFillColor(m_fill);
+		window.draw(shape);
+	}
 }
 
 void Spawner::spawnerUpdate() {
 	if (modded) {
-		sol::protected_function spawnerUpdateFunction = (*(parent->getScriptForSpawner(m_name)))[m_name]["spawnerUpdate"];
+		sol::protected_function spawnerUpdateFunction = (*(parent->getScriptForSpawner(m_name, "spawner update")))[m_name]["spawnerUpdate"];
 		if (spawnerUpdateFunction.valid()) {
 			auto t = spawnerUpdateFunction(this, m_env);
 			if (!t.valid()) {
@@ -106,7 +124,7 @@ void Spawner::setMoving(bool m) {
 	m_moving = m;
 }
 
-sf::Vector2f Spawner::getPosition() {
+sf::Vector2f& Spawner::getPosition() {
 	return m_position;
 }
 

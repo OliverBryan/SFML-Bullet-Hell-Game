@@ -25,7 +25,7 @@ int Enemy::update() {
 
 void Enemy::customUpdate() {
 	if (modded) {
-		sol::protected_function customUpdateFunction = (*(parent->getScriptForSpawner(name)))[name]["enemyUpdate"];
+		sol::protected_function customUpdateFunction = (*(parent->getScriptForSpawner(name, "enemyCustomUpdate")))[name]["enemyUpdate"];
 		if (customUpdateFunction.valid()) {
 			auto t = customUpdateFunction(this, m_env);
 			if (!t.valid()) {
@@ -48,7 +48,7 @@ void Enemy::modinit(Mod* parent, const std::string& name, Environment* env) {
 	m_env = env;
 
 	try {
-		sol::optional<sol::table> t = (*parent->getScriptForSpawner(name))[name]["EnemyInstanceVars"].get_or_create<sol::table>(sol::new_table());
+		sol::optional<sol::table> t = (*parent->getScriptForSpawner(name, "enemy modinit"))[name]["EnemyInstanceVars"];
 		if (t.has_value())
 			instanceVars = t.value()["new"](t);
 	}
@@ -60,7 +60,7 @@ void Enemy::modinit(Mod* parent, const std::string& name, Environment* env) {
 
 bool Enemy::customRender(sf::RenderWindow& window) {
 	if (modded) {
-		sol::protected_function customRenderFunction = (*(parent->getScriptForSpawner(name)))[name]["enemyRender"];
+		sol::protected_function customRenderFunction = (*(parent->getScriptForSpawner(name, "enemy custom render")))[name]["enemyRender"];
 		if (customRenderFunction.valid()) {
 			auto t = customRenderFunction(this, window);
 			if (!t.valid()) {
