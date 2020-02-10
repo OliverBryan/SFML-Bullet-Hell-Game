@@ -73,7 +73,7 @@ sf::FloatRect Player::getBounds() {
 	return sf::FloatRect(m_position, sf::Vector2f(20, 20));
 }
 
-sf::Vector2f Player::getPosition() {
+sf::Vector2f& Player::getPosition() {
 	return m_position;
 }
 

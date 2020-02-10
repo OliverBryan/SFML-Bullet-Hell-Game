@@ -11,7 +11,7 @@ public:
 
 	sf::FloatRect getBounds();
 
-	sf::Vector2f getPosition();
+	sf::Vector2f& getPosition();
 	void setPosition(sf::Vector2f p);
 
 	bool invincible = false;
