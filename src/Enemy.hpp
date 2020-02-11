@@ -1,7 +1,7 @@
 #ifndef ENEMY_HPP
 #define ENEMY_HPP
 
-#include "..\spawners\Spawner.hpp"
+#include "Spawner.hpp"
 
 class Enemy {
 public:

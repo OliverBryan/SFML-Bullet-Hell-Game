@@ -1,8 +1,8 @@
 #include "Environment.hpp"
-#include "spawners\Spawner.hpp"
-#include "enemies\Enemy.hpp"
+#include "Spawner.hpp"
+#include "Enemy.hpp"
 #include <iostream>
-#include "mods/ModLoader.hpp"
+#include "ModLoader.hpp"
 
 Environment::Environment() : m_player(210, 260) {
 	m_timer = static_cast<float>(m_waves[0].newSpawnerInterval * m_waves[0].spawners);
@@ -28,16 +28,24 @@ void Environment::update() {
 
 	m_player.update();
 
+	bool died = false;
 	for (int i = 0; i < m_enemies.size(); i++) {
 		int ret = m_enemies.at(i)->update();
 
 		if (m_player.getBounds().intersects(m_enemies.at(i)->getBounds()) && !m_player.invincible && m_enemies.at(i)->fatal) {
 			//TODO: polish death
-			running = false;
-			return;
+			died = true;
 		}
 
 		if (ret == 1) removeEnemy(i);
+	}
+
+	if (died) {
+		m_timer = 5.0f;
+		preWave = true;
+		clearSpawners();
+		clearEnemies();
+		m_status = Status::PlayerDied;
 	}
 
 	if (preWave && m_spawners.size() > 0) {

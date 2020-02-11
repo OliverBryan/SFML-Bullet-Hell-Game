@@ -1,6 +1,6 @@
 #include "Enemy.hpp"
-#include "..\Environment.hpp"
-#include "..\mods\Mod.hpp"
+#include "Environment.hpp"
+#include "Mod.hpp"
 #include <iostream>
 
 int Enemy::update() {

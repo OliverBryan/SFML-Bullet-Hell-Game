@@ -35,10 +35,15 @@ public:
 	bool paused = false;
 	friend class UserInterface;
 	friend class Console;
-	friend class Bot;
 
 	Player* getPlayer();
 private:
+	enum class Status {
+		None,
+		WaveCleared,
+		PlayerDied
+	};
+
 	void addSpawner();
 	void removeSpawner(int index);
 	void removeEnemy(int index);
@@ -46,6 +51,8 @@ private:
 	float m_timer;
 	bool preWave = false;
 	int m_wave = 1;
+
+	Status m_status = Status::None;
 
 	std::vector<Spawner*> m_spawners;
 	std::vector<Enemy*> m_enemies;

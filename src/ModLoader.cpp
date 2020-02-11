@@ -3,7 +3,7 @@
 #include <iostream>
 
 #define SOL_ALL_SAFETIES_ON 1
-#include "..\sol.hpp"
+#include "sol.hpp"
 
 ModLoader::ModLoader() {}
 

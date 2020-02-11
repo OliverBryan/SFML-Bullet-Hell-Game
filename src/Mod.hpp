@@ -2,12 +2,12 @@
 #define MOD_HPP
 
 #include <string>
-#include "..\spawners\Spawner.hpp"
+#include "Spawner.hpp"
 #include <vector>
 #include <Windows.h>
 
 #define SOL_ALL_SAFETIES_ON 1
-#include "..\sol.hpp"
+#include "sol.hpp"
 
 class Mod {
 public:

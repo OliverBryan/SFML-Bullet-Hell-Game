@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "Mod.hpp"
-#include "..\enemies\Enemy.hpp"
+#include "Enemy.hpp"
 
 void draw(sf::RenderWindow& window, sf::Drawable& toDraw) {
     window.draw(toDraw);

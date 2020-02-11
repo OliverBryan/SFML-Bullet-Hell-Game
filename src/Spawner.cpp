@@ -1,7 +1,7 @@
 #include "Spawner.hpp"
-#include "..\enemies\Enemy.hpp"
+#include "Enemy.hpp"
 #include <iostream>
-#include "..\mods\Mod.hpp"
+#include "Mod.hpp"
 
 Spawner::Spawner(float x, Environment* env) : 
 m_position(x, 20), m_env(env) {

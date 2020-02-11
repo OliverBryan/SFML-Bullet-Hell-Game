@@ -11,6 +11,7 @@ public:
 	void update();
 	void pauseUpdate();
 	void render(sf::RenderWindow& window);
+
 private:
 	int m_teleportRechargeCounter = 0;
 	int m_teleportRecharge = 60;
@@ -25,6 +26,7 @@ private:
 	sf::Font m_font;
 	sf::Text m_timerLabel;
 	sf::Text m_waveLabel;
+	sf::Text m_statusLabel;
 };
 
 #endif /* USER_INFERFACE_HPP */

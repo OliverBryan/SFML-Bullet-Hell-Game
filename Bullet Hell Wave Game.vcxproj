@@ -163,24 +163,24 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Console.cpp" />
-    <ClCompile Include="src\enemies\Enemy.cpp" />
+    <ClCompile Include="src\Enemy.cpp" />
     <ClCompile Include="src\Environment.cpp" />
     <ClCompile Include="src\Main.cpp" />
-    <ClCompile Include="src\mods\Mod.cpp" />
-    <ClCompile Include="src\mods\ModLoader.cpp" />
+    <ClCompile Include="src\Mod.cpp" />
+    <ClCompile Include="src\ModLoader.cpp" />
     <ClCompile Include="src\Player.cpp" />
-    <ClCompile Include="src\spawners\Spawner.cpp" />
+    <ClCompile Include="src\Spawner.cpp" />
     <ClCompile Include="src\UserInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Console.hpp" />
-    <ClInclude Include="src\mods\Mod.hpp" />
-    <ClInclude Include="src\mods\ModLoader.hpp" />
+    <ClInclude Include="src\Mod.hpp" />
+    <ClInclude Include="src\ModLoader.hpp" />
     <ClInclude Include="src\sol.hpp" />
-    <ClInclude Include="src\enemies\Enemy.hpp" />
+    <ClInclude Include="src\Enemy.hpp" />
     <ClInclude Include="src\Environment.hpp" />
     <ClInclude Include="src\Player.hpp" />
-    <ClInclude Include="src\spawners\Spawner.hpp" />
+    <ClInclude Include="src\Spawner.hpp" />
     <ClInclude Include="src\UserInterface.hpp" />
     <ClInclude Include="src\Wave.hpp" />
   </ItemGroup>

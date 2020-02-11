@@ -7,23 +7,28 @@ UserInterface::UserInterface(Environment* env) : m_env(env) {
 	}
 	m_timerLabel.setFont(m_font);
 	m_waveLabel.setFont(m_font);
+	m_statusLabel.setFont(m_font);
 
-	m_timerLabel.setPosition(480, 100);
+	m_timerLabel.setPosition(480, 80);
 	m_timerLabel.setFillColor(sf::Color::White);
 
-	m_waveLabel.setPosition(480, 200);
+	m_waveLabel.setPosition(480, 160);
 	m_waveLabel.setFillColor(sf::Color::White);
 	m_waveLabel.setString("Wave: " + std::to_string(m_env->m_wave));
 
+	m_statusLabel.setPosition(480, 300);
+	m_statusLabel.setFillColor(sf::Color::White);
+	m_statusLabel.setString("");
+
 	sf::RectangleShape shape(sf::Vector2f(20, 20));
 	shape.setFillColor(sf::Color::White);
-	shape.setPosition(480, 300);
+	shape.setPosition(480, 240);
 	m_ts.push_back(shape);
 
-	shape.setPosition(520, 300);
+	shape.setPosition(520, 240);
 	m_ts.push_back(shape);
 
-	shape.setPosition(560, 300);
+	shape.setPosition(560, 240);
 	m_ts.push_back(shape);
 
 	m_env->m_timer = static_cast<float>(m_env->m_waves[m_env->m_wave - 1].newSpawnerInterval * m_env->m_waves[m_env->m_wave - 1].spawners);
@@ -36,15 +41,17 @@ void UserInterface::update() {
 		m_timerLabel.setString("Time: " + std::to_string(static_cast<int>(std::round(m_env->m_timer))));
 	}
 	else if (!m_env->preWave && m_env->getPlayer()->getBounds().top <= 20) {
+		m_env->m_status = Environment::Status::WaveCleared;
 		m_env->preWave = true;
 		m_env->m_timer = 5.0f;
 	}
 	else if (m_env->preWave) {
 		m_env->preWave = false;
-		if (m_env->m_wave < m_env->m_waves.size())
+		if (m_env->m_wave < m_env->m_waves.size() && m_env->m_status != Environment::Status::PlayerDied)
 			m_env->m_wave++;
 		m_env->m_timer = static_cast<float>(m_env->m_waves[m_env->m_wave - 1].newSpawnerInterval * m_env->m_waves[m_env->m_wave - 1].spawners);
 		m_env->addSpawner();
+		m_env->m_status = Environment::Status::None;
 	}
 
 	if (m_env->getPlayer()->m_teleports < 3)
@@ -86,6 +93,18 @@ void UserInterface::update() {
 		pKeyDown = false;
 
 	handleKeyBinds();
+
+	switch (m_env->m_status) {
+	case Environment::Status::PlayerDied:
+		m_statusLabel.setString("You Died");
+		break;
+	case Environment::Status::WaveCleared:
+		m_statusLabel.setString("Wave Cleared");
+		break;
+	case Environment::Status::None:
+		m_statusLabel.setString("");
+		break;
+	}
 }
 
 void UserInterface::pauseUpdate() {
@@ -109,6 +128,7 @@ void UserInterface::render(sf::RenderWindow& window) {
 
 	window.draw(m_timerLabel);
 	window.draw(m_waveLabel);
+	window.draw(m_statusLabel);
 }
 
 void UserInterface::handleKeyBinds() {

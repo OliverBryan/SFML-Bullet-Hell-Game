@@ -1,7 +1,7 @@
 #ifndef SPAWNER_HPP
 #define SPAWNER_HPP
 
-#include "..\Environment.hpp"
+#include "Environment.hpp"
 
 #include <memory>
 #include <random>
