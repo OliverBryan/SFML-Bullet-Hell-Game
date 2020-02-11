@@ -189,6 +189,7 @@
     <None Include="scripts\GravitySpawner.lua" />
     <None Include="scripts\HomingSpawner.lua" />
     <None Include="scripts\LaserSpawner.lua" />
+    <None Include="scripts\RandomSpawner.lua" />
     <None Include="scripts\RicochetSpawner.lua" />
     <None Include="scripts\ShotgunSpawner.lua" />
     <None Include="scripts\GameData.lua" />

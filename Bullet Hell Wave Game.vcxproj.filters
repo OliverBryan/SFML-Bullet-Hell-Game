@@ -98,5 +98,6 @@
     <None Include="scripts\RicochetSpawner.lua" />
     <None Include="scripts\GravitySpawner.lua" />
     <None Include="scripts\SpraySpawner.lua" />
+    <None Include="scripts\RandomSpawner.lua" />
   </ItemGroup>
 </Project>
