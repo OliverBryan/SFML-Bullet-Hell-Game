@@ -192,6 +192,7 @@
     <None Include="scripts\RicochetSpawner.lua" />
     <None Include="scripts\ShotgunSpawner.lua" />
     <None Include="scripts\GameData.lua" />
+    <None Include="scripts\SpraySpawner.lua" />
     <None Include="scripts\WaveSpawner.lua" />
     <None Include="waves.dat" />
   </ItemGroup>

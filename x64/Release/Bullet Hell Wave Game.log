@@ -1,15 +1,7 @@
-﻿  Console.cpp
-  Environment.cpp
-  Main.cpp
-  UserInterface.cpp
-C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\UserInterface.cpp(94,25): warning C4804: '*=': unsafe use of type 'bool' in operation
-  Enemy.cpp
-  Mod.cpp
-  ModLoader.cpp
-  Spawner.cpp
+﻿  Main.cpp
   Generating code
-  150 of 12025 functions ( 1.2%) were compiled, the rest were copied from previous compilation.
-    121 functions were new in current compilation
-    2444 functions had inline decision re-evaluated but remain unchanged
+  0 of 12025 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Bullet Hell Wave Game.vcxproj -> C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\x64\Release\Bullet Hell Wave Game.exe

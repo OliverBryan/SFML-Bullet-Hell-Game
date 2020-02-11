@@ -1,7 +1,6 @@
-GravitySpawner:1
-RicochetSpawner:99
+SpraySpawner:100
 end
-10
+8
 4
 BasicSpawner:100
 end

@@ -1,4 +1,5 @@
 exportedSpawners = {
+	"SpraySpawner",
 	"RicochetSpawner",
 	"BasicSpawner",
 	"LaserSpawner",
