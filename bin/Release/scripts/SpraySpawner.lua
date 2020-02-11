@@ -15,10 +15,13 @@ function SpraySpawner.SpawnerInstanceVars:new(o)
 end
 
 function SpraySpawner.spawnEnemies(spawner)
+	e = Enemy.new(spawner.position.x + 3, spawner.position.y + 20, rand(-3, 3), 3.0, 275, Color.new(0, 0, 0))
+	e.size.x = 8
+	e.size.y = 8
 	return {
 		amount = 1,
 		enemies = {
-			Enemy.new(spawner.position.x + 3, spawner.position.y + 20, rand(-3, 3), 3.0, 275, Color.new(0, 0, 0))
+			e
 		}
 	}
 end
@@ -29,6 +32,8 @@ function SpraySpawner.spawnerUpdate(spawner, environment)
 	end
 	if spawner.instanceVars.ec > 4 then
 		e = Enemy.new(spawner.position.x + 3, spawner.position.y + 20, rand(-3, 3), 3.0, 275, Color.new(0, 0, 0))
+		e.size.x = 8
+		e.size.y = 8
 		environment:addEnemy(e, "SpraySpawner")
 		spawner.instanceVars.ec = 0
 	end
