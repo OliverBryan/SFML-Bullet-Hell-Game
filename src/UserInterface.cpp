@@ -31,7 +31,7 @@ UserInterface::UserInterface(Environment* env) : m_env(env) {
 	shape.setPosition(560, 240);
 	m_ts.push_back(shape);
 
-	m_env->m_timer = static_cast<float>(m_env->m_waves[m_env->m_wave - 1].newSpawnerInterval * m_env->m_waves[m_env->m_wave - 1].spawners);
+	m_env->m_timer = static_cast<float>(m_env->m_waves[m_env->m_wave - 1].waveLength);
 }
 
 void UserInterface::update() {
@@ -49,7 +49,7 @@ void UserInterface::update() {
 		m_env->preWave = false;
 		if (m_env->m_wave < m_env->m_waves.size() && m_env->m_status != Environment::Status::PlayerDied)
 			m_env->m_wave++;
-		m_env->m_timer = static_cast<float>(m_env->m_waves[m_env->m_wave - 1].newSpawnerInterval * m_env->m_waves[m_env->m_wave - 1].spawners);
+		m_env->m_timer = static_cast<float>(m_env->m_waves[m_env->m_wave - 1].waveLength);
 		m_env->addSpawner();
 		m_env->m_status = Environment::Status::None;
 	}

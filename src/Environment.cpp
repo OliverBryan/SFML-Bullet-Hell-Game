@@ -5,7 +5,7 @@
 #include "ModLoader.hpp"
 
 Environment::Environment() : m_player(210, 260) {
-	m_timer = static_cast<float>(m_waves[0].newSpawnerInterval * m_waves[0].spawners);
+	m_timer = static_cast<float>(m_waves[0].waveLength);
 	m_modLoader = new ModLoader();
 	m_modLoader->loadMod("GameData", "./scripts/");
 	addSpawner();

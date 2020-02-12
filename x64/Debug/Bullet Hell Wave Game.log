@@ -1,3 +1,2 @@
-﻿  UserInterface.cpp
-C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\UserInterface.cpp(113,25): warning C4804: '*=': unsafe use of type 'bool' in operation
+﻿  Environment.cpp
   Bullet Hell Wave Game.vcxproj -> C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\x64\Debug\Bullet Hell Wave Game.exe
