@@ -6,7 +6,8 @@ RandomSpawner = {
 }
 
 RandomSpawner.EnemyInstanceVars = {
-	c = 60
+	c = 30,
+	cl = rand(10, 80)
 }
 
 function RandomSpawner.EnemyInstanceVars:new(o)
@@ -26,10 +27,11 @@ function RandomSpawner.spawnEnemies(spawner)
 end
 
 function RandomSpawner.enemyUpdate(enemy, environment) 
-	if enemy.instanceVars.c > 60 then
+	if enemy.instanceVars.c > enemy.instanceVars.cl then
 		enemy.velocity.x = rand(-5, 5)
 		enemy.velocity.y = rand(0, 5)
 		enemy.instanceVars.c = 0
+		enemy.instanceVars.cl = rand(10, 80)
 	end
 
 	if enemy.position.x >= 410 then
