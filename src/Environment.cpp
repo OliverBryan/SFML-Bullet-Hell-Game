@@ -1,18 +1,20 @@
 #include "Environment.hpp"
 #include "Spawner.hpp"
 #include "Enemy.hpp"
+#include "Powerup.hpp"
 #include <iostream>
 #include "ModLoader.hpp"
 
 Environment::Environment() : m_player(210, 260) {
 	m_timer = static_cast<float>(m_waves[0].waveLength);
 	m_modLoader = new ModLoader();
-	m_modLoader->loadMod("GameData", "./scripts/");
+	m_modLoader->loadMod("GameData");
 	addSpawner();
 }
 
 Environment::~Environment() {
 	delete m_modLoader;
+	delete m_powerup;
 }
 
 void Environment::update() {
@@ -26,14 +28,27 @@ void Environment::update() {
 		spawner->update();
 	}
 
+	if (m_powerup != nullptr) {
+		int i = m_powerup->update(&m_player);
+		if (i == 1) {
+			delete m_powerup;
+			m_powerup = nullptr;
+		}
+	}
+
 	m_player.update();
+
+	if (m_powerup != nullptr && m_player.getBounds().intersects(sf::FloatRect(m_powerup->getPosition(), sf::Vector2f(m_powerup->getPosition().x + 16, m_powerup->getPosition().y + 20)))) {
+		pickedUpPowerup = true;
+		m_player.setPowerup(m_powerup);
+		m_powerup = nullptr;
+	}
 
 	bool died = false;
 	for (int i = 0; i < m_enemies.size(); i++) {
 		int ret = m_enemies.at(i)->update();
 
 		if (m_player.getBounds().intersects(m_enemies.at(i)->getBounds()) && !m_player.invincible && m_enemies.at(i)->fatal) {
-			//TODO: polish death
 			died = true;
 		}
 
@@ -48,6 +63,17 @@ void Environment::update() {
 		m_status = Status::PlayerDied;
 	}
 
+	if (preWave && m_powerup == nullptr && !pickedUpPowerup && m_status != Status::PlayerDied) {
+		std::vector<std::string> choices;
+		for (Mod* mod : m_modLoader->getMods()) {
+			for (std::string powerup : mod->getPowerups()) {
+				choices.push_back(powerup);
+			}
+		}
+		std::string choice = choices[irand(0, choices.size() - 1)];
+		m_powerup = m_modLoader->getModByPowerupName(choice)->createPowerup(static_cast<float>(irand(20, 400)), static_cast<float>(irand(20, 400)), choice);
+	}
+
 	if (preWave && m_spawners.size() > 0) {
 		clearSpawners();
 	}
@@ -59,6 +85,10 @@ void Environment::update() {
 void Environment::render(sf::RenderWindow& window) {
 	for (Spawner* spawner : m_spawners) {
 		spawner->render(window);
+	}
+
+	if (m_powerup != nullptr) {
+		m_powerup->render(window, &m_player);
 	}
 
 	for (Enemy* enemy : m_enemies) {

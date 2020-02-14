@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "Mod.hpp"
 #include "Enemy.hpp"
+#include "Powerup.hpp"
 
 void draw(sf::RenderWindow& window, sf::Drawable& toDraw) {
     window.draw(toDraw);
@@ -92,6 +93,8 @@ void Mod::initializeScript(sol::state& script) {
 
     enemy_type["instanceVars"] = &Enemy::instanceVars;
 
+    player_type["invincible"] = &Player::invincible;
+
     sol::usertype<sf::RectangleShape> rect_type = script.new_usertype<sf::RectangleShape>("Rect",
         sol::constructors<sf::RectangleShape(sf::Vector2f)>(), sol::base_classes, sol::bases<sf::Shape, sf::Drawable, sf::Transformable>());
     sol::usertype<sf::CircleShape> circle_type = script.new_usertype<sf::CircleShape>("Circle",
@@ -112,7 +115,10 @@ void Mod::initializeScript(sol::state& script) {
     script["drawGradient"] = drawGradient;
     script["draw"] = draw;
 
-    enemy_type["geometry"];
+    sol::usertype<Powerup> powerup_type = script.new_usertype<Powerup>("Powerup",
+        sol::no_constructor);
+    powerup_type["position"] = sol::property(&Powerup::getPosition, &Powerup::setPosition);
+    powerup_type["active"] = sol::property(&Powerup::getActive, &Powerup::setActive);
 }
 
 Mod::Mod(std::string name, std::string path) : m_name(name), m_path(path) {
@@ -121,13 +127,53 @@ Mod::Mod(std::string name, std::string path) : m_name(name), m_path(path) {
     m_mainScript.script_file(path + name + ".lua");
 
     std::vector<std::string> modSpawners = getSpawners();
+    std::vector<std::string> modPowerups = getPowerups();
+    
     for (std::string spawner : modSpawners) {
         sol::state* spawnerScript = new sol::state;
         initializeScript(*spawnerScript);
-        spawnerScript->script_file(path + spawner + ".lua");
+        sol::protected_function_result result = spawnerScript->script_file(path + "/spawners/" + spawner + ".lua");
+        if (!result.valid()) {
+            std::cout << "Error in loading script for spawner " << spawner << ":" << std::endl;
+            sol::error err = result;
+            std::cout << err.what() << std::endl;
+        }
         (*spawnerScript)["_NAME"] = spawner;
         m_spawnerScripts.push_back(spawnerScript);
     }
+
+    for (std::string powerup : modPowerups) {
+        sol::state* powerupScript = new sol::state;
+        initializeScript(*powerupScript);
+        sol::protected_function_result result = powerupScript->script_file(path + "/powerups/" + powerup + ".lua");
+        if (!result.valid()) {
+            std::cout << "Error in loading script for powerup " << powerup << ":" << std::endl;
+            sol::error err = result;
+            std::cout << err.what() << std::endl;
+        }
+        (*powerupScript)["_NAME"] = powerup;
+        m_powerupScripts.push_back(powerupScript);
+    }
+}
+
+Mod::~Mod() {
+    while (!m_spawnerScripts.empty()) {
+        for (int i = 0; i < m_spawnerScripts.size(); i++) {
+            sol::state* script = m_spawnerScripts[i];
+            m_spawnerScripts.erase(m_spawnerScripts.begin() + i);
+            delete script;
+        }
+    }
+
+    while (!m_powerupScripts.empty()) {
+        for (int i = 0; i < m_powerupScripts.size(); i++) {
+            sol::state* script = m_powerupScripts[i];
+            m_powerupScripts.erase(m_powerupScripts.begin() + i);
+            delete script;
+        }
+    }
+
+    //TODO: Clean up textures
 }
 
 sol::state* Mod::getScriptForSpawner(const std::string& name, const std::string& origin) {
@@ -140,6 +186,21 @@ sol::state* Mod::getScriptForSpawner(const std::string& name, const std::string&
     if (script == nullptr) {
         std::cout << "ORIGIN " << origin << std::endl;
         std::cout << "Fatal Error: could not find spawner with name \"" << name << "\"" << std::endl;
+        abort();
+    }
+    
+    return script;
+}
+
+sol::state* Mod::getScriptForPowerup(const std::string& name) {
+    sol::state* script = nullptr;
+    for (sol::state* powerupScript : m_powerupScripts) {
+        if ((*powerupScript)["_NAME"] == name) {
+            script = powerupScript;
+        }
+    }
+    if (script == nullptr) {
+        std::cout << "Fatal Error: could not find powerup with name \"" << name << "\"" << std::endl;
         abort();
     }
     return script;
@@ -163,6 +224,31 @@ Spawner* Mod::createSpawner(float x, Environment* env, const std::string& name) 
     }
 }
 
+Powerup* Mod::createPowerup(float x, float y, const std::string& name) {
+    sol::state* script = getScriptForPowerup(name);
+
+    try {
+        auto powerupData = (*script)[name];
+        int activeTime = powerupData["activeTime"];
+        std::string sprite = powerupData["sprite"];
+        sf::Texture* t = new sf::Texture;
+        if (t->loadFromFile("./mods/" + m_name + "/sprites/" + sprite)) {
+            sf::Sprite s(*t);
+            m_textures.insert(std::make_pair(sprite, t));
+            return new Powerup(x, y, s, activeTime, this, name);
+        }
+        else {
+            std::cout << "Error: could not load texture for powerup \"" << name << "\"" << std::endl;
+            abort();
+        }
+    }
+    catch (sol::error e) {
+        std::cout << "Error: could not load powerup data for powerup \"" << name << "\"" << std::endl;
+    }
+
+    return nullptr;
+}
+
 std::vector<std::string> Mod::getSpawners() {
     int i = 1;
     bool m = true;
@@ -177,4 +263,20 @@ std::vector<std::string> Mod::getSpawners() {
     }
 
     return spawners;
+}
+
+std::vector<std::string> Mod::getPowerups() {
+    int i = 1;
+    bool m = true;
+    std::vector<std::string> powerups;
+    sol::table names = m_mainScript["exportedPowerups"];
+    while (m) {
+        std::string name = names[i].get_or(std::string("none"));
+        if (name == "none")
+            m = false;
+        else powerups.push_back(name);
+        i++;
+    }
+
+    return powerups;
 }

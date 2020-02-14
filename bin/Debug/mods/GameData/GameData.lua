@@ -10,3 +10,7 @@ exportedSpawners = {
 	"GravitySpawner",
 	"LoopSpawner"
 }
+
+exportedPowerups = {
+	"ShieldPowerup"
+}

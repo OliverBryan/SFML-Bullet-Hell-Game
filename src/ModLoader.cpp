@@ -15,8 +15,8 @@ ModLoader::~ModLoader() {
     }
 }
 
-void ModLoader::loadMod(const std::string& name, const std::string& path) {
-    Mod* mod = new Mod(name, path);
+void ModLoader::loadMod(const std::string& name) {
+    Mod* mod = new Mod(name, "./mods/" + name + "/");
     m_mods.push_back(mod);
 }
 
@@ -28,6 +28,15 @@ Mod* ModLoader::getModBySpawnerName(const std::string& name) {
     for (Mod* mod : m_mods) {
         for (std::string spawner : mod->getSpawners()) {
             if (spawner == name) return mod;
+        }
+    }
+    return nullptr;
+}
+
+Mod* ModLoader::getModByPowerupName(const std::string& name) {
+    for (Mod* mod : m_mods) {
+        for (std::string powerup : mod->getPowerups()) {
+            if (powerup == name) return mod;
         }
     }
     return nullptr;

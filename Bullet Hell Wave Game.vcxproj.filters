@@ -54,6 +54,9 @@
     <ClCompile Include="src\Enemy.cpp">
       <Filter>Source Files\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="src\Powerup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Environment.hpp">
@@ -86,19 +89,26 @@
     <ClInclude Include="src\Enemy.hpp">
       <Filter>Header Files\Enemies</Filter>
     </ClInclude>
+    <ClInclude Include="src\Powerup.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="waves.dat" />
-    <None Include="scripts\ShotgunSpawner.lua" />
-    <None Include="scripts\GameData.lua" />
-    <None Include="scripts\WaveSpawner.lua" />
-    <None Include="scripts\HomingSpawner.lua" />
-    <None Include="scripts\LaserSpawner.lua" />
-    <None Include="scripts\BasicSpawner.lua" />
-    <None Include="scripts\RicochetSpawner.lua" />
-    <None Include="scripts\GravitySpawner.lua" />
-    <None Include="scripts\SpraySpawner.lua" />
-    <None Include="scripts\RandomSpawner.lua" />
-    <None Include="scripts\LoopSpawner.lua" />
+    <None Include="mods\GameData\Spawners\BasicSpawner.lua" />
+    <None Include="mods\GameData\Spawners\GravitySpawner.lua" />
+    <None Include="mods\GameData\Spawners\HomingSpawner.lua" />
+    <None Include="mods\GameData\Spawners\LaserSpawner.lua" />
+    <None Include="mods\GameData\Spawners\LoopSpawner.lua" />
+    <None Include="mods\GameData\Spawners\RandomSpawner.lua" />
+    <None Include="mods\GameData\Spawners\RicochetSpawner.lua" />
+    <None Include="mods\GameData\Spawners\ShotgunSpawner.lua" />
+    <None Include="mods\GameData\Spawners\SpraySpawner.lua" />
+    <None Include="mods\GameData\Spawners\WaveSpawner.lua" />
+    <None Include="mods\GameData\powerups\ShieldPowerup.lua" />
+    <None Include="mods\GameData\GameData.lua" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="mods\mods.txt" />
   </ItemGroup>
 </Project>

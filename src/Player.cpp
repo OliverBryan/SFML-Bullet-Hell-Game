@@ -51,6 +51,16 @@ void Player::update() {
 	else if (!(sf::Keyboard::isKeyPressed(sf::Keyboard::M) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z)))
 		teleportKeyPressed = false;
 
+	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::C) || sf::Keyboard::isKeyPressed(sf::Keyboard::B)) && !powerupKeyPressed) {
+		powerupKeyPressed = true;
+		if (m_powerup != nullptr) {
+			m_powerup->setActive(true);
+			m_powerup->activate(this);
+		}
+	}
+	else if (!(sf::Keyboard::isKeyPressed(sf::Keyboard::C) || sf::Keyboard::isKeyPressed(sf::Keyboard::B)))
+		powerupKeyPressed = false;
+
 	if (m_position.x >= 400)
 		m_position.x = 400;
 	if (m_position.x <= 20)
@@ -59,6 +69,15 @@ void Player::update() {
 		m_position.y = 400;
 	if (m_position.y <= 20)
 		m_position.y = 20;
+
+	if (m_powerup != nullptr) {
+		int i = m_powerup->update(this);
+		if (i == 1) {
+			m_powerup->setActive(false);
+			delete m_powerup;
+			m_powerup = nullptr;
+		}
+	}
 }
 
 void Player::render(sf::RenderWindow& window) {
@@ -67,6 +86,14 @@ void Player::render(sf::RenderWindow& window) {
 	shape.setFillColor(sf::Color(35, 38, 36));
 
 	window.draw(shape);
+
+	if (m_powerup != nullptr && m_powerup->getActive()) {
+		m_powerup->render(window, this);
+	}
+}
+
+void Player::setPowerup(Powerup* powerup) {
+	m_powerup = powerup;
 }
 
 sf::FloatRect Player::getBounds() {
@@ -79,4 +106,12 @@ sf::Vector2f& Player::getPosition() {
 
 void Player::setPosition(sf::Vector2f p) {
 	m_position = p;
+}
+
+int Player::getSpeed() {
+	return m_speed;
+}
+
+void Player::setSpeed(int speed) {
+	m_speed = speed;
 }

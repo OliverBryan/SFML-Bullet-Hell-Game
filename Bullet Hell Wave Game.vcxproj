@@ -169,6 +169,7 @@
     <ClCompile Include="src\Mod.cpp" />
     <ClCompile Include="src\ModLoader.cpp" />
     <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\Powerup.cpp" />
     <ClCompile Include="src\Spawner.cpp" />
     <ClCompile Include="src\UserInterface.cpp" />
   </ItemGroup>
@@ -176,6 +177,7 @@
     <ClInclude Include="src\Console.hpp" />
     <ClInclude Include="src\Mod.hpp" />
     <ClInclude Include="src\ModLoader.hpp" />
+    <ClInclude Include="src\Powerup.hpp" />
     <ClInclude Include="src\sol.hpp" />
     <ClInclude Include="src\Enemy.hpp" />
     <ClInclude Include="src\Environment.hpp" />
@@ -185,23 +187,27 @@
     <ClInclude Include="src\Wave.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="scripts\BasicSpawner.lua" />
-    <None Include="scripts\GravitySpawner.lua" />
-    <None Include="scripts\HomingSpawner.lua" />
-    <None Include="scripts\LaserSpawner.lua" />
-    <None Include="scripts\LoopSpawner.lua" />
-    <None Include="scripts\RandomSpawner.lua" />
-    <None Include="scripts\RicochetSpawner.lua" />
-    <None Include="scripts\ShotgunSpawner.lua" />
-    <None Include="scripts\GameData.lua" />
-    <None Include="scripts\SpraySpawner.lua" />
-    <None Include="scripts\WaveSpawner.lua" />
+    <None Include="mods\GameData\powerups\ShieldPowerup.lua" />
+    <None Include="mods\GameData\Spawners\BasicSpawner.lua" />
+    <None Include="mods\GameData\Spawners\GravitySpawner.lua" />
+    <None Include="mods\GameData\Spawners\HomingSpawner.lua" />
+    <None Include="mods\GameData\Spawners\LaserSpawner.lua" />
+    <None Include="mods\GameData\Spawners\LoopSpawner.lua" />
+    <None Include="mods\GameData\Spawners\RandomSpawner.lua" />
+    <None Include="mods\GameData\Spawners\RicochetSpawner.lua" />
+    <None Include="mods\GameData\Spawners\ShotgunSpawner.lua" />
+    <None Include="mods\GameData\GameData.lua" />
+    <None Include="mods\GameData\Spawners\SpraySpawner.lua" />
+    <None Include="mods\GameData\Spawners\WaveSpawner.lua" />
     <None Include="waves.dat" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lua\Lua.vcxproj">
       <Project>{2b9ca669-e19c-4cfd-bd61-db70345cc231}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="mods\mods.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

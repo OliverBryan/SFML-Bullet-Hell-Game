@@ -1,1 +1,14 @@
-﻿  Bullet Hell Wave Game.vcxproj -> C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\x64\Debug\Bullet Hell Wave Game.exe
+﻿  Console.cpp
+  Enemy.cpp
+  Environment.cpp
+C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Environment.cpp(73,59): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  Main.cpp
+  Mod.cpp
+  ModLoader.cpp
+  Player.cpp
+  Powerup.cpp
+  Spawner.cpp
+  UserInterface.cpp
+C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\UserInterface.cpp(118,25): warning C4804: '*=': unsafe use of type 'bool' in operation
+  Generating Code...
+  Bullet Hell Wave Game.vcxproj -> C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\x64\Debug\Bullet Hell Wave Game.exe

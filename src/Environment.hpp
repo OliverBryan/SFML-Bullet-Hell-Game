@@ -15,6 +15,7 @@ class Spawner;
 class Enemy;
 class Mod;
 class ModLoader;
+class Powerup;
 
 class Environment : public sf::NonCopyable {
 public:
@@ -57,6 +58,9 @@ private:
 	std::vector<Enemy*> m_enemies;
 	int m_newSpawnerCounter = 0;
 	Player m_player;
+
+	bool pickedUpPowerup = false;
+	Powerup* m_powerup = nullptr;
 
 	ModLoader* m_modLoader;
 

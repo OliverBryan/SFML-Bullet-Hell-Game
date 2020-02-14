@@ -10,11 +10,12 @@ public:
 	ModLoader();
 	~ModLoader();
 
-	void loadMod(const std::string& name, const std::string& path);
+	void loadMod(const std::string& name);
 	const std::vector<Mod*>& getMods();
 
 	Mod* getModByName(const std::string name) {}
 	Mod* getModBySpawnerName(const std::string& name);
+	Mod* getModByPowerupName(const std::string& name);
 
 private:
 	std::vector<Mod*> m_mods;

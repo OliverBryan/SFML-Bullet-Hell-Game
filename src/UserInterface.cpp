@@ -47,6 +47,11 @@ void UserInterface::update() {
 	}
 	else if (m_env->preWave) {
 		m_env->preWave = false;
+		m_env->pickedUpPowerup = false;
+		if (m_env->m_powerup != nullptr) {
+			delete m_env->m_powerup;
+			m_env->m_powerup = nullptr;
+		}
 		if (m_env->m_wave < m_env->m_waves.size() && m_env->m_status != Environment::Status::PlayerDied)
 			m_env->m_wave++;
 		m_env->m_timer = static_cast<float>(m_env->m_waves[m_env->m_wave - 1].waveLength);
@@ -117,6 +122,13 @@ void UserInterface::pauseUpdate() {
 }
 
 void UserInterface::render(sf::RenderWindow& window) {
+	if (m_env->m_player.m_powerup != nullptr && !m_env->m_player.m_powerup->getActive()) {
+		sf::Sprite powerupSprite = m_env->m_player.m_powerup->getSprite();
+		powerupSprite.setPosition(620, 240);
+		window.draw(powerupSprite);
+	}
+	
+
 	sf::RectangleShape shape(sf::Vector2f(400, 400));
 	shape.setPosition(sf::Vector2f(20, 20));
 	shape.setFillColor(sf::Color::White);
