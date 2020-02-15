@@ -19,6 +19,8 @@ The game should launch normally and you should see something like this:
 
 If the game fails to launch, check out :doc:`common_problems`
 
+For instructions on how to play the game, check out :doc:`gameplay`
+
 
 .. toctree::
    :maxdepth: 2

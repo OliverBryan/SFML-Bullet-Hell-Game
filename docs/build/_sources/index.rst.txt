@@ -12,6 +12,8 @@ Welcome to Bullet Hell Game's documentation!
    
    getting_started
    common_problems
+   gameplay
+   mod_tutorial
    
 Installation
 ------------
@@ -19,7 +21,13 @@ Installation
 First, clone or download the github repository at https://github.com/NipIsTrue/SFML-Bullet-Hell-Game
 Then, to start the game simply run the executable in :file:`{Installation Directory}/bin/Release/`
 
-For more instructions / screenshots go to :doc:`getting_started`
+For more instructions and screenshots go to :doc:`getting_started`
+
+For solutions to common problems, go to :doc:`common_problems`
+
+For information on how to play the game, go to :doc:`gameplay`
+
+To learn how to mod the game, go to :doc:`mod_tutorial`
 
 
 Indices and tables
