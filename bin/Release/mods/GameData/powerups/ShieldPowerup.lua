@@ -1,6 +1,9 @@
 ShieldPowerup = {
 	sprite = "shield.png",
-	activeTime = 600
+	activeTime = 600,
+	animated = true,
+	frames = 11,
+	frameDelay = 20
 }
 
 function ShieldPowerup.activate(powerup, player)
