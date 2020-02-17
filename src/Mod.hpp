@@ -34,6 +34,8 @@ public:
 	friend class Spawner;
 	friend class Enemy;
 	friend class Powerup;
+	friend class UserInterface;
+
 private:
 	sol::state m_mainScript;
 	std::vector<sol::state*> m_spawnerScripts;

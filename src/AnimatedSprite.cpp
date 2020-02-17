@@ -1,0 +1,1 @@
+#include "AnimatedSprite.hpp"

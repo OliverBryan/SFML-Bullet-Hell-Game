@@ -33,8 +33,43 @@
             
   <div class="section" id="mod-tutorial">
 <h1>Mod Tutorial<a class="headerlink" href="#mod-tutorial" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial will go through all the information needed to create a mod, using examples from the spawners that are already in the game, and ends with a complete
+example of a modded spawner.</p>
+<p>Keep in mind that all the spawners and powerups currently in the game are part of a mod called GameData, and can be referenced when you want to achieve certain effects or behaviors that are already in the game. Mods in the game are in the Lua scripting language. To create mods, you must have a decent understanding of Lua and how it works, specifically tables
+Mods in the game can currently control two types of objects: spawners and powerups.</p>
+<div class="section" id="mod-file-structure">
+<h2>Mod File Structure<a class="headerlink" href="#mod-file-structure" title="Permalink to this headline">¶</a></h2>
+<p>Mods are required to have a certain file structure to them. The name of the mod’s main folder must be the mod’s name, and inside that folder, there should be one lua file <strong>with the same name as the folder</strong>. This lua file is the mods exports file, where the mod defines all of the spawners and powerups it exports. In that main folder, there can also be several possible subfolders, depending on what type of content your mod exports. If your mod exports spawners, there must be a folder called ‘spawners’. If your mod exports powerups, then there must be a folder called ‘powerups’ and a folder called ‘sprites’ for powerup sprites. Inside the spawner folder, there should be one lua file for each spawner that the mod exports. <strong>Each spawner lua file must be named the same as you name it in the exports lua file</strong>. The same goes for powerups, each powerup that your mod exports gets its own lua file in the powerups folder.</p>
+<p>For example, the file structure of the ‘GameData’ mod looks like this</p>
+<dl>
+<dt>GameData <span class="raw-html"><br /></span></dt><dd><p>GameData.lua <span class="raw-html"><br /></span>
+spawners <span class="raw-html"><br /></span></p>
+<blockquote>
+<div><p>BasicSpawner.lua <span class="raw-html"><br /></span>
+GravitySpawner.lua <span class="raw-html"><br /></span>
+HomingSpawner.lua <span class="raw-html"><br /></span>
+LaserSpawner.lua <span class="raw-html"><br /></span>
+LoopSpawner.lua <span class="raw-html"><br /></span>
+RandomSpawner.lua <span class="raw-html"><br /></span>
+RicochetSpawner.lua <span class="raw-html"><br /></span>
+ShotgunSpawner.lua <span class="raw-html"><br /></span>
+SpraySpawner.lua <span class="raw-html"><br /></span>
+WaveSpawner.lua <span class="raw-html"><br /></span></p>
+</div></blockquote>
+<dl class="simple">
+<dt>powerups <span class="raw-html"><br /></span></dt><dd><p>ShieldPowerup.lua <span class="raw-html"><br /></span></p>
+</dd>
+<dt>sprites <span class="raw-html"><br /></span></dt><dd><p>shield.png <span class="raw-html"><br /></span></p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="the-mod-exports-file">
+<h2>The Mod Exports File<a class="headerlink" href="#the-mod-exports-file" title="Permalink to this headline">¶</a></h2>
 <p>epic</p>
 <div class="toctree-wrapper compound">
+</div>
 </div>
 </div>
 
@@ -60,7 +95,9 @@
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="common_problems.html">Common Problems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gameplay.html">Gameplay Explanation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Mod Tutorial</a><ul class="simple">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Mod Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#mod-file-structure">Mod File Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-mod-exports-file">The Mod Exports File</a></li>
 </ul>
 </li>
 </ul>

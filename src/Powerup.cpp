@@ -2,8 +2,10 @@
 #include "Mod.hpp"
 #include "Player.hpp"
 
-Powerup::Powerup(float x, float y, sf::Sprite sprite, int activeTime, Mod* parent, std::string name) : 
-	m_position(x, y), m_sprite(sprite), activeTime(activeTime), parent(parent), m_name(name), m_counter(activeTime) {}
+Powerup::Powerup(float x, float y, sf::Sprite sprite, int activeTime, Mod* parent, std::string name, bool animated, int frameCount, int frameDelay) : 
+	m_position(x, y), m_sprite(sprite), activeTime(activeTime), parent(parent), m_name(name), m_counter(activeTime), m_animated(animated), m_frameCount(frameCount), m_frameDelay(frameDelay) {
+	m_sprite.setTextureRect(sf::IntRect(m_frameCounter * 16, 0, 16, 20));
+}
 
 int Powerup::update(Player* player) {
 	if (m_active) {
@@ -25,7 +27,23 @@ int Powerup::update(Player* player) {
 		}
 	}
 
+	updateSprite();
+
 	return 0;
+}
+
+void Powerup::updateSprite() {
+	if (m_animated) {
+		m_delayCounter++;
+		if (m_delayCounter >= m_frameDelay) {
+			m_frameCounter++;
+			m_sprite.setTextureRect(sf::IntRect(m_frameCounter * 16, 0, 16, 20));
+			m_delayCounter = 0;
+		}
+		if (m_frameCounter >= m_frameCount - 1) {
+			m_frameCounter = 0;
+		}
+	}
 }
 
 void Powerup::activate(Player* player) {
@@ -66,6 +84,7 @@ void Powerup::render(sf::RenderWindow& window, Player* player) {
 	}
 	else {
 		m_sprite.setPosition(m_position);
+		//std::cout << m_sprite.getTextureRect().left << std::endl;
 		window.draw(m_sprite);
 	}
 }

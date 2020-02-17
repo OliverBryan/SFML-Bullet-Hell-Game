@@ -233,9 +233,12 @@ Powerup* Mod::createPowerup(float x, float y, const std::string& name) {
         std::string sprite = powerupData["sprite"];
         sf::Texture* t = new sf::Texture;
         if (t->loadFromFile("./mods/" + m_name + "/sprites/" + sprite)) {
+            bool animated = powerupData["animated"].get_or(false);
+            int frameCount = powerupData["frames"].get_or(0);
+            int frameDelay = powerupData["frameDelay"].get_or(0);
             sf::Sprite s(*t);
             m_textures.insert(std::make_pair(sprite, t));
-            return new Powerup(x, y, s, activeTime, this, name);
+            return new Powerup(x, y, s, activeTime, this, name, animated, frameCount, frameDelay);
         }
         else {
             std::cout << "Error: could not load texture for powerup \"" << name << "\"" << std::endl;

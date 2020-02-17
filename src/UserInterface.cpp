@@ -1,5 +1,6 @@
 #include "UserInterface.hpp"
 #include <iostream>
+#include "Mod.hpp"
 
 UserInterface::UserInterface(Environment* env) : m_env(env) {
 	if (!m_font.loadFromFile(".\\Roboto-Medium.ttf")) {
@@ -110,6 +111,10 @@ void UserInterface::update() {
 		m_statusLabel.setString("");
 		break;
 	}
+
+	if (m_env->m_player.m_powerup != nullptr && !m_env->m_player.m_powerup->getActive()) {
+		m_env->m_player.m_powerup->updateSprite();
+	}
 }
 
 void UserInterface::pauseUpdate() {
@@ -123,6 +128,12 @@ void UserInterface::pauseUpdate() {
 
 void UserInterface::render(sf::RenderWindow& window) {
 	if (m_env->m_player.m_powerup != nullptr && !m_env->m_player.m_powerup->getActive()) {
+		sf::Color bfill = (*m_env->m_player.m_powerup->parent->getScriptForPowerup(m_env->m_player.m_powerup->m_name))[m_env->m_player.m_powerup->m_name]["background"].get_or(sf::Color(0, 0, 0));
+		sf::RectangleShape rs(sf::Vector2f(30, 30));
+		rs.setPosition(613, 235);
+		rs.setFillColor(sf::Color::White);
+		window.draw(rs);
+
 		sf::Sprite powerupSprite = m_env->m_player.m_powerup->getSprite();
 		powerupSprite.setPosition(620, 240);
 		window.draw(powerupSprite);

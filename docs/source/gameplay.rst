@@ -43,6 +43,10 @@ Movement: Arrow keys :raw-html:`<br />`
 Teleport: Z :raw-html:`<br />`
 Use Powerup: B :raw-html:`<br />`
 
+Installing Mods
+.................
+To install mods, simply put the mod folder into the mods folder in the directory of the executable, and add the mod name to mods.txt
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
