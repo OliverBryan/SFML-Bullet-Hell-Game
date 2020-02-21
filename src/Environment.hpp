@@ -21,7 +21,7 @@ class Environment : public sf::NonCopyable {
 public:
 	Environment();
 	~Environment();
-	
+
 	void update();
 	void render(sf::RenderWindow& window);
 

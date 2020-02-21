@@ -22,7 +22,7 @@ static bool comment(const std::string& str) {
 		if (!isspace(c))
 			space = false;
 	}
-	
+
 	return false;
 }
 

@@ -6,7 +6,7 @@
 class Enemy {
 public:
 	Enemy::Enemy(float x, float y, float velX, float velY, int lifetime, sf::Color fill = sf::Color::Black) :
-		m_position(x, y), m_velocity(velX, velY), m_lifetime(lifetime), m_fill(fill),m_dfill(fill), m_size(10.0f, 10.0f) {}
+		m_position(x, y), m_velocity(velX, velY), m_lifetime(lifetime), m_fill(fill), m_dfill(fill), m_size(10.0f, 10.0f) {}
 	virtual ~Enemy() {}
 
 	void init();

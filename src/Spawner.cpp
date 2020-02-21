@@ -3,15 +3,15 @@
 #include <iostream>
 #include "Mod.hpp"
 
-Spawner::Spawner(float x, Environment* env) : 
-m_position(x, 20), m_env(env) {
+Spawner::Spawner(float x, Environment* env) :
+	m_position(x, 20), m_env(env) {
 	m_newX = irand(20, 404);
 }
 
 Spawner::Spawner(float x, Environment* env, int firetime, int postmovetime, sf::Color fill, sf::Color postmovefill, sf::Color warningfirefill, bool modded, Mod* parent, std::string name) :
-m_position(x, 20), m_env(env), FIRE_TIME(firetime), POST_MOVE_TIME(postmovetime),
-m_fill(fill), postMoveFill(postmovefill), warningMoveFill(warningfirefill), 
-modded(modded), parent(parent), m_name(name) {
+	m_position(x, 20), m_env(env), FIRE_TIME(firetime), POST_MOVE_TIME(postmovetime),
+	m_fill(fill), postMoveFill(postmovefill), warningMoveFill(warningfirefill),
+	modded(modded), parent(parent), m_name(name) {
 	m_newX = irand(20, 404);
 	defaultFill = m_fill;
 	m_postMoveCounter = POST_MOVE_TIME;
@@ -110,7 +110,7 @@ void Spawner::update() {
 		m_postMoveCounter = POST_MOVE_TIME;
 		m_moving = false;
 	}
-	
+
 	if (m_counter > FIRE_TIME - 60 && !m_moving) {
 		m_fill = warningMoveFill;
 	}

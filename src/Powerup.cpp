@@ -2,7 +2,7 @@
 #include "Mod.hpp"
 #include "Player.hpp"
 
-Powerup::Powerup(float x, float y, sf::Sprite sprite, int activeTime, Mod* parent, std::string name, bool animated, int frameCount, int frameDelay) : 
+Powerup::Powerup(float x, float y, sf::Sprite sprite, int activeTime, Mod* parent, std::string name, bool animated, int frameCount, int frameDelay) :
 	m_position(x, y), m_sprite(sprite), activeTime(activeTime), parent(parent), m_name(name), m_counter(activeTime), m_animated(animated), m_frameCount(frameCount), m_frameDelay(frameDelay) {
 	m_sprite.setTextureRect(sf::IntRect(m_frameCounter * 16, 0, 16, 20));
 }

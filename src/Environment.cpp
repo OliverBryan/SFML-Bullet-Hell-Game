@@ -1,4 +1,3 @@
-#include "Environment.hpp"
 #include "Spawner.hpp"
 #include "Enemy.hpp"
 #include "Powerup.hpp"
@@ -38,7 +37,7 @@ void Environment::update() {
 
 	m_player.update();
 
-	if (m_powerup != nullptr && m_player.getBounds().intersects(sf::FloatRect(m_powerup->getPosition(), sf::Vector2f(m_powerup->getPosition().x + 16, m_powerup->getPosition().y + 20)))) {
+	if (m_powerup != nullptr && m_player.getBounds().intersects(sf::FloatRect(m_powerup->getPosition(), sf::Vector2f(16, 20)))) {
 		pickedUpPowerup = true;
 		m_player.setPowerup(m_powerup);
 		m_powerup = nullptr;

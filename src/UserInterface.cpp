@@ -138,7 +138,6 @@ void UserInterface::render(sf::RenderWindow& window) {
 		powerupSprite.setPosition(620, 240);
 		window.draw(powerupSprite);
 	}
-	
 
 	sf::RectangleShape shape(sf::Vector2f(400, 400));
 	shape.setPosition(sf::Vector2f(20, 20));

@@ -17,7 +17,7 @@ public:
 
 	void activate(Player* player);
 	void deactivate(Player* player);
-	
+
 	sf::Vector2f& getPosition();
 	void setPosition(sf::Vector2f p);
 

@@ -22,7 +22,7 @@ public:
 
 	Spawner* createSpawner(float x, Environment* env, const std::string& name);
 	Powerup* createPowerup(float x, float y, const std::string& name);
-	
+
 	sol::state* getScriptForSpawner(const std::string& name, const std::string& origin);
 	sol::state* getScriptForPowerup(const std::string& name);
 

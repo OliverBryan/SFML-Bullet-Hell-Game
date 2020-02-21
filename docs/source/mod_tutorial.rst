@@ -12,7 +12,7 @@ This tutorial will go through all the information needed to create a mod, using 
 example of a modded spawner. 
 
 Keep in mind that all the spawners and powerups currently in the game are part of a mod called GameData, and can be referenced when you want to achieve certain effects or behaviors that are already in the game. Mods in the game are in the Lua scripting language. To create mods, you must have a decent understanding of Lua and how it works, specifically tables
-Mods in the game can currently control two types of objects: spawners and powerups.
+Mods in the game can currently control two types of objects: spawners and powerups.
 
 Mod File Structure
 ....................

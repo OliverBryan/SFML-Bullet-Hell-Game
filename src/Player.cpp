@@ -7,7 +7,7 @@ void Player::update() {
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
 		m_position.y += m_speed;
 	}
-	
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
 		m_position.x -= m_speed;
 	}

@@ -1,14 +1,27 @@
 #Example of a waves.dat file
 #comments start with '#'
 
-RandomSpawner:100 #chances must add up to 100
+RandomSpawner:30
+LoopSpawner:70
 end
-3 #amount of spawners
-5 #interval between spawners
-1 #amount of time the wave lasts
+4
+5
+40
+
+#RandomSpawner:100 #chances must add up to 100
+#end
+#3 #amount of spawners
+#5 #interval between spawners
+#1 #amount of time the wave lasts
+
+BasicSpawner:100
+end
+5
+4
+30
 
 BasicSpawner:100 #spawner comments must go after the spawner name or chance
-end #comments techincally work here too
+end #comments technically work here too
 8
 4
 32
@@ -34,7 +47,7 @@ end
 21
 
 BasicSpawner:40
-LaserSpawner:30 
+LaserSpawner:30
 HomingSpawner:30
 end
 10
