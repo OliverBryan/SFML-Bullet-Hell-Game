@@ -1,7 +1,8 @@
 WaveSpawner = {
 	fireTime = 400,
 	fill = Color.new(0, 0, 255),
-	warningFireFill = Color.new(0, 206, 209)
+	warningFireFill = Color.new(0, 206, 209),
+	difficulty = 30
 }
 
 WaveSpawner.SpawnerInstanceVars = {
@@ -20,7 +21,7 @@ function WaveSpawner.spawnEnemies(spawner)
 		amount = 1,
 		enemies = {
 			Enemy.new(spawner.position.x + 3, spawner.position.y + 20, 0.0, 2.0, 300, Color.new(0, 0, 0))
-		}		
+		}
 	}
 end
 

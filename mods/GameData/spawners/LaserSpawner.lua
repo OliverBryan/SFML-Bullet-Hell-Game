@@ -2,7 +2,8 @@ LaserSpawner = {
 	fireTime = 300,
 	postMoveTime = 60,
 	fill = Color.new(255, 0, 0),
-	postMoveFill = Color.new(255, 165, 0)
+	postMoveFill = Color.new(255, 165, 0),
+	difficulty = 20
 }
 
 function LaserSpawner.spawnEnemies(spawner)

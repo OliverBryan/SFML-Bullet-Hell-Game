@@ -57,6 +57,9 @@
     <ClCompile Include="src\Powerup.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Wave.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Environment.hpp">
@@ -107,6 +110,7 @@
     <None Include="mods\GameData\Spawners\WaveSpawner.lua" />
     <None Include="mods\GameData\powerups\ShieldPowerup.lua" />
     <None Include="mods\GameData\GameData.lua" />
+    <None Include="mods\GameData\powerups\SpeedPowerup.lua" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="mods\mods.txt" />

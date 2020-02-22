@@ -1,6 +1,7 @@
 #Example of a waves.dat file
 #comments start with '#'
 
+#difficulty: 900
 RandomSpawner:30
 LoopSpawner:70
 end
@@ -8,11 +9,12 @@ end
 5
 40
 
-#RandomSpawner:100 #chances must add up to 100
-#end
-#3 #amount of spawners
-#5 #interval between spawners
-#1 #amount of time the wave lasts
+#difficulty: 1000
+RandomSpawner:100 #chances must add up to 100
+end
+3 #amount of spawners
+5 #interval between spawners
+30 #amount of time the wave lasts
 
 BasicSpawner:100
 end
@@ -58,7 +60,7 @@ RicochetSpawner:100
 end
 2
 10
-20
+22
 
 ShotgunSpawner:100
 end
@@ -72,4 +74,4 @@ HomingSpawner:20
 end
 5
 8
-40
+42

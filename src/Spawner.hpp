@@ -2,11 +2,10 @@
 #define SPAWNER_HPP
 
 #include "Environment.hpp"
+#include "Mod.hpp"
 
 #include <memory>
 #include <random>
-
-class Mod;
 
 static int irand(int min, int max) {
 	std::random_device rd;

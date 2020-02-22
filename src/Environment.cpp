@@ -3,11 +3,13 @@
 #include "Powerup.hpp"
 #include <iostream>
 #include "ModLoader.hpp"
+#include "Wave.hpp"
 
 Environment::Environment() : m_player(210, 260) {
-	m_timer = static_cast<float>(m_waves[0].waveLength);
 	m_modLoader = new ModLoader();
 	m_modLoader->loadMod("GameData");
+	m_waves = loadWaves(m_modLoader);
+	m_timer = static_cast<float>(m_waves[0].waveLength);
 	addSpawner();
 }
 

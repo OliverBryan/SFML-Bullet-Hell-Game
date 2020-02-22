@@ -2,7 +2,8 @@ GravitySpawner = {
 	fireTime = 200,
 	postMoveTime = 20,
 	fill = Color.new(128, 128, 128),
-	postMoveFill = Color.new(47, 79, 79)
+	postMoveFill = Color.new(47, 79, 79),
+	difficulty = 50
 }
 
 GravitySpawner.EnemyInstanceVars = {
@@ -100,7 +101,7 @@ function GravitySpawner.enemyRender(enemy, window)
 		circle:setFill(Color.new(255, 255, 255, 0))
 		circle:setBorder(enemy.fill)
 		circle:setBorderWidth(7.0)
-		
+
 		innerDot = Circle.new(5)
 		setCirclePosition(innerDot, (enemy.position.x + (enemy.size.x / 2.0)) - 5.0, (enemy.position.y + (enemy.size.y / 2.0)) - 5.0)
 		innerDot:setFill(enemy.fill)

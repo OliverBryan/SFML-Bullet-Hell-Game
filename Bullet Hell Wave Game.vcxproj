@@ -174,6 +174,7 @@
     <ClCompile Include="src\Powerup.cpp" />
     <ClCompile Include="src\Spawner.cpp" />
     <ClCompile Include="src\UserInterface.cpp" />
+    <ClCompile Include="src\Wave.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Console.hpp" />
@@ -190,6 +191,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="mods\GameData\powerups\ShieldPowerup.lua" />
+    <None Include="mods\GameData\powerups\SpeedPowerup.lua" />
     <None Include="mods\GameData\Spawners\BasicSpawner.lua" />
     <None Include="mods\GameData\Spawners\GravitySpawner.lua" />
     <None Include="mods\GameData\Spawners\HomingSpawner.lua" />

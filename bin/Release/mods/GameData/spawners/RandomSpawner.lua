@@ -2,7 +2,8 @@ RandomSpawner = {
 	fireTime = 400,
 	postMoveTime = 60,
 	fill = Color.new(0, 250, 154),
-	postMoveFill = Color.new(32, 178, 170)
+	postMoveFill = Color.new(32, 178, 170),
+	difficulty = 90
 }
 
 RandomSpawner.EnemyInstanceVars = {
@@ -26,7 +27,7 @@ function RandomSpawner.spawnEnemies(spawner)
 	}
 end
 
-function RandomSpawner.enemyUpdate(enemy, environment) 
+function RandomSpawner.enemyUpdate(enemy, environment)
 	if enemy.instanceVars.c > enemy.instanceVars.cl then
 		enemy.velocity.x = rand(-5, 5)
 		enemy.velocity.y = rand(0, 5)

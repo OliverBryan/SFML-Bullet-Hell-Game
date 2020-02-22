@@ -1,6 +1,7 @@
 SpraySpawner = {
 	fireTime = 60,
-	fill = Color.new(0, 0, 0)
+	fill = Color.new(0, 0, 0),
+	difficulty = 50
 }
 
 SpraySpawner.SpawnerInstanceVars = {

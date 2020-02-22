@@ -1,6 +1,7 @@
 BasicSpawner = {
 	fireTime = 60,
-	fill = Color.new(35, 38, 36)
+	fill = Color.new(35, 38, 36),
+	difficulty = 10
 }
 
 function BasicSpawner.spawnEnemies(spawner)

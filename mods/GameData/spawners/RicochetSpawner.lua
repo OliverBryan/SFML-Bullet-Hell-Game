@@ -1,6 +1,7 @@
 RicochetSpawner = {
 	fireTime = 100,
-	fill = Color.new(255, 215, 0)
+	fill = Color.new(255, 215, 0),
+	difficulty = 60
 }
 
 function RicochetSpawner.spawnEnemies(spawner)

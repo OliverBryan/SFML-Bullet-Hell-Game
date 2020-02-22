@@ -4,10 +4,6 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "Player.hpp"
-#include "Wave.hpp"
-
-#define SOL_ALL_SAFETIES_ON 1
-#include "sol.hpp"
 
 static float FPS = 60.0f;
 
@@ -16,6 +12,8 @@ class Enemy;
 class Mod;
 class ModLoader;
 class Powerup;
+
+struct Wave;
 
 class Environment : public sf::NonCopyable {
 public:
@@ -64,7 +62,7 @@ private:
 
 	ModLoader* m_modLoader;
 
-	std::vector<Wave> m_waves = loadWaves();
+	std::vector<Wave> m_waves;
 };
 
 #endif /* ENVIRONMENT_HPP */

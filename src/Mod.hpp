@@ -2,7 +2,6 @@
 #define MOD_HPP
 
 #include <string>
-#include "Spawner.hpp"
 #include <vector>
 #include <map>
 #include <Windows.h>
@@ -10,7 +9,10 @@
 #define SOL_ALL_SAFETIES_ON 1
 #include "sol.hpp"
 
+#include "Environment.hpp"
+
 class Powerup;
+class Spawner;
 
 class Mod {
 public:

@@ -1,6 +1,7 @@
 LoopSpawner = {
 	fireTime = 100,
-	fill = Color.new(155, 245, 66)
+	fill = Color.new(155, 245, 66),
+	difficulty = 60
 }
 
 function LoopSpawner.spawnEnemies(spawner)

@@ -1,6 +1,7 @@
 #include "UserInterface.hpp"
 #include <iostream>
 #include "Mod.hpp"
+#include "Wave.hpp"
 
 UserInterface::UserInterface(Environment* env) : m_env(env) {
 	if (!m_font.loadFromFile(".\\Roboto-Medium.ttf")) {

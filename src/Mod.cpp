@@ -2,6 +2,11 @@
 #include "Mod.hpp"
 #include "Enemy.hpp"
 #include "Powerup.hpp"
+#include <iostream>
+
+void printRect(sf::RectangleShape& shape) {
+	std::cout << "Rect: Pos=" << shape.getPosition().x << "," << shape.getPosition().y << " Size=" << shape.getSize().x << "," << shape.getSize().y << " Fill=" << shape.getFillColor().r << "," << shape.getFillColor().g << "," << shape.getFillColor().b << "," << shape.getFillColor().a << std::endl;
+}
 
 void draw(sf::RenderWindow& window, sf::Drawable& toDraw) {
 	window.draw(toDraw);
@@ -17,10 +22,6 @@ void setRectPosition(sf::RectangleShape& shape, float x, float y) {
 
 bool frectIntersection(sf::FloatRect a, sf::FloatRect b) {
 	return a.intersects(b);
-}
-
-void printRect(sf::RectangleShape& shape) {
-	std::cout << "Rect: Pos=" << shape.getPosition().x << "," << shape.getPosition().y << " Size=" << shape.getSize().x << "," << shape.getSize().y << " Fill=" << shape.getFillColor().r << "," << shape.getFillColor().g << "," << shape.getFillColor().b << "," << shape.getFillColor().a << std::endl;
 }
 
 void drawGradient(sf::RenderWindow& window, sf::RectangleShape& shape, sf::Color topColor, sf::Color bottomColor) {
@@ -40,6 +41,7 @@ void drawGradient(sf::RenderWindow& window, sf::RectangleShape& shape, sf::Color
 void Mod::initializeScript(sol::state& script) {
 	script.open_libraries(sol::lib::base);
 	script.open_libraries(sol::lib::math);
+	script.open_libraries(sol::lib::table);
 
 	script["rand"] = irand;
 
@@ -94,6 +96,7 @@ void Mod::initializeScript(sol::state& script) {
 	enemy_type["instanceVars"] = &Enemy::instanceVars;
 
 	player_type["invincible"] = &Player::invincible;
+	player_type["speed"] = sol::property(&Player::getSpeed, &Player::setSpeed);
 
 	sol::usertype<sf::RectangleShape> rect_type = script.new_usertype<sf::RectangleShape>("Rect",
 		sol::constructors<sf::RectangleShape(sf::Vector2f)>(), sol::base_classes, sol::bases<sf::Shape, sf::Drawable, sf::Transformable>());
@@ -110,6 +113,7 @@ void Mod::initializeScript(sol::state& script) {
 
 	rect_type["setFill"] = &sf::RectangleShape::setFillColor;
 
+	script["printRect"] = printRect;
 	script["setRectPosition"] = setRectPosition;
 
 	script["drawGradient"] = drawGradient;
@@ -219,7 +223,7 @@ Spawner* Mod::createSpawner(float x, Environment* env, const std::string& name) 
 		return new Spawner(x, env, fireTime, postMoveTime, fill, postMoveFill, warningFireFill, true, this, name);
 	}
 	catch (sol::error e) {
-		std::cout << "Error: Could not load spawner data for spawer \"" << name << "\"" << std::endl;
+		std::cout << "Error: Could not load spawner data for spawner \"" << name << "\"" << std::endl;
 		abort();
 	}
 }
