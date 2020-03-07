@@ -93,6 +93,9 @@ void Player::render(sf::RenderWindow& window) {
 }
 
 void Player::setPowerup(Powerup* powerup) {
+	if (m_powerup != nullptr)
+		m_powerup->deactivate(this);
+	delete m_powerup;
 	m_powerup = powerup;
 }
 

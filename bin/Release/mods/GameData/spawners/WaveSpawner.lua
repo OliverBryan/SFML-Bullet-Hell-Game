@@ -2,7 +2,7 @@ WaveSpawner = {
 	fireTime = 400,
 	fill = Color.new(0, 0, 255),
 	warningFireFill = Color.new(0, 206, 209),
-	difficulty = 30
+	difficulty = 65
 }
 
 WaveSpawner.SpawnerInstanceVars = {
@@ -20,7 +20,7 @@ function WaveSpawner.spawnEnemies(spawner)
 	return {
 		amount = 1,
 		enemies = {
-			Enemy.new(spawner.position.x + 3, spawner.position.y + 20, 0.0, 2.0, 300, Color.new(0, 0, 0))
+			Enemy.new(spawner.position.x + 3, spawner.position.y + 20, 0.0, 2.0, 300, Color.new(35, 38, 36))
 		}
 	}
 end
@@ -30,7 +30,7 @@ function WaveSpawner.spawnerUpdate(spawner, environment)
 		return
 	end
 	if spawner.instanceVars.ec > 10 then
-		e = Enemy.new(spawner.position.x + 3, spawner.position.y + 20, 0.0, 2.0, 300, Color.new(0, 0, 0))
+		e = Enemy.new(spawner.position.x + 3, spawner.position.y + 20, 0.0, 2.0, 300, Color.new(35, 38, 36))
 		environment:addEnemy(e, "WaveSpawner")
 		spawner.instanceVars.ec = 0
 	end

@@ -85,7 +85,6 @@ void Powerup::render(sf::RenderWindow& window, Player* player) {
 	}
 	else {
 		m_sprite.setPosition(m_position);
-		//std::cout << m_sprite.getTextureRect().left << std::endl;
 		window.draw(m_sprite);
 	}
 }

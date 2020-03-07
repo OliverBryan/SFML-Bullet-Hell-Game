@@ -3,7 +3,7 @@ RandomSpawner = {
 	postMoveTime = 60,
 	fill = Color.new(0, 250, 154),
 	postMoveFill = Color.new(32, 178, 170),
-	difficulty = 90
+	difficulty = 140
 }
 
 RandomSpawner.EnemyInstanceVars = {

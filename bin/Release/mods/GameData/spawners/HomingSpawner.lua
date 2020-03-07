@@ -2,7 +2,7 @@ HomingSpawner = {
 	fireTime = 400,
 	postMoveTime = 10,
 	fill = Color.new(0, 128, 0),
-	difficulty = 40
+	difficulty = 35
 }
 
 function HomingSpawner.spawnEnemies(spawner)

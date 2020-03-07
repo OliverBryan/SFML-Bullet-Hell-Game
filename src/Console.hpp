@@ -5,7 +5,7 @@
 #include <mutex>
 #include "Environment.hpp"
 
-/// Class that defines the admin console, which is what the console window is used for at
+// Class that defines the admin console, which is what the console window is used for at
 // runtime. It parses and executes commands inputted by the user to change game state (E.g. Toggling
 // player invincibility or advancing waves)
 class Console {

@@ -2,7 +2,7 @@ ShotgunSpawner = {
 	fireTime = 30,
 	postMoveTime = 30,
 	fill = Color.new(128, 0, 128),
-	difficulty = 40
+	difficulty = 60
 }
 
 function ShotgunSpawner.spawnEnemies(spawner)

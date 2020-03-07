@@ -6,6 +6,7 @@
 #include <fstream>
 #include <iostream>
 #include <cassert>
+#include <array>
 #include <random>
 
 struct Wave {
@@ -23,7 +24,7 @@ bool comment(const std::string& str);
 // Old loading system
 std::vector<Wave> loadWaves(ModLoader* modLoader);
 
-Wave getWave(int number);
-std::vector<Wave> newLoadWaves();
+Wave getRandomWave(float difficulty, ModLoader* modLoader);
+std::vector<Wave> newLoadWaves(ModLoader* modLoader);
 
 #endif /* WAVE_HPP */
