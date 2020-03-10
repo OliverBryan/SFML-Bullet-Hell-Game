@@ -8,12 +8,12 @@ Powerup::Powerup(float x, float y, sf::Sprite sprite, int activeTime, Mod* paren
 	m_sprite.setTextureRect(sf::IntRect(m_frameCounter * 16, 0, 16, 20));
 }
 
-int Powerup::update(Player* player) {
+int Powerup::update(Player* player, Environment* env) {
 	if (m_active) {
 		m_counter--;
 		if (m_counter <= 0) {
 			m_active = false;
-			deactivate(player);
+			deactivate(player, env);
 			return 1;
 		}
 	}
@@ -47,10 +47,10 @@ void Powerup::updateSprite() {
 	}
 }
 
-void Powerup::activate(Player* player) {
+void Powerup::activate(Player* player, Environment* env) {
 	sol::protected_function activateFunction = (*(parent->getScriptForPowerup(m_name)))[m_name]["activate"];
 	if (activateFunction.valid()) {
-		auto t = activateFunction(this, player);
+		auto t = activateFunction(this, player, env);
 		if (!t.valid()) {
 			sol::error err = t;
 			std::cout << "Error in activate for " << m_name << ": " << err.what() << std::endl;
@@ -59,10 +59,10 @@ void Powerup::activate(Player* player) {
 	}
 }
 
-void Powerup::deactivate(Player* player) {
+void Powerup::deactivate(Player* player, Environment* env) {
 	sol::protected_function deactivateFunction = (*(parent->getScriptForPowerup(m_name)))[m_name]["deactivate"];
 	if (deactivateFunction.valid()) {
-		auto t = deactivateFunction(this, player);
+		auto t = deactivateFunction(this, player, env);
 		if (!t.valid()) {
 			sol::error err = t;
 			std::cout << "Error in deactivate for " << m_name << ": " << err.what() << std::endl;

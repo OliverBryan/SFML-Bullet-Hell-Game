@@ -5,18 +5,19 @@
 
 class Mod;
 class Player;
+class Environment;
 
 class Powerup {
 public:
 	Powerup(float x, float y, sf::Sprite sprite, int activeTime, Mod* parent, std::string name, bool animated, int frameCount, int frameDelay);
 
-	int update(Player* player);
+	int update(Player* player, Environment* env);
 	void render(sf::RenderWindow& window, Player* player);
 
 	void updateSprite();
 
-	void activate(Player* player);
-	void deactivate(Player* player);
+	void activate(Player* player, Environment* env);
+	void deactivate(Player* player, Environment* env);
 
 	sf::Vector2f& getPosition();
 	void setPosition(sf::Vector2f p);

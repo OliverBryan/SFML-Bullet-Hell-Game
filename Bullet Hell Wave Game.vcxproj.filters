@@ -111,6 +111,8 @@
     <None Include="mods\GameData\powerups\ShieldPowerup.lua" />
     <None Include="mods\GameData\GameData.lua" />
     <None Include="mods\GameData\powerups\SpeedPowerup.lua" />
+    <None Include="mods\GameData\spawners\FragmentSpawner.lua" />
+    <None Include="mods\GameData\powerups\SlowdownPowerup.lua" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="mods\mods.txt" />

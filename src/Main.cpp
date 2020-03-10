@@ -10,7 +10,7 @@
 
 // TODO:
 // Admin Console: improve command parser
-// Wave System: implement new system
+// New Content: Finish new powerups and spawner
 
 int main() {
 	// Create Window
@@ -20,11 +20,6 @@ int main() {
 	// Actually initialize the window object, with a size of 700px by 400px, with the default window style
 	sf::RenderWindow window(sf::VideoMode(700, 440), "Bullet Hell Game", sf::Style::Default, cs);
 
-	// Create timer clock, set the update speed to the FPS variable define in Environment.hpp
-	sf::Clock clock;
-	sf::Time accumulator = sf::Time::Zero;
-	sf::Time ups = sf::seconds(1.f / FPS);
-
 	// Create the game environment object and the UI object
 	Environment env;
 	UserInterface ui(&env);
@@ -33,7 +28,11 @@ int main() {
 	// Start the admin console on a separate thread, so that it can run at the same time as the game
 	auto t = std::async(std::launch::async, &Console::run, &console);
 
-	// Core event loop; run until window is closed
+	// Create timer clock, set the update speed to the FPS variable define in Environment.hpp
+	sf::Clock clock;
+	sf::Time accumulator = sf::Time::Zero;
+
+	// Core event loop; run until wind ow is closed
 	while (window.isOpen()) {
 		// Create local clock object
 		sf::Clock c;
@@ -47,9 +46,9 @@ int main() {
 			}
 		}
 
-		// Update according to the FPS
-		while (accumulator > ups) {
-			accumulator -= ups;
+		// Update according to the TPS
+		while (accumulator > sf::seconds(1.f / env.TPS)) {
+			accumulator -= sf::seconds(1.f / env.TPS);
 			// Update the Environment (GameObjects) and the UI if the game is not paused
 			if (env.running && !env.paused) {
 				env.update();

@@ -129,10 +129,6 @@ std::vector<Wave> loadWaves(ModLoader* modLoader) {
 		}
 	}
 
-	for (int i = 0; i < waves.size(); i++) {
-		std::cout << "Wave " << (i + 1) << " difficulty: " << getDifficulty(waves[i], modLoader) << std::endl;
-	}
-
 	return waves;
 }
 
@@ -179,7 +175,7 @@ Wave getRandomWave(float difficulty, ModLoader* modLoader) {
 
 	int sum = 0;
 	std::vector<float> nums;
-	for (int i = 0; i < amountOfSpawners; i++) {
+	for (			int i = 0; i < amountOfSpawners; i++) {
 		int n = irand(0, 100);
 		sum += n;
 		nums.push_back(n);
@@ -207,10 +203,8 @@ Wave getRandomWave(float difficulty, ModLoader* modLoader) {
 		for (int i = 0; i < localPossibleSpawnerTypes.size(); i++) {
 			float sdiff = (*modLoader->getModBySpawnerName(localPossibleSpawnerTypes[i])->getScriptForSpawner(localPossibleSpawnerTypes[i], "waves"))[localPossibleSpawnerTypes[i]]["difficulty"];
 			float weight = std::pow((1 / (1 + std::abs(difficulty - sdiff))) * 2000.0f, 2);
-			std::cout << localPossibleSpawnerTypes[i] << ": " << weight << " ";
 			sweights.push_back(weight);
 		}
-		std::cout << std::endl;
 		std::piecewise_constant_distribution<> dist(spossibilites.begin(), spossibilites.end(), sweights.begin());
 		std::random_device rd;
 		std::mt19937 gen{ rd() };
@@ -253,12 +247,10 @@ std::vector<Wave> newLoadWaves(ModLoader* modLoader) {
 
 	float targetDifficulty = 10;
 	for (int i = 0; i < 100; i++) {
-		std::cout << std::endl;
 		Wave wave = getRandomWave(targetDifficulty, modLoader);
 		rampWeights();
 		targetDifficulty += irand(3, 7);
 		if (targetDifficulty > 100) targetDifficulty = 100;
-		printWave(wave, modLoader);
 		waves.push_back(wave);
 	}
 

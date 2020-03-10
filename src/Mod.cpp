@@ -82,6 +82,7 @@ void Mod::initializeScript(sol::state& script) {
 
 	env_type["player"] = sol::property(&Environment::getPlayer);
 	env_type["addEnemy"] = &Environment::addModdedEnemy;
+	env_type["tps"] = &Environment::TPS;
 
 	player_type["position"] = sol::property(&Player::getPosition, &Player::setPosition);
 	player_type["bounds"] = &Player::getBounds;

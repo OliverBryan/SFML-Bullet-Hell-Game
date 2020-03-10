@@ -6,7 +6,7 @@
 #include "Wave.hpp"
 
 // Initialize player at the center of the game space
-Environment::Environment() : m_player(210, 260) {
+Environment::Environment() : m_player(210, 260, this) {
 	// Initialize modloader
 	m_modLoader = new ModLoader();
 	// Load the core game data
@@ -43,7 +43,7 @@ void Environment::update() {
 
 	// If the environment has an active powerup object, update it
 	if (m_powerup != nullptr) {
-		int i = m_powerup->update(&m_player);
+		int i = m_powerup->update(&m_player, this);
 		// If the powerup's activation time is over, delete it
 		if (i == 1) {
 			delete m_powerup;
@@ -230,7 +230,7 @@ void Environment::removeEnemy(int index) {
 	Enemy* enemy = m_enemies.at(index);
 	// Remove the object from the vector
 	m_enemies.erase(m_enemies.begin() + index);
-	// Delete the objecg
+	// Delete the object
 	delete enemy;
 }
 

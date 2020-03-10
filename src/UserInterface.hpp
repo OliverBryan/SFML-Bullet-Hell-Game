@@ -14,7 +14,7 @@ public:
 
 private:
 	int m_teleportRechargeCounter = 0;
-	int m_teleportRecharge = 60;
+	int m_teleportRecharge = 300;
 	std::vector<sf::RectangleShape> m_ts;
 
 	void handleKeyBinds();

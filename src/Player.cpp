@@ -55,7 +55,7 @@ void Player::update() {
 		powerupKeyPressed = true;
 		if (m_powerup != nullptr) {
 			m_powerup->setActive(true);
-			m_powerup->activate(this);
+			m_powerup->activate(this, m_env);
 		}
 	}
 	else if (!(sf::Keyboard::isKeyPressed(sf::Keyboard::C) || sf::Keyboard::isKeyPressed(sf::Keyboard::B)))
@@ -71,7 +71,7 @@ void Player::update() {
 		m_position.y = 20;
 
 	if (m_powerup != nullptr) {
-		int i = m_powerup->update(this);
+		int i = m_powerup->update(this, m_env);
 		if (i == 1) {
 			m_powerup->setActive(false);
 			delete m_powerup;
@@ -94,7 +94,7 @@ void Player::render(sf::RenderWindow& window) {
 
 void Player::setPowerup(Powerup* powerup) {
 	if (m_powerup != nullptr)
-		m_powerup->deactivate(this);
+		m_powerup->deactivate(this, m_env);
 	delete m_powerup;
 	m_powerup = powerup;
 }

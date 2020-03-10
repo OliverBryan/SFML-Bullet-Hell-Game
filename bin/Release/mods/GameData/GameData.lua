@@ -14,4 +14,5 @@ exportedSpawners = {
 exportedPowerups = {
 	"ShieldPowerup",
 	"SpeedPowerup"
+	--"SlowdownPowerup"
 }

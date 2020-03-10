@@ -5,9 +5,6 @@
 #include <vector>
 #include "Player.hpp"
 
-// Static value that defines the amount of logic updates per second
-static float FPS = 60.0f;
-
 class Spawner;
 class Enemy;
 class Mod;
@@ -42,6 +39,9 @@ public:
 	// Variables that represent the current state of the game
 	bool running = true;
 	bool paused = false;
+
+	// Value that defines the amount of logic updates per second
+	float TPS = 60.0f;
 
 	friend class UserInterface;
 	friend class Console;

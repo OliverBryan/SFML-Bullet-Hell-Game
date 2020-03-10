@@ -6,7 +6,7 @@
 
 class Player {
 public:
-	Player(float x, float y) : m_position(x, y), m_teleports(3) {}
+	Player(float x, float y, Environment* env) : m_position(x, y), m_teleports(3), m_env(env) {}
 	void update();
 	void render(sf::RenderWindow& window);
 
@@ -31,6 +31,7 @@ private:
 	bool powerupKeyPressed = false;
 	int m_speed = 2;
 
+	Environment* m_env;
 	Powerup* m_powerup = nullptr;
 };
 
