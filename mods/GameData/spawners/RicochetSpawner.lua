@@ -1,5 +1,5 @@
 RicochetSpawner = {
-	fireTime = 100,
+	fireTime = 140,
 	fill = Color.new(255, 215, 0),
 	difficulty = 85
 }

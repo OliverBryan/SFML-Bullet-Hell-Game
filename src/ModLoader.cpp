@@ -1,10 +1,22 @@
 #include "ModLoader.hpp"
 #include <iostream>
+#include <fstream>
 
 #define SOL_ALL_SAFETIES_ON 1
 #include "sol.hpp"
 
-ModLoader::ModLoader() {}
+ModLoader::ModLoader() {
+	// Open the mods.txt file
+	std::ifstream modsFile("./mods/mods.txt");
+	if (modsFile) {
+		// Iterate through every line in the file
+		std::string modName;
+		while (std::getline(modsFile, modName)) {
+			// Load the mod at that line
+			loadMod(modName);
+		}
+	}
+}
 
 ModLoader::~ModLoader() {
 	// Iterate through the mod objects, and delete each one

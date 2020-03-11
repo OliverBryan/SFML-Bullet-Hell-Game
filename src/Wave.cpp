@@ -217,7 +217,7 @@ Wave getRandomWave(float difficulty, ModLoader* modLoader) {
 	if (spawnerDifficulty > 100) spawnerDifficulty = 100;
 	wave.spawners = irand(2, 13 - std::round(spawnerDifficulty / 10));
 	wave.newSpawnerInterval = irand(2, 14 - wave.spawners);
-	wave.waveLength = irand(wave.spawners * wave.newSpawnerInterval, wave.spawners * wave.newSpawnerInterval * 2);
+	wave.waveLength = irand(wave.spawners * wave.newSpawnerInterval, wave.spawners * wave.newSpawnerInterval * 1.5);
 
 	return wave;
 }

@@ -1,5 +1,5 @@
 LoopSpawner = {
-	fireTime = 100,
+	fireTime = 140,
 	fill = Color.new(155, 245, 66),
 	difficulty = 70
 }

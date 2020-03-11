@@ -1,9 +1,8 @@
-﻿  Main.cpp
-  UserInterface.cpp
-C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\UserInterface.cpp(124,25): warning C4804: '*=': unsafe use of type 'bool' in operation
+﻿  Environment.cpp
+C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Environment.cpp(101,59): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   Generating code
-  1 of 13880 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+  3 of 13885 functions (<0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    7 functions had inline decision re-evaluated but remain unchanged
+    6 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Bullet Hell Wave Game.vcxproj -> C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\x64\Release\Bullet Hell Wave Game.exe

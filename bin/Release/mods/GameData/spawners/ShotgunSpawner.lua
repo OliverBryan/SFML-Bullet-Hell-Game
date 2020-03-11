@@ -1,5 +1,5 @@
 ShotgunSpawner = {
-	fireTime = 30,
+	fireTime = 50,
 	postMoveTime = 30,
 	fill = Color.new(128, 0, 128),
 	difficulty = 60

@@ -12,6 +12,14 @@
 // Admin Console: improve command parser
 // New Content: Finish new powerups and spawner
 
+// Balance Changes Needed:
+// Fix late game wave progression
+
+// Balance Changes Done:
+// Ricochet Spawner: increased fire time to 140 (previously 100)
+// Loop Spawner: increased fire time to 140 (previously 100)
+// Shotgun Spawner: increased fire time to 50 (previously 30)
+
 int main() {
 	// Create Window
 	// Initialize a context settings object, and set the antialiasing level to its max
@@ -32,7 +40,7 @@ int main() {
 	sf::Clock clock;
 	sf::Time accumulator = sf::Time::Zero;
 
-	// Core event loop; run until wind ow is closed
+	// Core event loop; run until window is closed
 	while (window.isOpen()) {
 		// Create local clock object
 		sf::Clock c;
@@ -60,16 +68,18 @@ int main() {
 			else env.clearEnemies();
 		}
 
-		// Render
-		// Clear the window
-		window.clear(sf::Color::Black);
+		// Render if the game is not paused
+		if (env.running && !env.paused) {
+			// Clear the window
+			window.clear(sf::Color::Black);
 
-		// Render the UI and the Environment (GameObjects)
-		ui.render(window);
-		env.render(window);
+			// Render the UI and the Environment (GameObjects)
+			ui.render(window);
+			env.render(window);
 
-		// Display the window, update the clock
-		window.display();
+			// Display the window, update the clock
+			window.display();
+		}
 		accumulator += clock.restart();
 	}
 
