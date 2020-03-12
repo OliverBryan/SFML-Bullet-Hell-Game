@@ -47,6 +47,9 @@ void Player::update() {
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
 			m_position.x += 100;
 		}
+		else {
+			m_teleports++;
+		}
 	}
 	else if (!(sf::Keyboard::isKeyPressed(sf::Keyboard::M) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z)))
 		teleportKeyPressed = false;

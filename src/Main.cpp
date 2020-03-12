@@ -1,19 +1,18 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <future>
 #include "Player.hpp"
 #include "UserInterface.hpp"
 #include "Environment.hpp"
 #include "Console.hpp"
-#include <fstream>
-#include <map>
-#include <future>
 
 // TODO:
 // Admin Console: improve command parser
 // New Content: Finish new powerups and spawner
 
-// Balance Changes Needed:
+// Balance Changes / Fixes Needed:
 // Fix late game wave progression
+// Fix double spawning at wave start
 
 // Balance Changes Done:
 // Ricochet Spawner: increased fire time to 140 (previously 100)
@@ -25,7 +24,7 @@ int main() {
 	// Initialize a context settings object, and set the antialiasing level to its max
 	sf::ContextSettings cs;
 	cs.antialiasingLevel = 8;
-	// Actually initialize the window object, with a size of 700px by 400px, with the default window style
+	// Actually initialize the window object, with a size of 700px by 400px and the default window style
 	sf::RenderWindow window(sf::VideoMode(700, 440), "Bullet Hell Game", sf::Style::Default, cs);
 
 	// Create the game environment object and the UI object

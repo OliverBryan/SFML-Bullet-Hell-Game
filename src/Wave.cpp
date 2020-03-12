@@ -5,6 +5,7 @@
 #include <iterator>
 #include <type_traits>
 #include <numeric>
+#include <algorithm>
 
 bool comment(const std::string& str) {
 	bool space = true;
@@ -40,7 +41,7 @@ float calculateSpawnerDifficulty(std::vector<std::pair<std::string, int>> spawne
 int getDifficulty(Wave wave, ModLoader* modLoader) {
 	float difficultySum = 0;
 	difficultySum += calculateSpawnerDifficulty(wave.spawnerTypes, modLoader);
-	difficultySum *= (std::pow(wave.spawners, 1.5) + (wave.waveLength - ((wave.spawners * wave.newSpawnerInterval) / 3.0f)));
+	difficultySum *= (std::pow(wave.spawners, 1.5) + (static_cast<float>(wave.waveLength) - ((wave.spawners * wave.newSpawnerInterval) / 3.0f)));
 
 	return static_cast<int>(difficultySum);
 }
@@ -135,7 +136,10 @@ std::vector<Wave> loadWaves(ModLoader* modLoader) {
 static std::vector<std::string> possibleSpawnerTypes;
 
 int wrand(std::vector<int> possibilites, std::vector<int> weights) {
-	return 0;
+	std::piecewise_constant_distribution<> dist(possibilites.begin(), possibilites.end(), weights.begin());
+	std::random_device rd;
+	std::mt19937 gen { rd() };
+	return dist(gen);
 }
 
 void printWave(Wave wave, ModLoader* modLoader) {
@@ -175,7 +179,7 @@ Wave getRandomWave(float difficulty, ModLoader* modLoader) {
 
 	int sum = 0;
 	std::vector<float> nums;
-	for (			int i = 0; i < amountOfSpawners; i++) {
+	for (int i = 0; i < amountOfSpawners; i++) {
 		int n = irand(0, 100);
 		sum += n;
 		nums.push_back(n);

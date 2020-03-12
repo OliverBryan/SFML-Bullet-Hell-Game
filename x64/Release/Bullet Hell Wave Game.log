@@ -1,8 +1,7 @@
-﻿  Environment.cpp
-C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Environment.cpp(101,59): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+﻿  Player.cpp
   Generating code
-  3 of 13885 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+  2 of 13885 functions (<0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    6 functions had inline decision re-evaluated but remain unchanged
+    7 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Bullet Hell Wave Game.vcxproj -> C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\x64\Release\Bullet Hell Wave Game.exe
