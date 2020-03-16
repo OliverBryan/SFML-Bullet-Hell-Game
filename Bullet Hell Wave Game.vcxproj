@@ -190,6 +190,7 @@
     <ClInclude Include="src\Wave.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="config.lua" />
     <None Include="mods\GameData\powerups\ShieldPowerup.lua" />
     <None Include="mods\GameData\powerups\SlowdownPowerup.lua" />
     <None Include="mods\GameData\powerups\SpeedPowerup.lua" />

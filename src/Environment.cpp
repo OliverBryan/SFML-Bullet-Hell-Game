@@ -13,6 +13,8 @@ Environment::Environment() : m_player(210, 260, this) {
 	m_modLoader->loadMod("GameData");
 	// Initialize the waves object with procedurally generated waves
 	m_waves = newLoadWaves(m_modLoader);
+	// Load the configuration file
+	loadConfig();
 	// Set the value of the timer to the length of the first wave
 	m_timer = static_cast<float>(m_waves[0].waveLength);
 	// Add the first spawner
@@ -25,14 +27,26 @@ Environment::~Environment() {
 	delete m_powerup;
 }
 
+void Environment::loadConfig() {
+	// Open important sol libraries
+	m_config.open_libraries(sol::lib::base);
+	m_config.open_libraries(sol::lib::math);
+	m_config.script_file("config.lua");
+
+	// Set game values
+	TPS = m_config["config"]["tps"].get_or(60.0f);
+	m_player.invincible = m_config["config"]["invincible"].get_or(false);
+}
+
 void Environment::update() {
 	// Increment the new spawner counter
 	m_newSpawnerCounter++;
 	// If the new spawner counter is greater than the current wave's new spawner interval and the
 	// current amount of spawners is less than the current wave's max amount of spawners, then add a
 	// new spawner and reset the spawner counter
-	if (m_spawners.size() < m_waves[m_wave - 1].spawners && m_newSpawnerCounter >= (m_waves[m_wave - 1].newSpawnerInterval * 60)) {
+	if (m_spawnedSpawners < m_waves[m_wave - 1].spawners && m_newSpawnerCounter >= (m_waves[m_wave - 1].newSpawnerInterval * 60)) {
 		addSpawner();
+		m_spawnedSpawners++;
 		m_newSpawnerCounter = 0;
 	}
 
@@ -125,6 +139,7 @@ void Environment::render(sf::RenderWindow& window) {
 
 	// Iterate through the game's enemy objects, and render each one
 	for (Enemy* enemy : m_enemies) {
+		if (enemy == nullptr) __debugbreak();
 		enemy->render(window);
 	}
 

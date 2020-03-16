@@ -7,8 +7,8 @@
 #include "Console.hpp"
 
 // TODO:
-// Admin Console: improve command parser
-// New Content: Finish new powerups and spawner
+// Admin Console: add command lists / key-binds
+// Renderer: do new rendering system
 
 // Balance Changes / Fixes Needed:
 // Fix late game wave progression
@@ -32,6 +32,7 @@ int main() {
 	UserInterface ui(&env);
 	// Create the admin console
 	Console console(&env);
+
 	// Start the admin console on a separate thread, so that it can run at the same time as the game
 	auto t = std::async(std::launch::async, &Console::run, &console);
 
@@ -65,20 +66,21 @@ int main() {
 			else if (env.paused)
 				ui.pauseUpdate();
 			else env.clearEnemies();
+
+			if (!env.running) window.close();
+
+			console.runCommands();
 		}
 
-		// Render if the game is not paused
-		if (env.running && !env.paused) {
-			// Clear the window
-			window.clear(sf::Color::Black);
+		// Clear the window
+		window.clear(sf::Color::Black);
 
-			// Render the UI and the Environment (GameObjects)
-			ui.render(window);
-			env.render(window);
+		// Render the UI and the Environment (GameObjects)
+		ui.render(window);
+		env.render(window);
 
-			// Display the window, update the clock
-			window.display();
-		}
+		// Display the window, update the clock
+		window.display();
 		accumulator += clock.restart();
 	}
 

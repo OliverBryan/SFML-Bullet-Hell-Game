@@ -58,12 +58,14 @@ void UserInterface::update() {
 			m_env->m_wave++;
 		m_env->m_timer = static_cast<float>(m_env->m_waves[m_env->m_wave - 1].waveLength);
 		m_env->addSpawner();
+		m_env->m_newSpawnerCounter = 0;
+		m_env->m_spawnedSpawners = 1;
 		m_env->m_status = Environment::Status::None;
 	}
 
 	if (m_env->getPlayer()->m_teleports < 3)
 		m_teleportRechargeCounter++;
-	if (m_teleportRechargeCounter > m_teleportRecharge) {
+	if (m_teleportRechargeCounter > m_env->teleportRechargeTime) {
 		m_env->getPlayer()->m_teleports++;
 		m_teleportRechargeCounter = 0;
 	}
@@ -92,11 +94,11 @@ void UserInterface::update() {
 		break;
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P) && !pKeyDown) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) && !pKeyDown) {
 		pKeyDown = true;
 		m_env->paused = true;
 	}
-	else if (!sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+	else if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		pKeyDown = false;
 
 	handleKeyBinds();
@@ -119,11 +121,11 @@ void UserInterface::update() {
 }
 
 void UserInterface::pauseUpdate() {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P) && !pKeyDown) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) && !pKeyDown) {
 		pKeyDown = true;
-		m_env->paused *= false;
+		m_env->paused = false;
 	}
-	else if (!sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+	else if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		pKeyDown = false;
 }
 

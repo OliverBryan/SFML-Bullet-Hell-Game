@@ -44,6 +44,12 @@ void Mod::initializeScript(sol::state& script) {
 	script.open_libraries(sol::lib::table);
 
 	script["rand"] = irand;
+	script["floatRectHitTest"] = frectIntersection;
+	script["printRect"] = printRect;
+	script["setRectPosition"] = setRectPosition;
+	script["drawGradient"] = drawGradient;
+	script["draw"] = draw;
+	script["setCirclePosition"] = setCirclePosition;
 
 	sol::usertype<sf::Color> color_type = script.new_usertype<sf::Color>("Color",
 		sol::constructors<sf::Color(int, int, int), sf::Color(int, int, int, int)>());
@@ -54,76 +60,59 @@ void Mod::initializeScript(sol::state& script) {
 
 	sol::usertype<Enemy> enemy_type = script.new_usertype<Enemy>("Enemy",
 		sol::constructors<Enemy(float, float, float, float, int), Enemy(float, float, float, float, int, sf::Color)>());
+	enemy_type["position"] = sol::property(&Enemy::getPosition, &Enemy::setPosition);
+	enemy_type["bounds"] = &Enemy::getBounds;
+	enemy_type["velocity"] = sol::property(&Enemy::getVelocity, &Enemy::setVelocity);
+	enemy_type["size"] = sol::property(&Enemy::getSize, &Enemy::setSize);
+	enemy_type["fill"] = sol::property(&Enemy::getFill, &Enemy::setFill);
+	enemy_type["setFatal"] = &Enemy::setFatal;
+	enemy_type["instanceVars"] = &Enemy::instanceVars;
 
 	sol::usertype<sf::Vector2f> vector2f_type = script.new_usertype<sf::Vector2f>("Vec2",
 		sol::constructors<sf::Vector2f(float, float)>());
-
 	vector2f_type["x"] = &sf::Vector2f::x;
 	vector2f_type["y"] = &sf::Vector2f::y;
 
 	sol::usertype<Spawner> spawner_type = script.new_usertype<Spawner>("Spawner",
 		sol::no_constructor);
+	spawner_type["moving"] = sol::property(&Spawner::getMoving, &Spawner::setMoving);
+	spawner_type["position"] = sol::property(&Spawner::getPosition, &Spawner::setPosition);
+	spawner_type["instanceVars"] = &Spawner::instanceVars;
 
 	sol::usertype<Environment> env_type = script.new_usertype<Environment>("Environment",
 		sol::no_constructor);
-
-	sol::usertype<Player> player_type = script.new_usertype<Player>("Player",
-		sol::no_constructor);
-
-	sol::usertype<sf::FloatRect> frect_type = script.new_usertype<sf::FloatRect>("FloatRect",
-		sol::constructors<sf::FloatRect(sf::Vector2f, sf::Vector2f), sf::FloatRect(float, float, float, float)>());
-
-	script["floatRectHitTest"] = frectIntersection;
-
-	spawner_type["moving"] = sol::property(&Spawner::getMoving, &Spawner::setMoving);
-	spawner_type["position"] = sol::property(&Spawner::getPosition, &Spawner::setPosition);
-
-	spawner_type["instanceVars"] = &Spawner::instanceVars;
-
 	env_type["player"] = sol::property(&Environment::getPlayer);
 	env_type["addEnemy"] = &Environment::addModdedEnemy;
 	env_type["tps"] = &Environment::TPS;
 
+	sol::usertype<Player> player_type = script.new_usertype<Player>("Player",
+		sol::no_constructor);
 	player_type["position"] = sol::property(&Player::getPosition, &Player::setPosition);
 	player_type["bounds"] = &Player::getBounds;
-	enemy_type["position"] = sol::property(&Enemy::getPosition, &Enemy::setPosition);
-	enemy_type["bounds"] = &Enemy::getBounds;
 
-	enemy_type["velocity"] = sol::property(&Enemy::getVelocity, &Enemy::setVelocity);
-	enemy_type["size"] = sol::property(&Enemy::getSize, &Enemy::setSize);
-	enemy_type["fill"] = sol::property(&Enemy::getFill, &Enemy::setFill);
-	enemy_type["setFatal"] = &Enemy::setFatal;
-
-	enemy_type["instanceVars"] = &Enemy::instanceVars;
+	sol::usertype<sf::FloatRect> frect_type = script.new_usertype<sf::FloatRect>("FloatRect",
+		sol::constructors<sf::FloatRect(sf::Vector2f, sf::Vector2f), sf::FloatRect(float, float, float, float)>());
 
 	player_type["invincible"] = &Player::invincible;
 	player_type["speed"] = sol::property(&Player::getSpeed, &Player::setSpeed);
 
 	sol::usertype<sf::RectangleShape> rect_type = script.new_usertype<sf::RectangleShape>("Rect",
 		sol::constructors<sf::RectangleShape(sf::Vector2f)>(), sol::base_classes, sol::bases<sf::Shape, sf::Drawable, sf::Transformable>());
+	rect_type["setFill"] = &sf::RectangleShape::setFillColor;
+
 	sol::usertype<sf::CircleShape> circle_type = script.new_usertype<sf::CircleShape>("Circle",
 		sol::constructors<sf::CircleShape(float)>(), sol::base_classes, sol::bases<sf::Shape, sf::Drawable, sf::Transformable>());
-
-	sol::usertype<sf::RenderWindow> window_type = script.new_usertype<sf::RenderWindow>("Window",
-		sol::no_constructor);
-
 	circle_type["setFill"] = &sf::CircleShape::setFillColor;
 	circle_type["setBorder"] = &sf::CircleShape::setOutlineColor;
 	circle_type["setBorderWidth"] = &sf::CircleShape::setOutlineThickness;
-	script["setCirclePosition"] = setCirclePosition;
-
-	rect_type["setFill"] = &sf::RectangleShape::setFillColor;
-
-	script["printRect"] = printRect;
-	script["setRectPosition"] = setRectPosition;
-
-	script["drawGradient"] = drawGradient;
-	script["draw"] = draw;
 
 	sol::usertype<Powerup> powerup_type = script.new_usertype<Powerup>("Powerup",
 		sol::no_constructor);
 	powerup_type["position"] = sol::property(&Powerup::getPosition, &Powerup::setPosition);
 	powerup_type["active"] = sol::property(&Powerup::getActive, &Powerup::setActive);
+
+	sol::usertype<sf::RenderWindow> window_type = script.new_usertype<sf::RenderWindow>("Window",
+		sol::no_constructor);
 }
 
 Mod::Mod(std::string name, std::string path) : m_name(name), m_path(path) {

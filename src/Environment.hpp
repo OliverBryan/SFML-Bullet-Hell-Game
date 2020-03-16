@@ -13,6 +13,9 @@ class Powerup;
 
 struct Wave;
 
+#define SOL_ALL_SAFETIES_ON 1
+#include "sol.hpp"
+
 // Class that defines the game environment, which controls the behavior for the entire game, such as
 // updating and rendering spawners and enemies.
 class Environment : public sf::NonCopyable {
@@ -49,6 +52,9 @@ public:
 	// Returns a pointer to the game's player instance
 	Player* getPlayer();
 private:
+	// Internal table representing the configurations loaded from config.lua
+	sol::state m_config;
+
 	// Internal enumeration to represent the current state of the player, with None being inactive
 	// WaveCleared representing a passed wave, and PlayerDied representing a death event
 	enum class Status {
@@ -56,6 +62,9 @@ private:
 		WaveCleared,
 		PlayerDied
 	};
+
+	// Internal helper to load the config flie and set game values
+	void loadConfig();
 
 	// Registers a spawner with the game environment
 	void addSpawner();
@@ -71,6 +80,10 @@ private:
 	bool preWave = false;
 	// Represents the current wave
 	int m_wave = 1;
+
+	int m_spawnedSpawners = 1;
+
+	int teleportRechargeTime = 300;
 
 	// Represents the game's player state. If the game is not between waves value is Status::None.
 	// If the game is between waves and the player did not die during the wave the value is

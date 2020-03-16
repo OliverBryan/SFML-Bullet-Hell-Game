@@ -14,7 +14,6 @@ public:
 
 private:
 	int m_teleportRechargeCounter = 0;
-	int m_teleportRecharge = 300;
 	std::vector<sf::RectangleShape> m_ts;
 
 	void handleKeyBinds();
@@ -27,6 +26,8 @@ private:
 	sf::Text m_timerLabel;
 	sf::Text m_waveLabel;
 	sf::Text m_statusLabel;
+
+	float oldTPS = 60.0f;
 };
 
 #endif /* USER_INFERFACE_HPP */

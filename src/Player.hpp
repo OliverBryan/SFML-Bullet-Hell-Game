@@ -24,6 +24,8 @@ public:
 	int getSpeed();
 	void setSpeed(int speed);
 
+	friend class Console;
+
 private:
 	sf::Vector2f m_position;
 	int m_teleports = 3;
