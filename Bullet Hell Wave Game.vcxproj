@@ -167,6 +167,7 @@
     <ClCompile Include="src\Console.cpp" />
     <ClCompile Include="src\Enemy.cpp" />
     <ClCompile Include="src\Environment.cpp" />
+    <ClCompile Include="src\Input.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Mod.cpp" />
     <ClCompile Include="src\ModLoader.cpp" />
@@ -177,6 +178,7 @@
     <ClCompile Include="src\Wave.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Input.hpp" />
     <ClInclude Include="src\Console.hpp" />
     <ClInclude Include="src\Mod.hpp" />
     <ClInclude Include="src\ModLoader.hpp" />

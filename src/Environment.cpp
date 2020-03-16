@@ -4,6 +4,7 @@
 #include <iostream>
 #include "ModLoader.hpp"
 #include "Wave.hpp"
+#include "Input.hpp"
 
 // Initialize player at the center of the game space
 Environment::Environment() : m_player(210, 260, this) {
@@ -31,11 +32,15 @@ void Environment::loadConfig() {
 	// Open important sol libraries
 	m_config.open_libraries(sol::lib::base);
 	m_config.open_libraries(sol::lib::math);
+	Input::registerKeys(m_config);
+
 	m_config.script_file("config.lua");
 
 	// Set game values
 	TPS = m_config["config"]["tps"].get_or(60.0f);
 	m_player.invincible = m_config["config"]["invincible"].get_or(false);
+
+	Input::init(m_config);
 }
 
 void Environment::update() {

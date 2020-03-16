@@ -5,3 +5,12 @@ config = {
 	invincible = false,
 	tps = 60
 }
+
+keybinds = {
+	left = Keys.A,
+	up = Keys.W,
+	down = Keys.S,
+	right = Keys.D,
+	teleport = Keys.M,
+	powerup = Keys.N
+}

@@ -1,67 +1,68 @@
 #include "Player.hpp"
+#include "Input.hpp"
 
 void Player::update() {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+	if (Input::pressed("up")) {
 		m_position.y -= m_speed;
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+	else if (Input::pressed("down")) {
 		m_position.y += m_speed;
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+	if (Input::pressed("left")) {
 		m_position.x -= m_speed;
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+	else if (Input::pressed("right")) {
 		m_position.x += m_speed;
 	}
 
-	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::M) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) && !teleportKeyPressed && m_teleports > 0) {
+	if (Input::pressed("teleport") && !teleportKeyPressed && m_teleports > 0) {
 		teleportKeyPressed = true;
 		m_teleports--;
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && sf::Keyboard::isKeyPressed(sf::Keyboard::Left))) {
+		if (Input::pressed("up") && Input::pressed("left")) {
 			m_position.x -= 71;
 			m_position.y -= 71;
 		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right))) {
+		else if (Input::pressed("up") && Input::pressed("right")) {
 			m_position.x += 71;
 			m_position.y -= 71;
 		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && sf::Keyboard::isKeyPressed(sf::Keyboard::Left))) {
+		else if (Input::pressed("down") && Input::pressed("left")) {
 			m_position.x -= 71;
 			m_position.y += 71;
 		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right))) {
+		else if (Input::pressed("down") && Input::pressed("right")) {
 			m_position.x += 71;
 			m_position.y += 71;
 		}
 
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+		else if (Input::pressed("down")) {
 			m_position.y += 100;
 		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+		else if (Input::pressed("left")) {
 			m_position.x -= 100;
 		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+		else if (Input::pressed("up")) {
 			m_position.y -= 100;
 		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+		else if (Input::pressed("right")) {
 			m_position.x += 100;
 		}
 		else {
 			m_teleports++;
 		}
 	}
-	else if (!(sf::Keyboard::isKeyPressed(sf::Keyboard::M) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z)))
+	else if (!Input::pressed("teleport"))
 		teleportKeyPressed = false;
 
-	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::C) || sf::Keyboard::isKeyPressed(sf::Keyboard::B)) && !powerupKeyPressed) {
+	if (Input::pressed("powerup") && !powerupKeyPressed) {
 		powerupKeyPressed = true;
 		if (m_powerup != nullptr) {
 			m_powerup->setActive(true);
 			m_powerup->activate(this, m_env);
 		}
 	}
-	else if (!(sf::Keyboard::isKeyPressed(sf::Keyboard::C) || sf::Keyboard::isKeyPressed(sf::Keyboard::B)))
+	else if (!Input::pressed("powerup"))
 		powerupKeyPressed = false;
 
 	if (m_position.x >= 400)
