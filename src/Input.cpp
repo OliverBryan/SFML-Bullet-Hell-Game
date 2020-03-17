@@ -1,19 +1,29 @@
 #include "Input.hpp"
 
-std::unordered_map<std::string, sf::Keyboard::Key> Input::m_keybinds;
+std::unordered_map<std::string, std::vector<sf::Keyboard::Key>> Input::m_keybinds;
 
 void Input::init(sol::state& config) {
 	sol::table keybindsTable = config["keybinds"];
 	for (auto keybind : keybindsTable) {
 		auto t = keybind.second.get_type();
 		std::string action = keybind.first.as<std::string>();
-		sf::Keyboard::Key key = keybind.second.as<sf::Keyboard::Key>();
-		m_keybinds.insert(std::make_pair(action, key));
+		sol::table keys = keybind.second;
+		std::vector<sf::Keyboard::Key> keysv;
+		for (auto key : keys) {
+			sf::Keyboard::Key k = key.second.as<sf::Keyboard::Key>();
+			keysv.push_back(k);
+		}
+		m_keybinds.insert(std::make_pair(action, keysv));
 	}
 }
 
 bool Input::pressed(const std::string& action) {
-	return sf::Keyboard::isKeyPressed(m_keybinds[action]);
+	std::vector<sf::Keyboard::Key> kv = m_keybinds[action];
+	bool p = false;
+	for (sf::Keyboard::Key key : kv) {
+		if (sf::Keyboard::isKeyPressed(key)) p = true;
+	}
+	return p;
 }
 
 void Input::registerKeys(sol::state& config) {
@@ -53,6 +63,10 @@ void Input::registerKeys(sol::state& config) {
 		"6", sf::Keyboard::Num6,
 		"7", sf::Keyboard::Num7,
 		"8", sf::Keyboard::Num8,
-		"9", sf::Keyboard::Num9
+		"9", sf::Keyboard::Num9,
+		"Up", sf::Keyboard::Up,
+		"Down", sf::Keyboard::Down,
+		"Left", sf::Keyboard::Left,
+		"Right", sf::Keyboard::Right
 	);
 }

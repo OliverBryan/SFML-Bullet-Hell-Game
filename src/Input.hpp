@@ -16,7 +16,7 @@ public:
 	static void registerKeys(sol::state& config);
 
 private:
-	static std::unordered_map<std::string, sf::Keyboard::Key> m_keybinds;
+	static std::unordered_map<std::string, std::vector<sf::Keyboard::Key>> m_keybinds;
 
 };
 

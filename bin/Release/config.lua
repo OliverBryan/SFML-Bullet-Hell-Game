@@ -7,10 +7,10 @@ config = {
 }
 
 keybinds = {
-	left = Keys.A,
-	up = Keys.W,
-	down = Keys.S,
-	right = Keys.D,
-	teleport = Keys.M,
-	powerup = Keys.N
+	left = { Keys.Left, Keys.A },
+	up = { Keys.Up, Keys.W },
+	down = { Keys.Down, Keys.S },
+	right = { Keys.Right, Keys.D },
+	teleport = { Keys.Z, Keys.M },
+	powerup = { Keys.X, Keys.N }
 }

@@ -11,19 +11,19 @@ public:
 	// Constructor and Destructor
 	Enemy::Enemy(float x, float y, float velX, float velY, int lifetime, sf::Color fill = sf::Color::Black) :
 		m_position(x, y), m_velocity(velX, velY), m_lifetime(lifetime), m_fill(fill), m_dfill(fill), m_size(10.0f, 10.0f) {}
-	virtual ~Enemy() {}
+	~Enemy() {}
 
 	// Updates the enemy with default behavior (gets called even if a custom update is defined)
-	virtual int update();
+	int update();
 	// Calls the enemyUpdate function in the enemies mod script (does not completely override default update)
-	virtual void customUpdate();
+	void customUpdate();
 
 	// Calls the enemyRender function in the enemies mod script (completely overrides default render)
 	bool customRender(sf::RenderWindow& window);
 	// Renders the enemy with default render behavior (does not get called if a custom render is defined)
-	virtual void render(sf::RenderWindow& window);
+	sf::RectangleShape render(sf::RenderWindow& window);
 	// Returns the bounds of the enemy as a float rectangle using the enemies current position and size
-	virtual sf::FloatRect getBounds() const {
+	sf::FloatRect getBounds() const {
 		return sf::FloatRect(m_position, m_size);
 	}
 

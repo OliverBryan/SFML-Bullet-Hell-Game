@@ -131,10 +131,24 @@ void Environment::update() {
 	}
 }
 
+void Environment::pushRect(const sf::RectangleShape& rect, std::vector<sf::Vertex>& va) {
+	int x = 3;
+	for (int i = 0; i < 4; i++) {
+		va.push_back(sf::Vertex(sf::Vector2f(rect.getPosition() + rect.getPoint(x)), rect.getFillColor()));
+		x++;
+		if (x > 3) x = 0;
+	}
+}
+
 void Environment::render(sf::RenderWindow& window) {
+	std::vector<sf::Vertex> vertexArray;
+	vertexArray.reserve((m_spawners.size() * 4) + (m_enemies.size() * 4) + 16);
+
 	// Iterate through the game's spawner objects, and render each one
 	for (Spawner* spawner : m_spawners) {
-		spawner->render(window);
+		sf::RectangleShape rs = spawner->render(window);
+		if (rs.getSize() != sf::Vector2f(0, 0))
+			pushRect(rs, vertexArray);
 	}
 
 	// If the environment has a powerup that has not been picked up by the player, render it
@@ -144,8 +158,9 @@ void Environment::render(sf::RenderWindow& window) {
 
 	// Iterate through the game's enemy objects, and render each one
 	for (Enemy* enemy : m_enemies) {
-		if (enemy == nullptr) __debugbreak();
-		enemy->render(window);
+		sf::RectangleShape rs = enemy->render(window);
+		if (rs.getSize() != sf::Vector2f(0, 0))
+			pushRect(rs, vertexArray);
 	}
 
 	// Render the player
@@ -154,18 +169,20 @@ void Environment::render(sf::RenderWindow& window) {
 	// Draw the borders around the canvas, so that enemies transition off screen smoothly
 	sf::RectangleShape shape(sf::Vector2f(20, 400));
 	shape.setFillColor(sf::Color::Black);
-	window.draw(shape);
+	pushRect(shape, vertexArray);
 
 	shape.setPosition(420, 0);
 	shape.setSize(sf::Vector2f(50, 400));
-	window.draw(shape);
+	pushRect(shape, vertexArray);
 
 	shape.setSize(sf::Vector2f(400, 20));
 	shape.setPosition(0, 0);
-	window.draw(shape);
+	pushRect(shape, vertexArray);
 
 	shape.setPosition(20, 420);
-	window.draw(shape);
+	pushRect(shape, vertexArray);
+
+	window.draw(&vertexArray[0], vertexArray.size(), sf::Quads);
 }
 
 void Environment::addEnemy(Enemy* enemy) {

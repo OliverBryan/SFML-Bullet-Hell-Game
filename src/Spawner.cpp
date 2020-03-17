@@ -66,12 +66,15 @@ bool Spawner::customRender(sf::RenderWindow& window) {
 	return false;
 }
 
-void Spawner::render(sf::RenderWindow& window) {
+sf::RectangleShape Spawner::render(sf::RenderWindow& window) {
 	if (!customRender(window)) {
 		sf::RectangleShape shape(sf::Vector2f(16, 20));
 		shape.setPosition(m_position);
 		shape.setFillColor(m_fill);
-		window.draw(shape);
+		return shape;
+	}
+	else {
+		return sf::RectangleShape();
 	}
 }
 

@@ -84,14 +84,17 @@ bool Enemy::customRender(sf::RenderWindow& window) {
 	return false;
 }
 
-void Enemy::render(sf::RenderWindow& window) {
+sf::RectangleShape Enemy::render(sf::RenderWindow& window) {
 	// If the enemy does not define a custom render function, then render with the default settings
 	if (!customRender(window)) {
 		// Draw the enemy as a rectangle, using its position, size, and color
 		sf::RectangleShape shape(sf::Vector2f(m_size.x, m_size.y));
 		shape.setPosition(m_position);
 		shape.setFillColor(m_fill);
-		window.draw(shape);
+		return shape;
+	}
+	else {
+		return sf::RectangleShape();
 	}
 }
 
