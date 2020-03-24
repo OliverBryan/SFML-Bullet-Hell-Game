@@ -197,11 +197,17 @@ void Environment::addModdedEnemy(Enemy enemy, std::string name) {
 	m_enemies.push_back(new Enemy(enemy));
 }
 
+void Environment::removeModdedEnemy(Enemy* enemy) {
+	auto it = std::find(m_enemies.begin(), m_enemies.end(), enemy);
+	int index = std::distance(m_enemies.begin(), it);
+	removeEnemy(index);
+}
+
 void Environment::clearEnemies() {
 	// If there are enemies left, iterate through the internal enemy storage, and delete each enemy
 	if (!m_enemies.empty()) {
 		for (int i = 0; i < m_enemies.size(); i++) {
-			if (m_enemies[i]->getSize().x > 12 || m_enemies[i]->getSize().y > 12)
+			if (m_enemies[i]->stay)
 				continue;
 			removeEnemy(i);
 		}

@@ -48,6 +48,8 @@ public:
 		fatal = f;
 	}
 
+	bool stay = false;
+
 	// Lua table representing the enemies instance variables (defined in mod script)
 	sol::table instanceVars;
 	// If true, the enemy will kill the player on contact, if false, it won't (defaults to true)

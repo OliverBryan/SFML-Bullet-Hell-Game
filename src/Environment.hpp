@@ -39,6 +39,8 @@ public:
 	// additional parameter representing the enemy name to distinguish between mods
 	void addModdedEnemy(Enemy enemy, std::string name);
 
+	void removeModdedEnemy(Enemy* enemy);
+
 	// Variables that represent the current state of the game
 	bool running = true;
 	bool paused = false;

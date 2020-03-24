@@ -197,6 +197,7 @@
     <None Include="mods\GameData\powerups\SlowdownPowerup.lua" />
     <None Include="mods\GameData\powerups\SpeedPowerup.lua" />
     <None Include="mods\GameData\Spawners\BasicSpawner.lua" />
+    <None Include="mods\GameData\spawners\CurveSpawner.lua" />
     <None Include="mods\GameData\spawners\FragmentSpawner.lua" />
     <None Include="mods\GameData\Spawners\GravitySpawner.lua" />
     <None Include="mods\GameData\Spawners\HomingSpawner.lua" />

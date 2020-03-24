@@ -39,6 +39,8 @@ public:
 	bool getMoving();
 	void setMoving(bool m);
 
+	bool postmove = false;
+
 	sf::Vector2f& getPosition();
 	void setPosition(sf::Vector2f p);
 

@@ -24,6 +24,9 @@ public:
 
 	void runCommands();
 
+	// Function that parses and executes the commands entered
+	void interpret(const std::string& cmdStr);
+
 private:
 	// Used to lock down the environment object, so that the main game does not try to access it
 	// while the console is modifying it
@@ -36,9 +39,6 @@ private:
 	Environment* m_env;
 
 	std::deque<std::string> m_queuedCommands;
-
-	// Function that parses and executes the commands entered
-	void interpret(const std::string& cmdStr);
 
 	enum class Type {
 		String,

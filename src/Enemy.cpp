@@ -51,6 +51,8 @@ void Enemy::modinit(Mod* parent, const std::string& name, Environment* env) {
 	this->name = name;
 	m_env = env;
 
+	stay = (*parent->getScriptForSpawner(name, "enemy modinit"))[name]["stay"].get_or(false);
+
 	// Retrieve the instanceVars table object from the mod script
 	try {
 		sol::optional<sol::table> t = (*parent->getScriptForSpawner(name, "enemy modinit"))[name]["EnemyInstanceVars"];

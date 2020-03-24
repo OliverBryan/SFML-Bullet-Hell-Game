@@ -167,6 +167,14 @@ std::string getRandomSpawner(float difficulty, ModLoader* modLoader) {
 	return possibleSpawnerTypes[dist(gen)];
 }
 
+template <typename T>
+void printVector(std::vector<T> vec) {
+	std::for_each(vec.begin(), vec.end(), [](const T& elem) {
+		std::cout << elem << " ";
+	});
+	std::cout << std::endl;
+}
+
 std::vector<int> weights { 70, 60, 30, 20, 10, 5 };
 Wave getRandomWave(float difficulty, ModLoader* modLoader) {
 	Wave wave;
@@ -197,7 +205,6 @@ Wave getRandomWave(float difficulty, ModLoader* modLoader) {
 	spawnerChances[spawnerChances.size() - 1] += 100 - is;
 	std::sort(spawnerChances.rbegin(), spawnerChances.rend());
 
-
 	std::vector<std::string> localPossibleSpawnerTypes = possibleSpawnerTypes;
 	for (int x = 0; x < amountOfSpawners; x++) {
 		std::vector<int> spossibilites(localPossibleSpawnerTypes.size());
@@ -212,7 +219,8 @@ Wave getRandomWave(float difficulty, ModLoader* modLoader) {
 		std::piecewise_constant_distribution<> dist(spossibilites.begin(), spossibilites.end(), sweights.begin());
 		std::random_device rd;
 		std::mt19937 gen{ rd() };
-		int s = dist(gen);
+		int s = std::round(dist(gen));
+
 		wave.spawnerTypes.push_back(std::make_pair(localPossibleSpawnerTypes[s], spawnerChances[x]));
 		localPossibleSpawnerTypes.erase(localPossibleSpawnerTypes.begin() + s);
 	}

@@ -77,12 +77,14 @@ void Mod::initializeScript(sol::state& script) {
 		sol::no_constructor);
 	spawner_type["moving"] = sol::property(&Spawner::getMoving, &Spawner::setMoving);
 	spawner_type["position"] = sol::property(&Spawner::getPosition, &Spawner::setPosition);
+	spawner_type["postmove"] = &Spawner::postmove;
 	spawner_type["instanceVars"] = &Spawner::instanceVars;
 
 	sol::usertype<Environment> env_type = script.new_usertype<Environment>("Environment",
 		sol::no_constructor);
 	env_type["player"] = sol::property(&Environment::getPlayer);
 	env_type["addEnemy"] = &Environment::addModdedEnemy;
+	env_type["removeEnemy"] = &Environment::removeModdedEnemy;
 	env_type["tps"] = &Environment::TPS;
 
 	sol::usertype<Player> player_type = script.new_usertype<Player>("Player",

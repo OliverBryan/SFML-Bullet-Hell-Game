@@ -120,6 +120,7 @@
     <None Include="mods\GameData\spawners\FragmentSpawner.lua" />
     <None Include="mods\GameData\powerups\SlowdownPowerup.lua" />
     <None Include="config.lua" />
+    <None Include="mods\GameData\spawners\CurveSpawner.lua" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="mods\mods.txt" />

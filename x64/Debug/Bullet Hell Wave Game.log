@@ -1,13 +1,6 @@
 ﻿  Console.cpp
+C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Console.cpp(112,56): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Enemy.cpp
-  Environment.cpp
-C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Environment.cpp(120,59): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-  Main.cpp
-  Mod.cpp
-  ModLoader.cpp
-  Powerup.cpp
-  Spawner.cpp
-  UserInterface.cpp
   Wave.cpp
 C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Wave.cpp(44,142): warning C4244: '*=': conversion from 'double' to 'float', possible loss of data
 C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Wave.cpp(142,13): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
@@ -17,52 +10,52 @@ C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bull
               _Ty=int
           ]
 C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Wave.cpp(167,34): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
-C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Wave.cpp(178,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Wave.cpp(185,18): warning C4244: 'argument': conversion from 'int' to 'const _Ty', possible loss of data
+C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Wave.cpp(186,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Wave.cpp(193,18): warning C4244: 'argument': conversion from 'int' to 'const _Ty', possible loss of data
           with
           [
               _Ty=float
           ]
-C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Wave.cpp(194,38): warning C4244: 'argument': conversion from 'float' to '_Ty', possible loss of data
+C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Wave.cpp(202,38): warning C4244: 'argument': conversion from 'float' to '_Ty', possible loss of data
           with
           [
               _Ty=int
           ]
-C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Wave.cpp(195,22): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
-C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Wave.cpp(210,23): warning C4244: 'argument': conversion from 'float' to 'const _Ty', possible loss of data
+C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Wave.cpp(203,22): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Wave.cpp(217,23): warning C4244: 'argument': conversion from 'float' to 'const _Ty', possible loss of data
           with
           [
               _Ty=int
           ]
-C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Wave.cpp(215,9): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Wave.cpp(222,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Wave.cpp(224,107): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Wave.cpp(230,19): warning C4244: '*=': conversion from 'double' to '_Ty', possible loss of data
+C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Wave.cpp(222,9): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Wave.cpp(230,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Wave.cpp(232,107): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Wave.cpp(238,19): warning C4244: '*=': conversion from 'double' to '_Ty', possible loss of data
           with
           [
               _Ty=int
           ]
-C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Wave.cpp(231,20): warning C4244: '*=': conversion from 'double' to '_Ty', possible loss of data
+C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Wave.cpp(239,20): warning C4244: '*=': conversion from 'double' to '_Ty', possible loss of data
           with
           [
               _Ty=int
           ]
-C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Wave.cpp(232,19): warning C4244: '*=': conversion from 'double' to '_Ty', possible loss of data
+C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Wave.cpp(240,19): warning C4244: '*=': conversion from 'double' to '_Ty', possible loss of data
           with
           [
               _Ty=int
           ]
-C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Wave.cpp(233,19): warning C4244: '*=': conversion from 'double' to '_Ty', possible loss of data
+C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Wave.cpp(241,19): warning C4244: '*=': conversion from 'double' to '_Ty', possible loss of data
           with
           [
               _Ty=int
           ]
-C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Wave.cpp(234,19): warning C4244: '*=': conversion from 'double' to '_Ty', possible loss of data
+C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Wave.cpp(242,19): warning C4244: '*=': conversion from 'double' to '_Ty', possible loss of data
           with
           [
               _Ty=int
           ]
-C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Wave.cpp(235,19): warning C4244: '*=': conversion from 'double' to '_Ty', possible loss of data
+C:\Users\obryan\Documents\Visual Studio 2013\Projects\Bullet Hell Wave Game\Bullet Hell Wave Game\src\Wave.cpp(243,19): warning C4244: '*=': conversion from 'double' to '_Ty', possible loss of data
           with
           [
               _Ty=int

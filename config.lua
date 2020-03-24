@@ -14,3 +14,6 @@ keybinds = {
 	teleport = { Keys.Z, Keys.M },
 	powerup = { Keys.X, Keys.N }
 }
+
+actions = {
+}

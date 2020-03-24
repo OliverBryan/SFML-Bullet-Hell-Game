@@ -98,6 +98,26 @@ Console::Console(Environment* env) : m_env(env) {
 			m_env->clearEnemies();
 		}
 	}, {});
+
+	registerCommandGroup("spawn");
+
+	registerCommand("spawner", "spawn", [this](std::vector<Args> args) {
+		int t = static_cast<int>(std::get<double>(args[1]));
+		if (t < 1) throw std::invalid_argument("Amount of spawners to spawn must be greater than 0");
+
+		Mod* mod = m_env->m_modLoader->getModBySpawnerName(std::get<std::string>(args[0]));
+		if (mod == nullptr) throw std::invalid_argument("\"" + std::get<std::string>(args[0]) + "\" is not a valid spawner name");
+
+		for (int i = 0; i < t; i++) {
+			m_env->m_spawners.push_back(mod->createSpawner(irand(20, 404), m_env, std::get<std::string>(args[0])));
+		}
+	}, { Type::String, Type::Number });
+
+	registerCommandGroup("run");
+	registerCommand("superspeed", "run", [this](std::vector<Args> args) {
+		interpret("set invincible true");
+		interpret("set tps " + std::to_string(std::get<double>(args[0])));
+	}, { Type::Number });
 }
 
 void Console::run() {

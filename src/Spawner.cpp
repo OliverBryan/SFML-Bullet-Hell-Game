@@ -102,6 +102,7 @@ void Spawner::update() {
 	else if ((m_position.x == m_newX || m_position.x == m_newX + 1) && m_postMoveCounter > 0) {
 		m_postMoveCounter--;
 		m_fill = postMoveFill;
+		postmove = true;
 	}
 	else if (m_counter >= FIRE_TIME && m_postMoveCounter <= 0) {
 		if (modded)
@@ -112,6 +113,7 @@ void Spawner::update() {
 		m_fill = defaultFill;
 		m_postMoveCounter = POST_MOVE_TIME;
 		m_moving = false;
+		postmove = false;
 	}
 
 	if (m_counter > FIRE_TIME - 60 && !m_moving) {
