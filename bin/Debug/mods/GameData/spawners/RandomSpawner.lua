@@ -30,7 +30,7 @@ end
 function RandomSpawner.enemyUpdate(enemy, environment)
 	if enemy.instanceVars.c > enemy.instanceVars.cl then
 		enemy.velocity.x = rand(-5, 5)
-		enemy.velocity.y = rand(0, 5)
+		enemy.velocity.y = rand(-5, 5)
 		enemy.instanceVars.c = 0
 		enemy.instanceVars.cl = rand(10, 80)
 	end

@@ -1,4 +1,5 @@
 exportedSpawners = {
+	"FragmentSpawner",
 	"RandomSpawner",
 	"SpraySpawner",
 	"RicochetSpawner",
@@ -8,7 +9,8 @@ exportedSpawners = {
 	"HomingSpawner",
 	"ShotgunSpawner",
 	"LoopSpawner",
-	"GravitySpawner"
+	"GravitySpawner",
+	"CurveSpawner"
 }
 
 exportedPowerups = {
