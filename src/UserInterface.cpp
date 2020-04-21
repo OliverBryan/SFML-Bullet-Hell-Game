@@ -156,12 +156,4 @@ void UserInterface::render(sf::RenderWindow& window) {
 	window.draw(m_statusLabel);
 }
 
-void UserInterface::handleKeyBinds() {
-	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::RShift)) && !advKeyDown) {
-		advKeyDown = true;
-		m_env->m_timer = 0.01f;
-		m_env->getPlayer()->m_position.y = 0;
-	}
-	else if (!(sf::Keyboard::isKeyPressed(sf::Keyboard::A) && (sf::Keyboard::isKeyPressed(sf::Keyboard::RShift))))
-		advKeyDown = false;
-}
+void UserInterface::handleKeyBinds() {}

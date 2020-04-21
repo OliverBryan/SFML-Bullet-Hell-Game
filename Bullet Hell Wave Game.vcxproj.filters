@@ -103,7 +103,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="waves.dat" />
     <None Include="mods\GameData\Spawners\BasicSpawner.lua" />
     <None Include="mods\GameData\Spawners\GravitySpawner.lua" />
     <None Include="mods\GameData\Spawners\HomingSpawner.lua" />

@@ -12,6 +12,10 @@
 Console::Console(Environment* env) : m_env(env) {
 	// Register commands
 	registerCommandGroup("set");
+	registerCommand("cheats", "set", [this](std::vector<Args> args) {
+		m_env->cheatsEnabled = std::get<bool>(args[0]);
+	}, { Type::Boolean });
+
 	registerCommand("invincible", "set", [this](std::vector<Args> args) {
 		m_env->getPlayer()->invincible = std::get<bool>(args[0]);
 	}, { Type::Boolean });
@@ -259,11 +263,16 @@ void Console::interpret(const std::string& cmdStr) {
 		x++;
 	}
 
-	try {
-		command.callback(args);
+	if (m_env->cheatsEnabled || (command.name == "cheats")) {
+		try {
+			command.callback(args);
+		}
+		catch (std::exception e) {
+			std::cout << "Error running command callback: " << e.what() << std::endl;
+		}
 	}
-	catch (std::exception e) {
-		std::cout << "Error running command callback: " << e.what() << std::endl;
+	else if (!m_env->cheatsEnabled) {
+		std::cout << "Error: cannot run a command without cheats enabled" << std::endl;
 	}
 
 	// Make sure the game is still running

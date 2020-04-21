@@ -1,11 +1,14 @@
 #include "Input.hpp"
+#include "Console.hpp"
+#include <iostream>
 
 std::unordered_map<std::string, std::vector<sf::Keyboard::Key>> Input::m_keybinds;
+std::vector<Action> Input::m_actions;
 
 void Input::init(sol::state& config) {
 	sol::table keybindsTable = config["keybinds"];
 	for (auto keybind : keybindsTable) {
-		auto t = keybind.second.get_type();
+		//auto t = keybind.second.get_type();
 		std::string action = keybind.first.as<std::string>();
 		sol::table keys = keybind.second;
 		std::vector<sf::Keyboard::Key> keysv;
@@ -14,6 +17,35 @@ void Input::init(sol::state& config) {
 			keysv.push_back(k);
 		}
 		m_keybinds.insert(std::make_pair(action, keysv));
+	}
+
+	sol::table actionsTable = config["actions"];
+	for (auto action : actionsTable) {
+		std::string actionName = action.first.as<std::string>();
+		sol::table actionTable = action.second;
+		try {
+			sol::table keys = actionTable["keys"];
+			sol::table commands = actionTable["commands"];
+
+			std::vector<sf::Keyboard::Key> keysv;
+			for (auto key : keys) {
+				sf::Keyboard::Key k = key.second.as<sf::Keyboard::Key>();
+				keysv.push_back(k);
+			}
+
+			std::vector<std::string> commandsv;
+			for (auto command : commands) {
+				std::string cmd = command.second.as<std::string>();
+				commandsv.push_back(cmd);
+			}
+
+			Action a(actionName, commandsv, keysv);
+			m_actions.push_back(a);
+		}
+		catch (sol::error e) {
+			std::cout << "Error loading actions: " << e.what() << std::endl;
+			exit(-1);
+		}
 	}
 }
 
@@ -24,6 +56,26 @@ bool Input::pressed(const std::string& action) {
 		if (sf::Keyboard::isKeyPressed(key)) p = true;
 	}
 	return p;
+}
+
+void Input::handleActions(const std::unordered_map<sf::Keyboard::Key, bool>& keys, Console& console) {
+	for (const Action& action : m_actions) {
+		bool p = true;
+		for (sf::Keyboard::Key k : action.keys) {
+			try {
+				if (!keys.at(k)) p = false;
+			}
+			catch (std::out_of_range) {
+				p = false;
+			}
+		}
+		if (p) {
+			std::cout << "Running action \"" << action.name << "\"" << std::endl;
+			for (const std::string& command : action.commands) {
+				console.interpret(command);
+			}
+		}
+	}
 }
 
 void Input::registerKeys(sol::state& config) {
@@ -67,6 +119,8 @@ void Input::registerKeys(sol::state& config) {
 		"Up", sf::Keyboard::Up,
 		"Down", sf::Keyboard::Down,
 		"Left", sf::Keyboard::Left,
-		"Right", sf::Keyboard::Right
+		"Right", sf::Keyboard::Right,
+		"LShift", sf::Keyboard::LShift,
+		"RShift", sf::Keyboard::RShift
 	);
 }

@@ -19,7 +19,6 @@ private:
 	void handleKeyBinds();
 
 	bool pKeyDown = false;
-	bool advKeyDown = false;
 
 	Environment* m_env;
 	sf::Font m_font;

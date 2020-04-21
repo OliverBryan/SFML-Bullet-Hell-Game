@@ -39,6 +39,7 @@ void Environment::loadConfig() {
 	// Set game values
 	TPS = m_config["config"]["tps"].get_or(60.0f);
 	m_player.invincible = m_config["config"]["invincible"].get_or(false);
+	cheatsEnabled = m_config["config"]["cheats"].get_or(false);
 
 	Input::init(m_config);
 }

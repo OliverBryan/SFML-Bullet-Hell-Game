@@ -5,25 +5,31 @@
 #include "UserInterface.hpp"
 #include "Environment.hpp"
 #include "Console.hpp"
+#include "Input.hpp"
 
 // TODO:
-// Admin Console: add command lists / key-binds
-// Renderer: do new rendering system
+// None
 
 // Balance Changes / Fixes Needed:
-// Fix late game wave progression
-// Fix double spawning at wave start
+// Fix late game wave progressions
 
-// Balance Changes Done:
-// Ricochet Spawner: increased fire time to 140 (previously 100)
-// Loop Spawner: increased fire time to 140 (previously 100)
-// Shotgun Spawner: increased fire time to 50 (previously 30)
+int main(int argc, char** argv) {
+	if (argc > 1) {
+		std::vector<std::string> flags;
+		for (int i = 1; i < argc; i++) {
+			flags.push_back(std::string(argv[i]));
+		}
 
-int main() {
+		std::vector<std::string>::iterator i = std::find(flags.begin(), flags.end(), "-wf");
+		if (i != flags.end()) {
+			++i;
+		}
+	}
+
 	// Create Window
 	// Initialize a context settings object, and set the antialiasing level to its max
 	sf::ContextSettings cs;
-	cs.antialiasingLevel = 8;
+	cs.antialiasingLevel = 16;
 	// Actually initialize the window object, with a size of 700px by 400px and the default window style
 	sf::RenderWindow window(sf::VideoMode(700, 440), "Bullet Hell Game", sf::Style::Default, cs);
 
@@ -40,7 +46,10 @@ int main() {
 	sf::Clock clock;
 	sf::Time accumulator = sf::Time::Zero;
 
+	std::unordered_map<sf::Keyboard::Key, bool> keys;
+
 	// Core event loop; run until window is closed
+	window.setKeyRepeatEnabled(false);
 	while (window.isOpen()) {
 		// Create local clock object
 		sf::Clock c;
@@ -51,6 +60,14 @@ int main() {
 				// Close the window if a close event is received
 			case sf::Event::Closed:
 				window.close();
+				break;
+			case sf::Event::KeyPressed:
+				keys[e.key.code] = true;
+				Input::handleActions(keys, console);
+				break;
+			case sf::Event::KeyReleased:
+				keys[e.key.code] = false;
+				break;
 			}
 		}
 

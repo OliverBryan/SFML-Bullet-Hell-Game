@@ -45,6 +45,8 @@ public:
 	bool running = true;
 	bool paused = false;
 
+	bool cheatsEnabled = false;
+
 	// Value that defines the amount of logic updates per second
 	float TPS = 60.0f;
 

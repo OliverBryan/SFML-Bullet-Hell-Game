@@ -3,7 +3,8 @@
 -- Values in the config table can be removed, if not present will be defaulted
 config = {
 	invincible = false,
-	tps = 60
+	tps = 60,
+	cheats = false
 }
 
 keybinds = {
@@ -13,4 +14,11 @@ keybinds = {
 	right = { Keys.Right, Keys.D },
 	teleport = { Keys.Z, Keys.M },
 	powerup = { Keys.X, Keys.N }
+}
+
+actions = {
+	advance = {
+		keys = {Keys.RShift, Keys.A},
+		commands = {"set time 0.01", "set position 200 0"}
+	}
 }

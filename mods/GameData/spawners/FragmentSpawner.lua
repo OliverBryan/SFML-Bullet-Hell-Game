@@ -43,7 +43,11 @@ function FragmentSpawner.enemyUpdate(enemy, environment)
 		enemy.velocity.y = 0
 		amount = rand(2, 8)
 		for i = 1, amount do
-			environment:addEnemy(Enemy.new(enemy.position.x + 3, enemy.position.y + 20, rand(-5, 5), rand(-5, 5), 400, Color.new(222, 5, 176)), "FragmentSpawner")
+			local vx = rand(-5, 5)
+			while vx == 0 do
+				vx = rand(-5, 5)
+			end
+			environment:addEnemy(Enemy.new(enemy.position.x + 3, enemy.position.y + 20, vx, rand(-5, 5), 400, Color.new(222, 5, 176)), "FragmentSpawner")
 		end
 
 		enemy.instanceVars.c = enemy.instanceVars.time - 60
