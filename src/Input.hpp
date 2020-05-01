@@ -12,9 +12,9 @@ class Console;
 struct Action {
 	std::string name;
 	std::vector<std::string> commands;
-	std::vector<sf::Keyboard::Key> keys;
+	std::vector<std::vector<sf::Keyboard::Key>> keys;
 
-	Action(std::string n, std::vector<std::string> c, std::vector<sf::Keyboard::Key> k) :
+	Action(std::string n, std::vector<std::string> c, std::vector<std::vector<sf::Keyboard::Key>> k) :
 		name(n), commands(c), keys(k) {}
 };
 

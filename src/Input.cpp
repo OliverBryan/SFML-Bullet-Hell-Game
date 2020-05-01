@@ -27,10 +27,15 @@ void Input::init(sol::state& config) {
 			sol::table keys = actionTable["keys"];
 			sol::table commands = actionTable["commands"];
 
-			std::vector<sf::Keyboard::Key> keysv;
-			for (auto key : keys) {
-				sf::Keyboard::Key k = key.second.as<sf::Keyboard::Key>();
-				keysv.push_back(k);
+			std::vector<std::vector<sf::Keyboard::Key>> keysv;
+			for (auto bindtable : keys) {
+				sol::table binds = bindtable.second;
+				std::vector<sf::Keyboard::Key> bindv;
+				for (auto key : binds) {
+					sf::Keyboard::Key k = key.second.as<sf::Keyboard::Key>();
+					bindv.push_back(k);
+				}
+				keysv.push_back(bindv);
 			}
 
 			std::vector<std::string> commandsv;
@@ -60,19 +65,21 @@ bool Input::pressed(const std::string& action) {
 
 void Input::handleActions(const std::unordered_map<sf::Keyboard::Key, bool>& keys, Console& console) {
 	for (const Action& action : m_actions) {
-		bool p = true;
-		for (sf::Keyboard::Key k : action.keys) {
-			try {
-				if (!keys.at(k)) p = false;
+		for (const auto& keysv : action.keys) {
+			bool p = true;
+			for (sf::Keyboard::Key k : keysv) {
+				try {
+					if (!keys.at(k)) p = false;
+				}
+				catch (std::out_of_range) {
+					p = false;
+				}
 			}
-			catch (std::out_of_range) {
-				p = false;
-			}
-		}
-		if (p) {
-			std::cout << "Running action \"" << action.name << "\"" << std::endl;
-			for (const std::string& command : action.commands) {
-				console.interpret(command);
+			if (p) {
+				std::cout << "Running action \"" << action.name << "\"" << std::endl;
+				for (const std::string& command : action.commands) {
+					console.interpret(command);
+				}
 			}
 		}
 	}

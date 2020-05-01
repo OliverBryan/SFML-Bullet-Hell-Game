@@ -67,7 +67,7 @@ private:
 		PlayerDied
 	};
 
-	void pushRect(const sf::RectangleShape& rect, std::vector<sf::Vertex>& va);
+	inline void pushRect(const sf::RectangleShape& rect, std::vector<sf::Vertex>& va);
 
 	// Internal helper to load the config flie and set game values
 	void loadConfig();

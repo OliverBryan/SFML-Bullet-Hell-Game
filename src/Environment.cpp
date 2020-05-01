@@ -132,7 +132,7 @@ void Environment::update() {
 	}
 }
 
-void Environment::pushRect(const sf::RectangleShape& rect, std::vector<sf::Vertex>& va) {
+inline void Environment::pushRect(const sf::RectangleShape& rect, std::vector<sf::Vertex>& va) {
 	int x = 3;
 	for (int i = 0; i < 4; i++) {
 		va.push_back(sf::Vertex(sf::Vector2f(rect.getPosition() + rect.getPoint(x)), rect.getFillColor()));
